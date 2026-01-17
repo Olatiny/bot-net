@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cynuw703np806"]
+
+[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="1_jesob"]
+
+[node name="Folder" type="Sprite2D"]
+modulate = Color(1, 0.5803922, 0.34901962, 1)
+scale = Vector2(0.8, 1)
+texture = ExtResource("1_jesob")

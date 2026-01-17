@@ -1,56 +1,108 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgqplngyhetcx"]
+[gd_scene load_steps=7 format=3 uid="uid://c4wdu31m74r1d"]
 
-[ext_resource type="PackedScene" uid="uid://b3jf840dyxq67" path="res://src/scenes/left_monitor_display.tscn" id="1_gh0ne"]
-[ext_resource type="PackedScene" uid="uid://bfdjh3q7e5x36" path="res://src/scenes/right_monitor_display.tscn" id="2_5q4o7"]
+[ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_eewff"]
+[ext_resource type="Texture2D" uid="uid://cu0n3snlvd80v" path="res://assets/computer_transparent.png" id="2_gh0ne"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gh0ne"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ts572"]
+bg_color = Color(0.12652823, 0.28813088, 0.11242562, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2879425, 0.6057134, 0.26098928, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eewff"]
+bg_color = Color(0.1254902, 0.2901961, 0.11372549, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.2879425, 0.6057134, 0.26098928, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+anti_aliasing = false
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gh0ne"]
+viewport_path = NodePath("SubViewport")
 
 [node name="Main" type="CanvasLayer"]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -722.0
-offset_top = -360.0
-offset_right = 722.0
-offset_bottom = 360.0
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(790, 808)
+render_target_update_mode = 4
+
+[node name="Board" parent="SubViewport" instance=ExtResource("1_eewff")]
+position = Vector2(1023, 479)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 25
+color = Color(0.06666667, 0.06666667, 0.06666667, 1)
 
-[node name="LeftMonitorContainer2" type="SubViewportContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(720, 720)
+[node name="Computer" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_gh0ne")
+
+[node name="PanelContainer" type="PanelContainer" parent="Computer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.119791664
+anchor_top = 0.074074075
+anchor_right = 0.75
+anchor_bottom = 0.8333333
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_gh0ne")
+
+[node name="ScreenHbox" type="HBoxContainer" parent="Computer/PanelContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_target = true
-metadata/_edit_group_ = true
-metadata/_edit_use_anchors_ = true
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/LeftMonitorContainer2"]
-handle_input_locally = false
-size = Vector2i(720, 720)
-size_2d_override = Vector2i(270, 270)
-size_2d_override_stretch = true
-render_target_update_mode = 4
-
-[node name="LeftMonitorDisplay" parent="HBoxContainer/LeftMonitorContainer2/SubViewport" instance=ExtResource("1_gh0ne")]
-
-[node name="RightMonitorContainer3" type="SubViewportContainer" parent="HBoxContainer"]
-custom_minimum_size = Vector2(720, 720)
+[node name="LeftWindowsVbox" type="VBoxContainer" parent="Computer/PanelContainer/ScreenHbox"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_target = true
-metadata/_edit_group_ = true
-metadata/_edit_use_anchors_ = true
+size_flags_vertical = 4
+theme_override_constants/separation = 8
+alignment = 1
 
-[node name="SubViewport" type="SubViewport" parent="HBoxContainer/RightMonitorContainer3"]
-handle_input_locally = false
-size = Vector2i(720, 720)
-size_2d_override = Vector2i(270, 270)
-size_2d_override_stretch = true
-render_target_update_mode = 4
+[node name="TerminalPanel" type="PanelContainer" parent="Computer/PanelContainer/ScreenHbox/LeftWindowsVbox"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ts572")
 
-[node name="RightMonitorDisplay" parent="HBoxContainer/RightMonitorContainer3/SubViewport" instance=ExtResource("2_5q4o7")]
+[node name="ShopPanel" type="PanelContainer" parent="Computer/PanelContainer/ScreenHbox/LeftWindowsVbox"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ts572")
+
+[node name="PanelContainer" type="PanelContainer" parent="Computer/PanelContainer/ScreenHbox"]
+custom_minimum_size = Vector2(790, 808)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_eewff")
+
+[node name="TextureRect" type="TextureRect" parent="Computer/PanelContainer/ScreenHbox/PanelContainer"]
+layout_mode = 2
+texture = SubResource("ViewportTexture_gh0ne")
+expand_mode = 1
+stretch_mode = 3

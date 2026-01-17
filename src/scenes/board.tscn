@@ -1,0 +1,119 @@
+[gd_scene load_steps=10 format=4 uid="uid://qmnrwsay8150"]
+
+[ext_resource type="TileSet" uid="uid://buikna7oujr48" path="res://src/board/board_tileset.tres" id="1_7yose"]
+[ext_resource type="Script" uid="uid://hk1l7d7qe3w1" path="res://src/board/board.gd" id="1_v43tc"]
+[ext_resource type="PackedScene" uid="uid://cynuw703np806" path="res://src/board/folder.tscn" id="3_ntdqk"]
+
+[sub_resource type="Curve2D" id="Curve2D_7yose"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -309, 0, 0, 0, 0, -1, -141, 0, 0, 0, 0, -256, -145, 0, 0, 0, 0, -261, 108, 0, 0, 0, 0, -319, 113, 0, 0, 0, 0, -321, 274)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_v43tc"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -310, 0, 0, 0, 0, -3, -141, 0, 0, 0, 0, -256, -141, 0, 0, 0, 0, -257, 105, 0, 0, 0, 0, -195, 110, 0, 0, 0, 0, -190, 224)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_ntdqk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -305, 0, 0, 0, 0, -1, 106, 0, 0, 0, 0, -70, 113, 0, 0, 0, 0, -70, 279)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_0wql5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -305, 0, 0, 0, 0, -2, 104, 0, 0, 0, 0, 66, 113, 0, 0, 0, 0, 68, 264)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_iy2xe"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -306, 0, 0, 0, 0, -3, -143, 0, 0, 0, 0, 260, -144, 0, 0, 0, 0, 253, 104, 0, 0, 0, 0, 192, 111, 0, 0, 0, 0, 190, 274)
+}
+point_count = 6
+
+[sub_resource type="Curve2D" id="Curve2D_fh8u8"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, -308, 0, 0, 0, 0, -4, -146, 0, 0, 0, 0, 254, -143, 0, 0, 0, 0, 257, 110, 0, 0, 0, 0, 320, 111, 0, 0, 0, 0, 318, 262)
+}
+point_count = 6
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_v43tc")
+
+[node name="DisplayRef" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -404.0
+offset_right = 395.0
+offset_bottom = 404.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Decoration" type="Node2D" parent="."]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Decoration"]
+position = Vector2(-16, 0)
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAAPf/AgADAAIAAAAAAPj/AgADAAIAAAAAAPn/AgADAAIAAAAAAPr/AgADAAIAAAAAAPv/AgADAAIAAAAAAPz/AgADAAIAAAAAAP3/AgADAAIAAAAAAP7/AgADAAIAAAAAAP//AgADAAIAAAD///v/AgADAAIAAAD+//v/AgADAAIAAAD9//v/AgADAAIAAAD8//v/AgADAAIAAAD7//v/AgADAAIAAAD6//v/AgADAAIAAAD5//v/AgADAAIAAAD4//v/AgADAAIAAAD4//z/AgADAAIAAAD4//3/AgADAAIAAAD4//7/AgADAAIAAAD4////AgADAAIAAAD4/wAAAgADAAIAAAD4/wEAAgADAAIAAAD4/wIAAgADAAIAAAD4/wMAAgADAAIAAAABAPv/AgADAAIAAAACAPv/AgADAAIAAAADAPv/AgADAAIAAAAEAPv/AgADAAIAAAAFAPv/AgADAAIAAAAGAPv/AgADAAIAAAAHAPv/AgADAAIAAAAIAPv/AgADAAIAAAAIAPz/AgADAAIAAAAIAP3/AgADAAIAAAAIAP7/AgADAAIAAAAIAP//AgADAAIAAAAIAAAAAgADAAIAAAAIAAEAAgADAAIAAAAIAAIAAgADAAIAAAAIAAMAAgADAAIAAAD3/wMAAgADAAIAAAD2/wMAAgADAAIAAAD1/wcAAgADAAIAAAD5/wMAAgADAAIAAAD6/wMAAgADAAIAAAAAAAAAAgADAAIAAAAAAAEAAgADAAIAAAAAAAIAAgADAAIAAAAAAAMAAgADAAIAAAD//wMAAgADAAIAAAD+/wMAAgADAAIAAAD9/wcAAgADAAIAAAABAAMAAgADAAIAAAACAAMAAgADAAIAAAADAAcAAgADAAIAAAAHAAMAAgADAAIAAAAGAAMAAgADAAIAAAAJAAMAAgADAAIAAAAKAAMAAgADAAIAAAD2/wQAAgADAAIAAAD2/wUAAgADAAIAAAD2/wYAAgADAAIAAAD2/wcAAgADAAIAAAD6/wQAAgADAAIAAAD6/wUAAgADAAIAAAD6/wYAAgADAAIAAAD6/wcAAgADAAIAAAD+/wQAAgADAAIAAAD+/wUAAgADAAIAAAD+/wYAAgADAAIAAAD+/wcAAgADAAIAAAACAAQAAgADAAIAAAACAAUAAgADAAIAAAACAAYAAgADAAIAAAACAAcAAgADAAIAAAAGAAQAAgADAAIAAAAGAAUAAgADAAIAAAAGAAYAAgADAAIAAAAKAAQAAgADAAIAAAAKAAUAAgADAAIAAAAKAAYAAgADAAIAAAAKAAcAAgADAAIAAAA=")
+tile_set = ExtResource("1_7yose")
+
+[node name="Folders" type="Node2D" parent="."]
+
+[node name="Folder" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(0, -307)
+
+[node name="Folder2" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(0, -19)
+
+[node name="Folder9" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(-257, -19)
+
+[node name="Folder10" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(257, -19)
+
+[node name="Folder3" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(-321, 272)
+
+[node name="Folder4" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(-191, 274)
+
+[node name="Folder5" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(-66, 273)
+
+[node name="Folder6" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(65, 269)
+
+[node name="Folder7" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(191.2, 269)
+
+[node name="Folder8" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(317.2, 269)
+
+[node name="Paths" type="Node2D" parent="."]
+
+[node name="Path" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_7yose")
+
+[node name="Path2" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_v43tc")
+
+[node name="Path3" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_ntdqk")
+
+[node name="Path4" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_0wql5")
+
+[node name="Path5" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_iy2xe")
+
+[node name="Path6" type="Path2D" parent="Paths"]
+curve = SubResource("Curve2D_fh8u8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
