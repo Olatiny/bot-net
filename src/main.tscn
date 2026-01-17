@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgqplngyhetcx"]
+
+[ext_resource type="PackedScene" uid="uid://b3jf840dyxq67" path="res://src/scenes/left_monitor_display.tscn" id="1_gh0ne"]
+[ext_resource type="PackedScene" uid="uid://bfdjh3q7e5x36" path="res://src/scenes/right_monitor_display.tscn" id="2_5q4o7"]
+
+[node name="Main" type="CanvasLayer"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -722.0
+offset_top = -360.0
+offset_right = 722.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="LeftMonitorContainer2" type="SubViewportContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(720, 720)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_target = true
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/LeftMonitorContainer2"]
+handle_input_locally = false
+size = Vector2i(720, 720)
+size_2d_override = Vector2i(270, 270)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="LeftMonitorDisplay" parent="HBoxContainer/LeftMonitorContainer2/SubViewport" instance=ExtResource("1_gh0ne")]
+
+[node name="RightMonitorContainer3" type="SubViewportContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(720, 720)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_target = true
+metadata/_edit_group_ = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/RightMonitorContainer3"]
+handle_input_locally = false
+size = Vector2i(720, 720)
+size_2d_override = Vector2i(270, 270)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="RightMonitorDisplay" parent="HBoxContainer/RightMonitorContainer3/SubViewport" instance=ExtResource("2_5q4o7")]
