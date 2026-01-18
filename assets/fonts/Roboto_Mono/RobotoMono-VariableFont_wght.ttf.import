@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/RobotoMono-VariableFont_wght.ttf-89f3d2154054
 [params]
 
 Rendering=null
-antialiasing=1
+antialiasing=2
 generate_mipmaps=false
 disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false

@@ -1,0 +1,299 @@
+[gd_scene load_steps=21 format=3 uid="uid://5m7tbrolr2b1"]
+
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_aei0p"]
+[ext_resource type="Script" uid="uid://2puiak21ghj6" path="res://src/scenes/terminal_message.gd" id="1_d7ul8"]
+
+[sub_resource type="Animation" id="Animation_siw0h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MessageLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UserLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_d7ul8"]
+resource_name = "animate_text"
+length = 1.00001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="Animation" id="Animation_th6vb"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MessageLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UserLabel:visible_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_rrvgc"]
+resource_name = "message_full"
+length = 1.00001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MessageLabel:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UserLabel:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MessageLabel:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UserLabel:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"animation_complete"],
+"method": &"emit_signal"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_th6vb"]
+_data = {
+&"RESET": SubResource("Animation_siw0h"),
+&"animate_text": SubResource("Animation_d7ul8"),
+&"idle": SubResource("Animation_th6vb"),
+&"message_full": SubResource("Animation_rrvgc")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d7ul8"]
+animation = &"animate_text"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_siw0h"]
+animation = &"animate_text"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_th6vb"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2i4mf"]
+animation = &"message_full"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rrvgc"]
+animation = &"message_full"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2i4mf"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1o4j7"]
+advance_mode = 2
+advance_expression = "!message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_57bid"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7daqx"]
+advance_mode = 2
+advance_expression = "message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mhyll"]
+advance_mode = 2
+advance_expression = "message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxsh6"]
+advance_mode = 2
+advance_expression = "message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uplk8"]
+advance_mode = 2
+advance_expression = "skip_anim"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d7ul8"]
+states/End/position = Vector2(729, 260)
+states/Start/position = Vector2(6, 248)
+states/animate_text/node = SubResource("AnimationNodeAnimation_siw0h")
+states/animate_text/position = Vector2(263, 172)
+"states/animate_text 2/node" = SubResource("AnimationNodeAnimation_d7ul8")
+"states/animate_text 2/position" = Vector2(263, 300)
+"states/idle 2/node" = SubResource("AnimationNodeAnimation_th6vb")
+"states/idle 2/position" = Vector2(435, 260)
+states/message_full/node = SubResource("AnimationNodeAnimation_rrvgc")
+states/message_full/position = Vector2(587, 172)
+"states/message_full 2/node" = SubResource("AnimationNodeAnimation_2i4mf")
+"states/message_full 2/position" = Vector2(525, 73)
+transitions = ["animate_text", "message_full", SubResource("AnimationNodeStateMachineTransition_2i4mf"), "Start", "animate_text 2", SubResource("AnimationNodeStateMachineTransition_1o4j7"), "animate_text 2", "idle 2", SubResource("AnimationNodeStateMachineTransition_57bid"), "animate_text 2", "animate_text", SubResource("AnimationNodeStateMachineTransition_7daqx"), "Start", "animate_text", SubResource("AnimationNodeStateMachineTransition_mhyll"), "idle 2", "animate_text", SubResource("AnimationNodeStateMachineTransition_hxsh6"), "animate_text", "message_full 2", SubResource("AnimationNodeStateMachineTransition_uplk8")]
+graph_offset = Vector2(-416, 59)
+
+[node name="TerminalMessage" type="HBoxContainer"]
+size_flags_vertical = 8
+script = ExtResource("1_d7ul8")
+
+[node name="UserLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+theme = ExtResource("1_aei0p")
+bbcode_enabled = true
+text = ">"
+fit_content = true
+scroll_active = false
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="MessageLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(198, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_aei0p")
+bbcode_enabled = true
+text = "_"
+fit_content = true
+scroll_active = false
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_th6vb")
+}
+autoplay = "idle"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_d7ul8")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

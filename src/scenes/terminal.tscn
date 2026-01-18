@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://drh47bbdo8bpo"]
+
+[ext_resource type="Script" uid="uid://h3r0amjaqe2q" path="res://src/scenes/terminal.gd" id="1_qowf5"]
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="2_p7vk7"]
+[ext_resource type="PackedScene" uid="uid://5m7tbrolr2b1" path="res://src/scenes/terminal_message.tscn" id="3_116so"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fq370"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.02373179, 0.09661203, 0.019312097, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7ao2"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="Terminal" type="PanelContainer"]
+custom_minimum_size = Vector2(690, 530)
+theme_override_styles/panel = SubResource("StyleBoxFlat_fq370")
+script = ExtResource("1_qowf5")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("2_p7vk7")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_g7ao2")
+text = "TERMINAL"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 467)
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MessageContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(682, 0)
+layout_mode = 2
+size_flags_vertical = 10
+alignment = 2
+
+[node name="TerminalMessage" parent="HBoxContainer/ScrollContainer/MessageContainer" instance=ExtResource("3_116so")]
+layout_mode = 2
