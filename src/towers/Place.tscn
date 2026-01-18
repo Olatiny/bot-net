@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv3piydu04r6f"]
+[gd_scene load_steps=5 format=3 uid="uid://dv3piydu04r6f"]
 
 [ext_resource type="Script" uid="uid://dtr37l6hs7o54" path="res://PlacementManager.gd" id="1_a617q"]
 [ext_resource type="PackedScene" uid="uid://bx7x3s16y1ywr" path="res://src/towers/tower.tscn" id="2_bgj4r"]
+[ext_resource type="PackedScene" uid="uid://u0hpbk31udpt" path="res://src/areatower/areatower.tscn" id="3_pmwwo"]
 [ext_resource type="PackedScene" uid="uid://b4prfwlhmjacj" path="res://src/towers/enemy.tscn" id="3_x44pb"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_a617q")
 tower_scene = ExtResource("2_bgj4r")
+aoe_tower_scene = ExtResource("3_pmwwo")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -17,10 +19,18 @@ offset_right = 205.0
 offset_bottom = 81.0
 text = "Build Tower"
 
+[node name="AoEBuildButton" type="Button" parent="CanvasLayer"]
+offset_left = -1.0
+offset_top = 88.0
+offset_right = 205.0
+offset_bottom = 138.0
+text = "Build Area Tower"
+
 [node name="enemy" parent="." instance=ExtResource("3_x44pb")]
 position = Vector2(32, 249)
 
 [node name="enemy2" parent="." instance=ExtResource("3_x44pb")]
-position = Vector2(465, 64)
+position = Vector2(368, 200)
 
 [connection signal="pressed" from="CanvasLayer/BuildButton" to="." method="_on_build_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/AoEBuildButton" to="." method="_on_aoe_build_button_pressed"]

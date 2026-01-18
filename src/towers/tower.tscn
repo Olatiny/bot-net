@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bqkm35ds2suhe" path="res://src/towers/projectile.tscn" id="2_ipjxq"]
 [ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_stebd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbe1c"]
-size = Vector2(348, 340.5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipjxq"]
+radius = 150.0
 
 [node name="tower" type="Node2D"]
 script = ExtResource("1_vedim")
@@ -21,7 +21,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
 position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_jbe1c")
+shape = SubResource("CircleShape2D_ipjxq")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
