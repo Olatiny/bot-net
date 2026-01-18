@@ -1,0 +1,116 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmm6p7845mpuy"]
+
+[ext_resource type="StyleBox" uid="uid://dpgmw2epqenug" path="res://assets/styles/terminal_style.tres" id="1_4ji2o"]
+[ext_resource type="Script" uid="uid://cjm2wqxbcqkr" path="res://src/scenes/shop.gd" id="1_q7y2j"]
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="3_k60ia"]
+[ext_resource type="PackedScene" uid="uid://ds8iimwkoqso3" path="res://src/scenes/button.tscn" id="4_k60ia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k60ia"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="Shop" type="PanelContainer"]
+custom_minimum_size = Vector2(690, 530)
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("1_4ji2o")
+script = ExtResource("1_q7y2j")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_k60ia")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_k60ia")
+text = "SHOP"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_k60ia")
+theme_override_font_sizes/normal_font_size = 32
+text = "RAM: 0"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_constants/separation = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_k60ia")
+text = "DEFENSES"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Button" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+layout_mode = 2
+text = "ENCRYPT
+XXX RAM"
+
+[node name="Button2" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+layout_mode = 2
+text = "FIREWALL
+XXX RAM"
+
+[node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+layout_mode = 2
+text = "TOWER A
+XXX RAM"
+
+[node name="Button4" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+layout_mode = 2
+text = "TOWER B
+XXX RAM"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("3_k60ia")
+text = "UPGRADES"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Button" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+layout_mode = 2
+text = "CLICK UP
+XXX RAM"
+
+[node name="Button2" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+layout_mode = 2
+text = "FIREWALL UP
+XXX RAM"
+
+[node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+custom_minimum_size = Vector2(280, 168)
+layout_mode = 2
+disabled = true
+text = "CLICK TOWERS
+TO UPGRADE"

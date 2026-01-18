@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds8iimwkoqso3"]
+
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_wgp4t"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(280, 80)
+size_flags_horizontal = 4
+focus_mode = 0
+theme = ExtResource("1_wgp4t")
+text = "Hello Chat"

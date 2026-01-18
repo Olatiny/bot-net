@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="bot net"
-run/main_scene="uid://dgqplngyhetcx"
+run/main_scene="uid://cj01a4v4rn7mv"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/bg_color=Color(0.023529412, 0.09803922, 0.019607844, 1)
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://src/managers/game_manager.gd"
+GlobalStates="*res://src/global_states.gd"
 
 [display]
 
@@ -21,9 +27,36 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
+
+[gui]
+
+theme/custom_font="uid://qwjtvqpeyiti"
+
+[input]
+
+attack={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+left_click={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Virus"
+2d_physics/layer_3="Tower"
+2d_physics/layer_4="Path"
+2d_physics/layer_5="Folder"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.0077563142, 0.04133612, 0.0064642816, 1)

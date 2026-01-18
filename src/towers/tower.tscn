@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx7x3s16y1ywr"]
+
+[ext_resource type="Script" uid="uid://dfddxiqqcqi7i" path="res://src/towers/tower.gd" id="1_vedim"]
+[ext_resource type="PackedScene" uid="uid://bqkm35ds2suhe" path="res://src/towers/projectile.tscn" id="2_ipjxq"]
+[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_stebd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ipjxq"]
+radius = 150.0
+
+[node name="tower" type="Node2D"]
+script = ExtResource("1_vedim")
+projectile_scene = ExtResource("2_ipjxq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.0000019)
+scale = Vector2(0.75, 0.7421875)
+texture = ExtResource("2_stebd")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_ipjxq")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
+[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

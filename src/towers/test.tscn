@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddprw3rg7wahk"]
+
+[ext_resource type="PackedScene" uid="uid://bx7x3s16y1ywr" path="res://src/towers/tower.tscn" id="1_rnyig"]
+[ext_resource type="PackedScene" uid="uid://b4prfwlhmjacj" path="res://src/towers/enemy.tscn" id="2_tsdjh"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="tower" parent="." instance=ExtResource("1_rnyig")]
+position = Vector2(228, 256)
+
+[node name="enemy" parent="." instance=ExtResource("2_tsdjh")]
+position = Vector2(467, 188)
