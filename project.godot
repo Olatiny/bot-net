@@ -54,7 +54,6 @@ left_click={
 2d_physics/layer_4="Path"
 2d_physics/layer_5="Folder"
 
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
