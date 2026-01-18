@@ -59,29 +59,29 @@ position = Vector2(0, -448)
 current_state = 0
 
 [node name="Folder2" parent="Folders" instance=ExtResource("3_ntdqk")]
-
-[node name="Folder9" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(-512, 0)
 
-[node name="Folder10" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(544, 0)
-
 [node name="Folder3" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(-672, 448)
 
 [node name="Folder4" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(-352, 448)
+position = Vector2(544, 0)
 
 [node name="Folder5" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(160, 448)
+position = Vector2(-672, 448)
 
 [node name="Folder6" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(-160, 448)
+position = Vector2(-352, 448)
 
 [node name="Folder7" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(384, 448)
+position = Vector2(160, 448)
 
 [node name="Folder8" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(-160, 448)
+
+[node name="Folder9" parent="Folders" instance=ExtResource("3_ntdqk")]
+position = Vector2(384, 448)
+
+[node name="Folder10" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(704, 448)
 
 [node name="Paths" type="Node2D" parent="."]

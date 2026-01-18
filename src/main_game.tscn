@@ -1,22 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cj01a4v4rn7mv"]
+[gd_scene load_steps=9 format=3 uid="uid://cj01a4v4rn7mv"]
 
 [ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_fq370"]
 [ext_resource type="Script" uid="uid://da8bux3oa0djs" path="res://src/main_game.gd" id="1_qhh1e"]
 [ext_resource type="PackedScene" uid="uid://bofklg7vucxc8" path="res://src/managers/virus_manager.tscn" id="3_qhh1e"]
 [ext_resource type="PackedScene" uid="uid://drh47bbdo8bpo" path="res://src/scenes/terminal.tscn" id="4_qhh1e"]
+[ext_resource type="StyleBox" uid="uid://dpgmw2epqenug" path="res://assets/styles/terminal_style.tres" id="5_bupss"]
 [ext_resource type="PackedScene" uid="uid://dmm6p7845mpuy" path="res://src/scenes/shop.tscn" id="5_qhh1e"]
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="5_x08um"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aptux"]
-bg_color = Color(0.023529412, 0.09803922, 0.019607844, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bupss"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
 
 [node name="MainGame" type="CanvasLayer"]
 script = ExtResource("1_qhh1e")
@@ -53,22 +46,40 @@ layout_mode = 2
 [node name="BoardWindow" type="PanelContainer" parent="GameHUD"]
 custom_minimum_size = Vector2(1200, 1060)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_aptux")
+theme_override_styles/panel = ExtResource("5_bupss")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GameHUD/BoardWindow"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameHUD/BoardWindow"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GameHUD/BoardWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("5_x08um")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bupss")
+text = "FILE SYSTEM"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GameHUD/BoardWindow/VBoxContainer"]
 show_behind_parent = true
 layout_mode = 2
+size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="GameHUD/BoardWindow/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="GameHUD/BoardWindow/VBoxContainer/SubViewportContainer"]
 handle_input_locally = false
 physics_object_picking = true
-size = Vector2i(1192, 1056)
+size = Vector2i(1184, 1005)
 size_2d_override = Vector2i(1788, 1584)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Board" parent="GameHUD/BoardWindow/SubViewportContainer/SubViewport" instance=ExtResource("1_fq370")]
+[node name="Board" parent="GameHUD/BoardWindow/VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_fq370")]
 unique_name_in_owner = true
 position = Vector2(549, 518)
 
