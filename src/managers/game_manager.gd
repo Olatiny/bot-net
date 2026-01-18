@@ -17,6 +17,9 @@ var player_ram := 0
 ## current player ram income every second
 var ram_income := 1
 
+## Current player click attack damage
+var player_attack_damage := 1
+
 ## time elapsed of playthrough, resets each defeat (seconds)
 var elapsed_time := 0.0
 

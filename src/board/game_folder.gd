@@ -17,6 +17,12 @@ enum FOLDER_TYPE {
 ## the current state of this folder
 @export var current_state := FOLDER_TYPE.NEUTRAL
 
+## maximum health of this folder
+@export var max_health := 100.0
+
+## current health of this folder
+@export var health := 100.0
+
 
 ## List of virus data for contained viruses, needed to populate internal view
 var virus_data_list: Array[VirusData]
@@ -33,11 +39,16 @@ func _process(_delta: float) -> void:
 
 ## TODO: implement folder opening
 func _try_open_folder():
-	GameManager.terminal.push_new_message("Folder clicked!")
+	if is_instance_valid(GameManager.terminal):
+		GameManager.terminal.push_new_message("Folder clicked!")
+	
 	## IF NOT DEFEATED, OPEN INTERFACE
 	## IF DEFEATED, AND ENCRYPT PRIMED, OPEN RECAPTURE MINI-GAME
 	## IF DEFEATED, AND NO ENCRYPT PRIMED, DO NOTHING
-	pass
+
+
+func add_virus_data(in_virus_data: VirusData):
+	virus_data_list.push_back(in_virus_data)
 
 
 ## private detector of mouse

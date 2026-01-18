@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="VirusData" load_steps=2 format=3 uid="uid://d3wlkp11lre0f"]
+
+[ext_resource type="Script" uid="uid://bplt7lv7okki1" path="res://src/entities/virus_data.gd" id="1_vkxj5"]
+
+[resource]
+script = ExtResource("1_vkxj5")
+max_health = 5
+curr_health = 5
+tier = 1
+metadata/_custom_type_script = "uid://bplt7lv7okki1"
