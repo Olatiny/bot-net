@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://cynuw703np806"]
+
+[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="1_ektu6"]
+[ext_resource type="Script" uid="uid://cj5l5od4qi8hd" path="res://src/board/game_folder.gd" id="2_bdcow"]
+[ext_resource type="Script" uid="uid://dirlck8cndbxf" path="res://src/board/grid_snapper.gd" id="3_vnptg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ektu6"]
+size = Vector2(128, 127)
+
+[node name="GameFolder" type="Sprite2D"]
+modulate = Color(1, 0.5803922, 0.34901962, 1)
+texture = ExtResource("1_ektu6")
+script = ExtResource("2_bdcow")
+
+[node name="GridSnapper" type="Node2D" parent="."]
+script = ExtResource("3_vnptg")
+tile_size = Vector2(32, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ektu6")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -116.0
+offset_right = 51.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 100.0
+fill_mode = 3
+show_percentage = false
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bofklg7vucxc8"]
+
+[ext_resource type="Script" uid="uid://c3mn4y86fhq8v" path="res://src/managers/virus_manager.gd" id="1_qjmrk"]
+
+[node name="VirusManager" type="Node"]
+script = ExtResource("1_qjmrk")
