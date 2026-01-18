@@ -2,6 +2,7 @@ extends Node2D
 
 @export var tower_scene: PackedScene 
 @export var aoe_tower_scene: PackedScene
+@export var wall_scene: PackedScene
 
 var ghost_tower: Node2D = null
 var is_placing: bool = false
@@ -30,6 +31,9 @@ func _on_aoe_build_button_pressed():
 
 # --- PLACEMENT LOGIC ---
 
+func _on_build_wall_button_pressed():
+	start_placement(wall_scene)
+
 
 
 func start_placement(selected_tower: PackedScene):
@@ -53,21 +57,17 @@ func start_placement(selected_tower: PackedScene):
 		if detection:
 			detection.monitoring = false
 
+
 func finalize_placement():
 	is_placing = false
 	ghost_tower.modulate.a = 1.0
-	
-	# Re-enable the scripts
-	ghost_tower.set_process(true)
 	ghost_tower.set_physics_process(true)
 	
-	# Re-enable the Area2D detection
-	# We check for BOTH names just in case
-	for zone_name in ["DetectionRange", "DamageZone"]:
+	# Enable detection for Towers AND Walls
+	for zone_name in ["DetectionRange", "DamageZone", "ThornArea"]:
 		var zone = ghost_tower.get_node_or_null(zone_name)
 		if zone:
 			zone.monitoring = true
-			zone.monitorable = true
 			
 	ghost_tower = null
 
