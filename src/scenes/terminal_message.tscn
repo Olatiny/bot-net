@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://5m7tbrolr2b1"]
+[gd_scene load_steps=23 format=3 uid="uid://5m7tbrolr2b1"]
 
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_aei0p"]
 [ext_resource type="Script" uid="uid://2puiak21ghj6" path="res://src/scenes/terminal_message.gd" id="1_d7ul8"]
@@ -53,6 +53,18 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_d7ul8"]
 resource_name = "animate_text"
@@ -81,6 +93,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_th6vb"]
@@ -122,6 +146,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_rrvgc"]
@@ -190,6 +226,18 @@ tracks/4/keys = {
 "method": &"emit_signal"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_th6vb"]
 _data = {
@@ -198,6 +246,9 @@ _data = {
 &"idle": SubResource("Animation_th6vb"),
 &"message_full": SubResource("Animation_rrvgc")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1o4j7"]
+animation = &"RESET"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d7ul8"]
 animation = &"animate_text"
@@ -228,15 +279,7 @@ switch_mode = 2
 advance_mode = 2
 advance_expression = "!message_received"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7daqx"]
-advance_mode = 2
-advance_expression = "message_received"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mhyll"]
-advance_mode = 2
-advance_expression = "message_received"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxsh6"]
 advance_mode = 2
 advance_expression = "message_received"
 
@@ -244,21 +287,35 @@ advance_expression = "message_received"
 advance_mode = 2
 advance_expression = "skip_anim"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hxsh6"]
+advance_mode = 2
+advance_expression = "message_received"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rq2fx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d7ul8"]
+advance_mode = 2
+advance_expression = "message_received"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_d7ul8"]
-states/End/position = Vector2(729, 260)
-states/Start/position = Vector2(6, 248)
+states/End/position = Vector2(735, 248)
+states/RESET/node = SubResource("AnimationNodeAnimation_1o4j7")
+states/RESET/position = Vector2(344, 248)
+states/Start/position = Vector2(61, 248)
 states/animate_text/node = SubResource("AnimationNodeAnimation_siw0h")
-states/animate_text/position = Vector2(263, 172)
+states/animate_text/position = Vector2(344, 154)
 "states/animate_text 2/node" = SubResource("AnimationNodeAnimation_d7ul8")
-"states/animate_text 2/position" = Vector2(263, 300)
-"states/idle 2/node" = SubResource("AnimationNodeAnimation_th6vb")
-"states/idle 2/position" = Vector2(435, 260)
+"states/animate_text 2/position" = Vector2(236, 340)
+states/idle/node = SubResource("AnimationNodeAnimation_th6vb")
+states/idle/position = Vector2(442, 340)
 states/message_full/node = SubResource("AnimationNodeAnimation_rrvgc")
-states/message_full/position = Vector2(587, 172)
+states/message_full/position = Vector2(542, 217)
 "states/message_full 2/node" = SubResource("AnimationNodeAnimation_2i4mf")
-"states/message_full 2/position" = Vector2(525, 73)
-transitions = ["animate_text", "message_full", SubResource("AnimationNodeStateMachineTransition_2i4mf"), "Start", "animate_text 2", SubResource("AnimationNodeStateMachineTransition_1o4j7"), "animate_text 2", "idle 2", SubResource("AnimationNodeStateMachineTransition_57bid"), "animate_text 2", "animate_text", SubResource("AnimationNodeStateMachineTransition_7daqx"), "Start", "animate_text", SubResource("AnimationNodeStateMachineTransition_mhyll"), "idle 2", "animate_text", SubResource("AnimationNodeStateMachineTransition_hxsh6"), "animate_text", "message_full 2", SubResource("AnimationNodeStateMachineTransition_uplk8")]
-graph_offset = Vector2(-416, 59)
+"states/message_full 2/position" = Vector2(542, 80)
+transitions = ["animate_text", "message_full", SubResource("AnimationNodeStateMachineTransition_2i4mf"), "Start", "animate_text 2", SubResource("AnimationNodeStateMachineTransition_1o4j7"), "animate_text 2", "idle", SubResource("AnimationNodeStateMachineTransition_57bid"), "Start", "animate_text", SubResource("AnimationNodeStateMachineTransition_mhyll"), "animate_text", "message_full 2", SubResource("AnimationNodeStateMachineTransition_uplk8"), "idle", "RESET", SubResource("AnimationNodeStateMachineTransition_hxsh6"), "RESET", "animate_text", SubResource("AnimationNodeStateMachineTransition_rq2fx"), "animate_text 2", "RESET", SubResource("AnimationNodeStateMachineTransition_d7ul8")]
+graph_offset = Vector2(-397, 44)
 
 [node name="TerminalMessage" type="HBoxContainer"]
 size_flags_vertical = 8

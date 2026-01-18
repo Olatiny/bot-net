@@ -23,7 +23,7 @@ var skip_anim := false
 
 
 func hide_text():
-	$AnimationPlayer.play("RESET")
+	modulate.a = 0
 
 
 func set_message(in_message: String):
