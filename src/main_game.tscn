@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj01a4v4rn7mv"]
+[gd_scene load_steps=11 format=3 uid="uid://cj01a4v4rn7mv"]
 
 [ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_fq370"]
 [ext_resource type="Script" uid="uid://da8bux3oa0djs" path="res://src/main_game.gd" id="1_qhh1e"]
@@ -7,9 +7,12 @@
 [ext_resource type="StyleBox" uid="uid://dpgmw2epqenug" path="res://assets/styles/terminal_style.tres" id="5_bupss"]
 [ext_resource type="PackedScene" uid="uid://dmm6p7845mpuy" path="res://src/scenes/shop.tscn" id="5_qhh1e"]
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="5_x08um"]
+[ext_resource type="PackedScene" uid="uid://whs5tsn0pnbf" path="res://src/scenes/folder_viewer.tscn" id="8_130rv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bupss"]
 bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mjf2d"]
 
 [node name="MainGame" type="CanvasLayer"]
 script = ExtResource("1_qhh1e")
@@ -65,23 +68,33 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="GameHUD/BoardWindow/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="GameHUD/BoardWindow/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mjf2d")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GameHUD/BoardWindow/VBoxContainer/PanelContainer"]
 show_behind_parent = true
 layout_mode = 2
 size_flags_vertical = 3
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="GameHUD/BoardWindow/VBoxContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="GameHUD/BoardWindow/VBoxContainer/PanelContainer/SubViewportContainer"]
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
 physics_object_picking = true
 size = Vector2i(1184, 1005)
 size_2d_override = Vector2i(1788, 1584)
 size_2d_override_stretch = true
 render_target_update_mode = 4
 
-[node name="Board" parent="GameHUD/BoardWindow/VBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_fq370")]
+[node name="Board" parent="GameHUD/BoardWindow/VBoxContainer/PanelContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_fq370")]
 unique_name_in_owner = true
 position = Vector2(549, 518)
+
+[node name="FolderViewer" parent="GameHUD/BoardWindow/VBoxContainer/PanelContainer" instance=ExtResource("8_130rv")]
+visible = false
+layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
