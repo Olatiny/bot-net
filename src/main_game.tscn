@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj01a4v4rn7mv"]
+[gd_scene load_steps=10 format=3 uid="uid://cj01a4v4rn7mv"]
 
 [ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_fq370"]
 [ext_resource type="Script" uid="uid://da8bux3oa0djs" path="res://src/main_game.gd" id="1_qhh1e"]
+[ext_resource type="PackedScene" uid="uid://jw3v8uk0n1t7" path="res://src/entities/virus.tscn" id="3_130rv"]
 [ext_resource type="PackedScene" uid="uid://bofklg7vucxc8" path="res://src/managers/virus_manager.tscn" id="3_qhh1e"]
 [ext_resource type="PackedScene" uid="uid://drh47bbdo8bpo" path="res://src/scenes/terminal.tscn" id="4_qhh1e"]
 [ext_resource type="StyleBox" uid="uid://dpgmw2epqenug" path="res://assets/styles/terminal_style.tres" id="5_bupss"]
@@ -16,6 +17,7 @@ script = ExtResource("1_qhh1e")
 
 [node name="VirusManager" parent="." instance=ExtResource("3_qhh1e")]
 unique_name_in_owner = true
+virus_scene = ExtResource("3_130rv")
 
 [node name="GameHUD" type="HBoxContainer" parent="."]
 anchors_preset = 8
