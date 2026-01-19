@@ -1,2 +1,202 @@
 class_name VirusManager
-extends Node
+extends Node2D
+
+########################
+### CONFIG / EXPORTS ###
+########################
+
+@export var virus_scene: PackedScene
+
+## base caps (wave 0)
+@export var base_max_health := 3
+@export var base_max_speed := 0.15
+@export var base_spawn_interval := 1.2
+
+## per-wave scaling
+@export var health_per_wave := 1
+@export var speed_per_wave := 0.02
+@export var spawn_interval_decay := 0.05
+@export var min_spawn_interval := 0.25
+
+## base event chances (per second, normalized later per frame)
+@export var popup_chance := 0.01
+@export var scramble_chance := 0.005
+@export var backdoor_chance := 0.003
+@export var bruteforce_chance := 0.002
+
+## per-wave chance scaling
+@export var event_chance_per_wave := 0.001
+
+
+######################
+### INTERNAL STATE ###
+######################
+
+var _rng := RandomNumberGenerator.new()
+var _current_wave := 0
+var _spawning := false
+var _bruteforce_active := false
+
+var _paths: Array[Path2D] = []
+
+
+##############
+### TIMERS ###
+##############
+
+@onready var spawn_timer := Timer.new()
+@onready var popup_timer := Timer.new()
+@onready var scramble_timer := Timer.new()
+@onready var backdoor_timer := Timer.new()
+@onready var bruteforce_timer := Timer.new()
+
+
+#################
+### LIFECYCLE ###
+#################
+
+func _ready() -> void:
+	_rng.randomize()
+
+	# cache paths
+	# TODO
+
+	assert(_paths.size() >= 6)
+
+	_setup_timer(spawn_timer, true)
+	_setup_timer(popup_timer)
+	_setup_timer(scramble_timer)
+	_setup_timer(backdoor_timer)
+	_setup_timer(bruteforce_timer)
+
+	add_child(spawn_timer)
+	add_child(popup_timer)
+	add_child(scramble_timer)
+	add_child(backdoor_timer)
+	add_child(bruteforce_timer)
+
+	spawn_timer.timeout.connect(_spawn_virus)
+	bruteforce_timer.timeout.connect(_end_bruteforce)
+
+
+func _process(delta: float) -> void:
+	if !_spawning:
+		return
+
+	_process_events(delta)
+
+
+########################
+### PUBLIC INTERFACE ###
+########################
+
+func start_wave(wave_idx: int) -> void:
+	_current_wave = wave_idx
+	_spawning = true
+
+	var interval : float = max(
+		min_spawn_interval,
+		base_spawn_interval - (spawn_interval_decay * wave_idx)
+	)
+
+	spawn_timer.wait_time = interval
+	spawn_timer.start()
+
+
+func end_wave() -> void:
+	_spawning = false
+	spawn_timer.stop()
+
+
+######################
+### SPAWNING LOGIC ###
+######################
+
+func _spawn_virus() -> void:
+	if virus_scene == null:
+		return
+
+	var virus := virus_scene.instantiate() as Virus
+
+	var path := _select_path()
+	path.add_child(virus)
+	virus.progress_ratio = 0.0
+
+	var max_health := base_max_health + (_current_wave * health_per_wave)
+	var max_speed := base_max_speed + (_current_wave * speed_per_wave)
+
+	virus.max_health = _rng.randi_range(1, max_health)
+	virus.health = virus.max_health
+	virus.speed = _rng.randf_range(0.05, max_speed)
+
+	# stagger next spawn dynamically
+	spawn_timer.start()
+
+
+func _select_path() -> Path2D:
+	if _bruteforce_active:
+		return _paths[0] # forced path during attack
+		#TODO
+
+	return _paths[_rng.randi_range(0, _paths.size() - 1)]
+
+
+####################
+### EVENT SYSTEM ###
+####################
+
+func _process_events(delta: float) -> void:
+	var wave_bonus := _current_wave * event_chance_per_wave
+
+	_try_event(popup_timer, popup_chance + wave_bonus, _spawn_popup, delta)
+	_try_event(scramble_timer, scramble_chance + wave_bonus, _scramble_board, delta)
+	_try_event(backdoor_timer, backdoor_chance + wave_bonus, _create_backdoor, delta)
+	_try_event(bruteforce_timer, bruteforce_chance + wave_bonus, _start_bruteforce, delta)
+
+
+func _try_event(timer: Timer, chance: float, action: Callable, delta: float) -> void:
+	if !timer.is_stopped():
+		return
+
+	# convert per-second probability into per-frame
+	if _rng.randf() < chance * delta:
+		action.call()
+		timer.start()
+
+
+#####################
+### EVENT ACTIONS ###
+#####################
+
+func _spawn_popup() -> void:
+	# hook for UI / terminal
+	print("POPUP EVENT")
+	#TODO
+
+
+func _scramble_board() -> void:
+	GameManager.scramble_board()
+
+
+func _create_backdoor() -> void:
+	print("BACKDOOR CREATED")
+	#TODO
+
+
+func _start_bruteforce() -> void:
+	_bruteforce_active = true
+	bruteforce_timer.start()
+
+
+func _end_bruteforce() -> void:
+	_bruteforce_active = false
+
+
+############
+### UTIL ###
+############
+
+func _setup_timer(timer: Timer, autostart := false) -> void:
+	timer.one_shot = true
+	timer.autostart = autostart
+	timer.wait_time = 5.0
