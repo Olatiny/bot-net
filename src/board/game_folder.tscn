@@ -1,49 +1,493 @@
-[gd_scene load_steps=29 format=3 uid="uid://cynuw703np806"]
+[gd_scene load_steps=56 format=3 uid="uid://cynuw703np806"]
 
 [ext_resource type="Texture2D" uid="uid://b236uirhjy7hn" path="res://assets/folder_spritesheet.png" id="1_ektu6"]
 [ext_resource type="Script" uid="uid://cj5l5od4qi8hd" path="res://src/board/game_folder.gd" id="2_bdcow"]
 [ext_resource type="Script" uid="uid://dirlck8cndbxf" path="res://src/board/grid_snapper.gd" id="3_vnptg"]
+[ext_resource type="Texture2D" uid="uid://bwo3v2lp2mw27" path="res://assets/folder_simple.png" id="4_bdcow"]
+[ext_resource type="Texture2D" uid="uid://domxwh3y0fy2e" path="res://assets/warning_icon_no_sweat.png" id="5_dbonf"]
+[ext_resource type="Texture2D" uid="uid://bh5n4wtwhpyux" path="res://assets/warning_icon.png" id="5_vnptg"]
+[ext_resource type="Texture2D" uid="uid://bfnk40443jbic" path="res://assets/health_bar_bkgd.png" id="6_aln04"]
+[ext_resource type="Texture2D" uid="uid://yswgwhi04gwt" path="res://assets/health_bar_overlay.png" id="6_gqtao"]
+[ext_resource type="Texture2D" uid="uid://bribvo0v8vx5f" path="res://assets/health_bar_fill.png" id="7_aln04"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1osx"]
+atlas = ExtResource("5_dbonf")
+region = Rect2(0, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_677k3"]
+atlas = ExtResource("5_dbonf")
+region = Rect2(59, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajdan"]
+atlas = ExtResource("5_dbonf")
+region = Rect2(118, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6iwbj"]
+atlas = ExtResource("5_dbonf")
+region = Rect2(177, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldy8f"]
+atlas = ExtResource("5_dbonf")
+region = Rect2(236, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbxmt"]
+atlas = ExtResource("5_dbonf")
+region = Rect2(295, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm7p4"]
+atlas = ExtResource("5_vnptg")
+region = Rect2(0, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqtao"]
+atlas = ExtResource("5_vnptg")
+region = Rect2(59, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aln04"]
+atlas = ExtResource("5_vnptg")
+region = Rect2(118, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbonf"]
+atlas = ExtResource("5_vnptg")
+region = Rect2(177, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ke2pw"]
+atlas = ExtResource("5_vnptg")
+region = Rect2(236, 0, 59, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s4mj"]
+atlas = ExtResource("5_vnptg")
+region = Rect2(295, 0, 59, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1osx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1osx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_677k3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajdan")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6iwbj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldy8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbxmt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.7
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm7p4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqtao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aln04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbonf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ke2pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6s4mj")
+}],
+"loop": true,
+"name": &"sweaty",
+"speed": 6.7
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ektu6"]
 size = Vector2(128, 111)
-
-[sub_resource type="Animation" id="Animation_ektu6"]
-resource_name = "neutral"
-length = 2.00001
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 1, 1.1, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0.0, -0.10471975511965978, -0.08726646259971647, -0.10471975511965978, 0.10471975511965978, 0.08726646259971647]
-}
 
 [sub_resource type="Animation" id="Animation_bdcow"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("simple_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(53, -38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("simple_sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.11372549, 0.49411765, 0.101960786, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WarningIcon:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("WarningIcon:animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ProgressBar:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ektu6"]
+resource_name = "neutral"
+length = 0.9
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("simple_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(54, -41), Vector2(56, -43), Vector2(57, -38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ProgressBar:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("simple_sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.11372549, 0.49411765, 0.101960786, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6s4mj"]
+resource_name = "defeated"
+length = 1.50005
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("simple_sprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("simple_sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 11]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WarningIcon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ProgressBar:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w1osx"]
+resource_name = "virus_inside_me"
+length = 0.9
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("simple_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(54, -41), Vector2(56, -43), Vector2(57, -38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WarningIcon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WarningIcon:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ProgressBar:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("simple_sprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.8936326, 0.47804803, 0.31895104, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_677k3"]
+resource_name = "sweating_bro"
+length = 0.9
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("simple_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(54, -41), Vector2(56, -43), Vector2(57, -38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WarningIcon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WarningIcon:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sweaty"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ProgressBar:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("simple_sprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.79607844, 0.16470589, 0.36862746, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vnptg"]
 _data = {
 &"RESET": SubResource("Animation_bdcow"),
-&"neutral": SubResource("Animation_ektu6")
+&"defeated": SubResource("Animation_6s4mj"),
+&"neutral": SubResource("Animation_ektu6"),
+&"sweating_bro": SubResource("Animation_677k3"),
+&"virus_inside_me": SubResource("Animation_w1osx")
+}
+
+[sub_resource type="Animation" id="Animation_gqtao"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("old_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ke2pw"]
+resource_name = "defeat"
+length = 0.10001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("old_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [7]
 }
 
 [sub_resource type="Animation" id="Animation_sm7p4"]
@@ -53,7 +497,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("old_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,19 +507,21 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_gqtao"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_vnptg"]
+resource_name = "to defeat"
+length = 0.40001002
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("old_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [4, 5, 6, 7]
 }
 
 [sub_resource type="Animation" id="Animation_aln04"]
@@ -85,7 +531,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("old_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -102,7 +548,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("old_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -110,40 +556,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
-}
-
-[sub_resource type="Animation" id="Animation_vnptg"]
-resource_name = "to defeat"
-length = 0.40001002
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [4, 5, 6, 7]
-}
-
-[sub_resource type="Animation" id="Animation_ke2pw"]
-resource_name = "defeat"
-length = 0.10001
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [7]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ke2pw"]
@@ -156,68 +568,87 @@ _data = {
 &"warning": SubResource("Animation_dbonf")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6s4mj"]
-animation = &"defeat"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dbonf"]
+animation = &"defeated"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w1osx"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ke2pw"]
 animation = &"neutral"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_677k3"]
-animation = &"to defeat"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ajdan"]
-animation = &"to warning"
-play_mode = 1
+animation = &"defeated"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6iwbj"]
-animation = &"to warning"
+animation = &"sweating_bro"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ldy8f"]
-animation = &"warning"
+animation = &"virus_inside_me"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6s4mj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w1osx"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_677k3"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vbxmt"]
 advance_mode = 2
 advance_expression = "current_state == FOLDER_TYPE.INFECTED"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0y1fu"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bayo"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nemwc"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_66vkn"]
 advance_mode = 2
 advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e37aj"]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bayo"]
 advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance >= 80"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ektu6"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nemwc"]
 advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance < 80"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_66vkn"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e37aj"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance >= 80"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2acy8"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance < 80"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pqi6h"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.ROOT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbonf"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ke2pw"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6s4mj"]
 states/End/position = Vector2(1099, 100)
-states/defeat/node = SubResource("AnimationNodeAnimation_6s4mj")
-states/defeat/position = Vector2(956, 100)
-states/neutral/node = SubResource("AnimationNodeAnimation_w1osx")
-states/neutral/position = Vector2(329, 100)
-"states/to defeat/node" = SubResource("AnimationNodeAnimation_677k3")
-"states/to defeat/position" = Vector2(801, 100)
-"states/to neutral/node" = SubResource("AnimationNodeAnimation_ajdan")
-"states/to neutral/position" = Vector2(403, -15)
-"states/to warning/node" = SubResource("AnimationNodeAnimation_6iwbj")
-"states/to warning/position" = Vector2(494, 100)
-states/warning/node = SubResource("AnimationNodeAnimation_ldy8f")
-states/warning/position = Vector2(650, 100)
-transitions = ["neutral", "to warning", SubResource("AnimationNodeStateMachineTransition_vbxmt"), "to warning", "warning", SubResource("AnimationNodeStateMachineTransition_0y1fu"), "warning", "to defeat", SubResource("AnimationNodeStateMachineTransition_2bayo"), "to defeat", "defeat", SubResource("AnimationNodeStateMachineTransition_nemwc"), "to warning", "to neutral", SubResource("AnimationNodeStateMachineTransition_66vkn"), "to neutral", "neutral", SubResource("AnimationNodeStateMachineTransition_e37aj"), "Start", "neutral", SubResource("AnimationNodeStateMachineTransition_ektu6")]
-graph_offset = Vector2(-26, -90)
+states/Start/position = Vector2(207, 41)
+states/defeated/node = SubResource("AnimationNodeAnimation_dbonf")
+states/defeated/position = Vector2(759, 84)
+states/neutral/node = SubResource("AnimationNodeAnimation_ke2pw")
+states/neutral/position = Vector2(420, 84)
+states/root/node = SubResource("AnimationNodeAnimation_ajdan")
+states/root/position = Vector2(420, -9)
+states/sweating_bro/node = SubResource("AnimationNodeAnimation_6iwbj")
+states/sweating_bro/position = Vector2(759, 270)
+states/virus_inside_me/node = SubResource("AnimationNodeAnimation_ldy8f")
+states/virus_inside_me/position = Vector2(420, 270)
+transitions = ["Start", "neutral", SubResource("AnimationNodeStateMachineTransition_6s4mj"), "neutral", "defeated", SubResource("AnimationNodeStateMachineTransition_w1osx"), "defeated", "neutral", SubResource("AnimationNodeStateMachineTransition_677k3"), "neutral", "virus_inside_me", SubResource("AnimationNodeStateMachineTransition_vbxmt"), "virus_inside_me", "neutral", SubResource("AnimationNodeStateMachineTransition_0y1fu"), "virus_inside_me", "sweating_bro", SubResource("AnimationNodeStateMachineTransition_2bayo"), "sweating_bro", "virus_inside_me", SubResource("AnimationNodeStateMachineTransition_nemwc"), "sweating_bro", "defeated", SubResource("AnimationNodeStateMachineTransition_66vkn"), "defeated", "sweating_bro", SubResource("AnimationNodeStateMachineTransition_e37aj"), "defeated", "virus_inside_me", SubResource("AnimationNodeStateMachineTransition_2acy8"), "Start", "root", SubResource("AnimationNodeStateMachineTransition_pqi6h"), "virus_inside_me", "defeated", SubResource("AnimationNodeStateMachineTransition_dbonf"), "sweating_bro", "neutral", SubResource("AnimationNodeStateMachineTransition_ke2pw")]
+graph_offset = Vector2(-123, -73)
 
 [node name="GameFolder" type="Node2D"]
 script = ExtResource("2_bdcow")
@@ -226,10 +657,27 @@ script = ExtResource("2_bdcow")
 script = ExtResource("3_vnptg")
 tile_size = Vector2(32, 32)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="old_sprite" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(8, 8)
 texture = ExtResource("1_ektu6")
 hframes = 8
+
+[node name="simple_sprite" type="Sprite2D" parent="."]
+modulate = Color(0.11372549, 0.49411765, 0.101960786, 1)
+position = Vector2(0, -8)
+scale = Vector2(2, 2)
+texture = ExtResource("4_bdcow")
+hframes = 3
+vframes = 4
+frame = 3
+
+[node name="WarningIcon" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3, -6)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_w1osx")
+autoplay = "default"
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 16
@@ -239,27 +687,26 @@ collision_mask = 0
 position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_ektu6")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="ProgressBar" type="TextureProgressBar" parent="."]
 visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 72.0
-offset_top = -59.0
-offset_right = 115.0
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 100.0
+offset_left = 53.0
+offset_top = -38.0
+offset_right = 67.0
+offset_bottom = -2.0
+scale = Vector2(2, 2)
 fill_mode = 3
-show_percentage = false
+texture_under = ExtResource("6_aln04")
+texture_over = ExtResource("6_gqtao")
+texture_progress = ExtResource("7_aln04")
+tint_under = Color(0.023529412, 0.09803922, 0.019607844, 1)
+tint_over = Color(0.79607844, 0.16470589, 0.36862746, 1)
+tint_progress = Color(0.79607844, 0.16470589, 0.36862746, 1)
 
-[node name="IdleAnim" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_vnptg")
 }
+autoplay = "neutral"
 
 [node name="DamageStates" type="AnimationPlayer" parent="."]
 libraries = {
@@ -269,7 +716,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_6s4mj")
 advance_expression_base_node = NodePath("..")
-anim_player = NodePath("../DamageStates")
+anim_player = NodePath("../AnimationPlayer")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_mouse_exited"]

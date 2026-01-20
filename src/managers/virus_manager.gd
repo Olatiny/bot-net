@@ -1,5 +1,5 @@
 class_name VirusManager
-extends Node2D
+extends Node
 
 ########################
 ### CONFIG / EXPORTS ###
@@ -26,6 +26,9 @@ extends Node2D
 
 ## per-wave chance scaling
 @export var event_chance_per_wave := 0.001
+
+## username used in terminal messages
+@export var terminal_username := "usr/M.A.L"
 
 
 ######################
@@ -61,7 +64,7 @@ func _ready() -> void:
 	# cache paths
 	# TODO
 
-	assert(_paths.size() >= 6)
+	#assert(_paths.size() >= 6)
 
 	_setup_timer(spawn_timer, true)
 	_setup_timer(popup_timer)
@@ -118,9 +121,15 @@ func _spawn_virus() -> void:
 
 	var virus := virus_scene.instantiate() as Virus
 
-	var path := _select_path()
-	path.add_child(virus)
-	virus.progress_ratio = 0.0
+	#var path := _select_path()
+	#path.add_child(virus)
+	#virus.progress_ratio = 0.0
+	
+	var path_idx = -1
+	if _bruteforce_active:
+		pass #TODO: store path for brute force
+	
+	GameManager.game_board.add_virus_to_path(virus, path_idx)
 
 	var max_health := base_max_health + (_current_wave * health_per_wave)
 	var max_speed := base_max_speed + (_current_wave * speed_per_wave)
@@ -171,6 +180,7 @@ func _try_event(timer: Timer, chance: float, action: Callable, delta: float) -> 
 func _spawn_popup() -> void:
 	# hook for UI / terminal
 	print("POPUP EVENT")
+	GameManager.terminal.push_new_message("Uh Oh! Get blocked loser :p", terminal_username)
 	#TODO
 
 
@@ -180,16 +190,19 @@ func _scramble_board() -> void:
 
 func _create_backdoor() -> void:
 	print("BACKDOOR CREATED")
+	GameManager.terminal.push_new_message("hey this is the door I used to get into ur mom's house", terminal_username)
 	#TODO
 
 
 func _start_bruteforce() -> void:
 	_bruteforce_active = true
 	bruteforce_timer.start()
+	GameManager.terminal.push_new_message("LEEEEROYYYYYYYY", terminal_username)
 
 
 func _end_bruteforce() -> void:
 	_bruteforce_active = false
+	GameManager.terminal.push_new_message("bruteforce over")
 
 
 ############

@@ -64,7 +64,6 @@ func _try_open_folder():
 func add_virus_data(in_virus_data: VirusData):
 	virus_data_list.push_back(in_virus_data)
 	tolerance += in_virus_data.curr_health
-	$ProgressBar.visible = true
 	$ProgressBar.value = tolerance
 
 

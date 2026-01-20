@@ -9,7 +9,7 @@ extends PathFollow2D
 @export var speed = 0.15
 
 ## The max scale of the virus based on health
-@export var max_scale = 2
+@export var max_scale = 1.5
 
 ## The min scale of the virus based on health == 1
 @export var min_scale = 1

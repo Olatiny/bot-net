@@ -50,6 +50,7 @@ custom_minimum_size = Vector2(0, 467)
 layout_mode = 2
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
 [node name="MessageContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer"]
 clip_contents = true
