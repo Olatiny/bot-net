@@ -1,10 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvgyrbcbh567s"]
+[gd_scene load_steps=15 format=3 uid="uid://dvgyrbcbh567s"]
 
 [ext_resource type="Shader" uid="uid://c6p3lh6xico6c" path="res://src/materials/pixelate.gdshader" id="1_04u4j"]
 [ext_resource type="PackedScene" uid="uid://cj01a4v4rn7mv" path="res://src/main_game.tscn" id="1_n6cjk"]
 [ext_resource type="Shader" uid="uid://ddlynu18jv1ut" path="res://src/materials/crt_test.gdshader" id="2_cn0d0"]
+[ext_resource type="Script" uid="uid://xdtl7hgfhdbh" path="res://crt_buddy.gd" id="4_6c7sm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c7sm"]
+albedo_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_cn0d0"]
+material = SubResource("StandardMaterial3D_6c7sm")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cn0d0"]
 shader = ExtResource("1_04u4j")
@@ -23,26 +28,29 @@ height = 819
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_04u4j"]
 shader = ExtResource("2_cn0d0")
 shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.27200001292
-shader_parameter/scanlines_width = 0.110000005225
-shader_parameter/grille_opacity = 0.1670000079325
+shader_parameter/scanlines_opacity = 0.01600000076
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
 shader_parameter/resolution = Vector2(1920, 1080)
 shader_parameter/pixelate = false
-shader_parameter/roll = false
+shader_parameter/roll = true
 shader_parameter/roll_speed = 2.075
-shader_parameter/roll_size = 9.0910004318225
-shader_parameter/roll_variation = 0.13700000324762002
-shader_parameter/distort_intensity = 0.106000005035
-shader_parameter/noise_opacity = 0.18000000855
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 4.7499999933364734e-08
-shader_parameter/brightness = 1.46
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 0.3410000161975
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.74
-shader_parameter/vignette_opacity = 0.2930000139175
+shader_parameter/roll_size = 8.3330003958175
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.242000011495
+shader_parameter/noise_speed = 1.0
+shader_parameter/static_noise_intensity = 0.19600000931
+shader_parameter/aberration = 0.0050000477375000685
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.530000025175
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.61
+shader_parameter/vignette_opacity = 0.21200001007
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_04u4j"]
+viewport_path = NodePath("CanvasLayer2/Control/SubViewportContainer/SubViewport")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n6cjk"]
 
@@ -54,8 +62,6 @@ background_mode = 2
 background_energy_multiplier = 1.34
 sky = SubResource("Sky_cn0d0")
 ambient_light_sky_contribution = 0.72
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_04u4j"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -87,36 +93,67 @@ texture = SubResource("GradientTexture2D_6c7sm")
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2"]
-offset_left = 254.99998
-offset_top = 132.99998
-offset_right = 2175.0
-offset_bottom = 1213.0
-scale = Vector2(0.725, 0.725)
+[node name="Control" type="Control" parent="CanvasLayer2"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.87, 0.87)
+pivot_offset = Vector2(960, 540)
+mouse_filter = 2
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/SubViewportContainer"]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7, 0.7)
+pivot_offset = Vector2(960, 540)
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/Control/SubViewportContainer"]
 handle_input_locally = false
 physics_object_picking = true
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="MainGame" parent="CanvasLayer2/SubViewportContainer/SubViewport" instance=ExtResource("1_n6cjk")]
+[node name="MainGame" parent="CanvasLayer2/Control/SubViewportContainer/SubViewport" instance=ExtResource("1_n6cjk")]
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer2"]
+[node name="crt_buddy" type="TextureRect" parent="CanvasLayer2/Control" node_paths=PackedStringArray("viewport")]
+clip_children = 2
 material = SubResource("ShaderMaterial_04u4j")
-offset_left = 230.0
-offset_top = 81.0
-offset_right = 1668.0
-offset_bottom = 951.0
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1440)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -720.0
+offset_right = 960.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.75, 0.75)
+pivot_offset = Vector2(960, 720)
 mouse_filter = 2
-texture = SubResource("GradientTexture2D_6c7sm")
+texture = SubResource("ViewportTexture_04u4j")
+script = ExtResource("4_6c7sm")
+viewport = NodePath("../SubViewportContainer/SubViewport")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.41545537, 0.90961355, 0, -0.90961355, 0.41545537, 0, 5.544836, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_04u4j")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.6913486)
-mesh = SubResource("PlaneMesh_04u4j")

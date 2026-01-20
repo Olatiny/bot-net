@@ -70,15 +70,19 @@ var game_board: Board = null
 ## The popup container
 var popup_container: Control = null
 
+## game over menu interface
+var game_over_menu: GameOverMenu = null
+
+## game over parent
+var game_over_canvas: Control = null
+
+
 
 ## Timer for length of wave
 @onready var wave_timer := $WaveTimer as Timer
 
 ## Cooldown timer between waves
 @onready var wave_cooldown := $WaveCooldown as Timer
-
-## game over menu interface
-@onready var game_over_menu := $GameOverCanvas/GameOverMenu as GameOverMenu
 
 
 func _process(delta: float) -> void:
@@ -89,12 +93,20 @@ func _process(delta: float) -> void:
 
 
 ## Called by game scene to initialize this singleton's references
-func initialize_node_refs(in_virus_manager: VirusManager, in_terminal: Terminal, in_shop: Shop, in_game_board: Board, in_popup_container: Control) -> void:
+func initialize_node_refs(in_virus_manager: VirusManager, 
+		in_terminal: Terminal, 
+		in_shop: Shop, 
+		in_game_board: Board, 
+		in_popup_container: Control,
+		in_game_over_canvas: Control) -> void:
 	virus_manager = in_virus_manager
 	terminal = in_terminal
 	shop = in_shop
 	game_board = in_game_board
 	popup_container = in_popup_container
+	game_over_canvas = in_game_over_canvas
+	game_over_menu = in_game_over_canvas.get_child(0)
+	
 
 
 ## Called to start the game loop, resets / starts game
@@ -104,7 +116,7 @@ func start_game() -> void:
 	elapsed_time = 0.0
 	player_ram = 0
 	current_wave_idx = 0
-	$GameOverCanvas.visible = false
+	game_over_canvas.visible = false
 	game_board.reset_board()
 	
 	if !is_instance_valid(virus_manager):
@@ -178,7 +190,7 @@ func game_over():
 	current_state = GAME_STATE.GAME_OVER
 	
 	GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
-	$GameOverCanvas.visible = true
+	game_over_canvas.visible = true
 	wave_cooldown.stop()
 	wave_timer.stop()
 	game_over_menu.set_game_over_time(get_time_string())

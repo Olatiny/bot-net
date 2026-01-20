@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cj01a4v4rn7mv"]
+[gd_scene load_steps=10 format=3 uid="uid://cj01a4v4rn7mv"]
 
 [ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_fq370"]
 [ext_resource type="Script" uid="uid://da8bux3oa0djs" path="res://src/main_game.gd" id="1_qhh1e"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://drh47bbdo8bpo" path="res://src/scenes/terminal.tscn" id="4_qhh1e"]
 [ext_resource type="PackedScene" uid="uid://dmm6p7845mpuy" path="res://src/scenes/shop.tscn" id="5_qhh1e"]
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="5_x08um"]
+[ext_resource type="PackedScene" uid="uid://c6q1a0scjwvcr" path="res://src/scenes/game_over_menu.tscn" id="7_bupss"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_130rv"]
 content_margin_left = 8.0
@@ -107,6 +108,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="GameOverCanvas" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.023529412, 0.09803922, 0.019607844, 0.6431373)
+
+[node name="GameOverMenu" parent="GameOverCanvas" instance=ExtResource("7_bupss")]
+layout_mode = 1
+offset_top = -411.5
+offset_bottom = 411.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)

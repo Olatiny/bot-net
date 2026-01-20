@@ -20,6 +20,9 @@ extends CanvasLayer
 ## The popup container
 @onready var popup_container := %PopupContainer as Control
 
+## The game over canvas
+@onready var game_over_canvas := $GameOverCanvas as Control
+
 
 
 func _ready() -> void:
@@ -28,5 +31,5 @@ func _ready() -> void:
 
 
 func start_game() -> void:
-	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container)
+	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container, game_over_canvas)
 	GameManager.start_game()
