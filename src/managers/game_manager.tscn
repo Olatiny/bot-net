@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5uksamvs18d6"]
+[gd_scene load_steps=3 format=3 uid="uid://5uksamvs18d6"]
 
 [ext_resource type="Script" uid="uid://camjivelx7yum" path="res://src/managers/game_manager.gd" id="1_d82bj"]
+[ext_resource type="PackedScene" uid="uid://c6q1a0scjwvcr" path="res://src/scenes/game_over_menu.tscn" id="2_dqhu4"]
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_d82bj")
@@ -11,6 +12,20 @@ one_shot = true
 
 [node name="WaveTimer" type="Timer" parent="."]
 wait_time = 30.0
+
+[node name="GameOverCanvas" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOverCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.023529412, 0.09803922, 0.019607844, 0.6431373)
+
+[node name="GameOverMenu" parent="GameOverCanvas" instance=ExtResource("2_dqhu4")]
 
 [connection signal="timeout" from="WaveCooldown" to="." method="start_next_wave"]
 [connection signal="timeout" from="WaveTimer" to="." method="end_wave"]

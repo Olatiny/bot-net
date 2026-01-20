@@ -23,6 +23,9 @@ enum FOLDER_TYPE {
 ## current health of this folder
 @export var tolerance := 0.0
 
+## The path that should be disabled if this folder is defeated
+@export var path_to_disable: Path2D = null
+
 
 ## List of virus data for contained viruses, needed to populate internal view
 var virus_data_list: Array[VirusData]
@@ -48,6 +51,8 @@ func _process(delta: float) -> void:
 		current_state = FOLDER_TYPE.INFECTED
 	else:
 		current_state = FOLDER_TYPE.NEUTRAL
+	
+	_try_change_path_validity()
 
 
 ## TODO: implement folder opening
@@ -80,3 +85,24 @@ func _on_mouse_entered() -> void:
 ## private detector of mouse
 func _on_mouse_exited() -> void:
 	_mouse_over = false
+
+
+func neutralize_folder():
+	if current_state == FOLDER_TYPE.ROOT:
+		return
+	
+	virus_data_list.clear()
+	tolerance = 0.0
+	current_state = FOLDER_TYPE.NEUTRAL
+
+
+func _try_change_path_validity():
+	if !is_instance_valid(path_to_disable):
+		return
+	
+	var game_board: Board = GameManager.game_board
+	
+	if current_state == FOLDER_TYPE.DEFEATED && game_board.check_path_valid(path_to_disable):
+		game_board.invalidate_path(path_to_disable)
+	elif current_state != FOLDER_TYPE.DEFEATED && !game_board.check_path_valid(path_to_disable):
+		game_board.validate_path(path_to_disable)

@@ -116,7 +116,7 @@ func end_wave() -> void:
 ######################
 
 func _spawn_virus() -> void:
-	if virus_scene == null:
+	if virus_scene == null || GameManager.current_state != GameManager.GAME_STATE.ACTIVE:
 		return
 
 	var virus := virus_scene.instantiate() as Virus
@@ -164,7 +164,7 @@ func _process_events(delta: float) -> void:
 
 
 func _try_event(timer: Timer, chance: float, action: Callable, delta: float) -> void:
-	if !timer.is_stopped():
+	if !timer.is_stopped() || GameManager.current_state != GameManager.GAME_STATE.ACTIVE:
 		return
 
 	# convert per-second probability into per-frame

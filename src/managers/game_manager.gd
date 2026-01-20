@@ -15,6 +15,9 @@ var user_name := GlobalStates.USR_DEFAULT
 ## scene ref for popup
 var POPUP_SCENE := preload("res://src/scenes/game_popup.tscn")
 
+## scene for virus manager
+var VIRUS_MANAGER_SCENE := preload("res://src/managers/virus_manager.tscn")
+
 
 ###################
 ### GAME STATES ###
@@ -74,6 +77,8 @@ var popup_container: Control = null
 ## Cooldown timer between waves
 @onready var wave_cooldown := $WaveCooldown as Timer
 
+## game over menu interface
+@onready var game_over_menu := $GameOverCanvas/GameOverMenu as GameOverMenu
 
 
 func _process(delta: float) -> void:
@@ -92,11 +97,23 @@ func initialize_node_refs(in_virus_manager: VirusManager, in_terminal: Terminal,
 	popup_container = in_popup_container
 
 
-## Called to start the game loop
+## Called to start the game loop, resets / starts game
 func start_game() -> void:
 	## TODO: Actually implement this lmao
 	## TODO: idk maybe like a little ready ? loading bar or somth
+	elapsed_time = 0.0
+	player_ram = 0
+	current_wave_idx = 0
+	$GameOverCanvas.visible = false
+	game_board.reset_board()
+	
+	if !is_instance_valid(virus_manager):
+		virus_manager = VIRUS_MANAGER_SCENE.instantiate() as VirusManager
+		add_child(virus_manager)
+	
 	current_state = GAME_STATE.ACTIVE
+	terminal.push_new_message("logged in.", GlobalStates.USR_DEFAULT)
+	terminal.push_new_message("logged in.", GlobalStates.USR_VIRUS)
 	
 	start_next_wave()
 
@@ -104,6 +121,9 @@ func start_game() -> void:
 ## This function will delegate to the virus manager, passing in the current wave index
 ## to start the next wave, procedurally modifying the difficulty
 func start_next_wave() -> void:
+	if current_state == GAME_STATE.GAME_OVER:
+		return
+	
 	current_wave_idx += 1
 	virus_manager.start_wave(current_wave_idx)
 	
@@ -140,7 +160,7 @@ func scramble_board():
 ## Called when a wave ends, signals HUD to update appropriately
 func end_wave():
 	if current_state == GAME_STATE.GAME_OVER:
-		GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
+		#GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
 		return
 	
 	# NOTE: spacing was an accident but looks kinda cool actually?
@@ -151,3 +171,42 @@ func end_wave():
 	
 	if wave_cooldown.is_stopped():
 		wave_cooldown.start()
+
+
+## Called when the player loses 
+func game_over():
+	current_state = GAME_STATE.GAME_OVER
+	
+	GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
+	$GameOverCanvas.visible = true
+	wave_cooldown.stop()
+	wave_timer.stop()
+	game_over_menu.set_game_over_time(get_time_string())
+	virus_manager.queue_free() # NOTE: Not sure if this works but would be sick
+	# TODO: actually do anything about this
+
+
+## Resets and restarts the game from wave 0
+func restart_game():
+	start_game()
+
+
+## Quits the game (TODO: probably some animation plays before exit)
+func quit_game():
+	get_tree().quit() 
+
+
+func get_time_string():
+	var mins: int = 0
+	var secs: int = 0
+	
+	var time_cache = elapsed_time
+	
+	mins = ceili(time_cache) / 60
+	secs = ceili(time_cache) % 60
+	
+	var time_string = ""
+	time_string += str(mins)
+	time_string += ":"
+	time_string += str(secs)
+	return time_string

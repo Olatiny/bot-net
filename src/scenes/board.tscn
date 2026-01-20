@@ -6,13 +6,13 @@
 
 [sub_resource type="Curve2D" id="Curve2D_7yose"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3, -457, 0, 0, 0, 0, -3, -302, 0, 0, 0, 0, -383, -299, 0, 0, 0, 0, -386, 58, 0, 0, 0, 0, -516, 58, 0, 0, 0, 0, -514, 246)
+"points": PackedVector2Array(0, 0, 0, 0, -3, -457, 0, 0, 0, 0, -3, -302, 0, 0, 0, 0, -383, -299, 0, 0, 0, 0, -386, 58, 0, 0, 0, 0, -480, 59, 0, 0, 0, 0, -482, 244)
 }
 point_count = 6
 
 [sub_resource type="Curve2D" id="Curve2D_v43tc"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4, -459, 0, 0, 0, 0, -4, -306, 0, 0, 0, 0, -382, -299, 0, 0, 0, 0, -390, 54, 0, 0, 0, 0, -255, 56, 0, 0, 0, 0, -256, 244)
+"points": PackedVector2Array(0, 0, 0, 0, -4, -459, 0, 0, 0, 0, -4, -306, 0, 0, 0, 0, -382, -299, 0, 0, 0, 0, -390, 54, 0, 0, 0, 0, -290, 56, 0, 0, 0, 0, -287, 240)
 }
 point_count = 6
 
@@ -81,23 +81,29 @@ position = Vector2(1312, 512)
 [node name="Folder4" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(1696, 512)
 
-[node name="Folder5" parent="Folders" instance=ExtResource("3_ntdqk")]
+[node name="Folder5" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(832, 832)
+path_to_disable = NodePath("../../Paths/Path")
 
-[node name="Folder6" parent="Folders" instance=ExtResource("3_ntdqk")]
+[node name="Folder6" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1024, 832)
+path_to_disable = NodePath("../../Paths/Path2")
 
-[node name="Folder7" parent="Folders" instance=ExtResource("3_ntdqk")]
+[node name="Folder7" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1216, 832)
+path_to_disable = NodePath("../../Paths/Path3")
 
-[node name="Folder8" parent="Folders" instance=ExtResource("3_ntdqk")]
+[node name="Folder8" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1408, 832)
+path_to_disable = NodePath("../../Paths/Path4")
 
-[node name="Folder9" parent="Folders" instance=ExtResource("3_ntdqk")]
+[node name="Folder9" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1600, 832)
+path_to_disable = NodePath("../../Paths/Path5")
 
-[node name="Folder10" parent="Folders" instance=ExtResource("3_ntdqk")]
+[node name="Folder10" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1792, 832)
+path_to_disable = NodePath("../../Paths/Path6")
 
 [node name="Paths" type="Node2D" parent="."]
 
