@@ -1,6 +1,29 @@
 class_name Terminal
 extends PanelContainer
 
+#####################
+### LOCAL DEFINES ###
+#####################
+
+var system_name := GlobalStates.USR_SYSTEM
+
+var virus_name := GlobalStates.USR_VIRUS
+
+var user_name := GlobalStates.USR_DEFAULT
+
+var shop_name := GlobalStates.SHOP_NAME
+
+var warning_name := GlobalStates.USR_WARN
+
+
+var USR_DEFAULT_COLORS := {
+	system_name: "1d7e1a",
+	warning_name: "cb2a5e",
+	virus_name: "9b79ad",
+	user_name: "2bb5e9",
+	shop_name: "e9c02b"
+}
+
 
 ## Scene ref for terminal message
 @onready var MESSAGE_SCENE := preload("res://src/scenes/terminal_message.tscn")
@@ -39,11 +62,15 @@ func push_new_message(message: String, usr := "usr_default"):
 		_init_curr_message()
 
 
-
 func _push_msg_internal(message: String, usr: String):
 	current_message.user_label.custom_minimum_size.x = usr.length() * 20 ## NOTE: this number is quite magical
 	
 	current_message.hide_text()
+	
+	if USR_DEFAULT_COLORS.has(usr):
+		current_message.user_label.add_theme_color_override("default_color", Color(USR_DEFAULT_COLORS[usr]))
+		current_message.message_label.add_theme_color_override("default_color", Color(USR_DEFAULT_COLORS[usr]))
+	
 	current_message.set_message(message)
 	current_message.set_user(usr)
 	

@@ -11,3 +11,17 @@ enum COLLISION_LAYERS {
 	PATH   =    0b01000,
 	FOLDER =    0b10000
 }
+
+#####################
+### TERMINAL USRS ###
+#####################
+
+const USR_SYSTEM := "sys_message"
+
+const USR_WARN := "sys_warning"
+
+const USR_VIRUS := "usr/M.A.L."
+
+const USR_DEFAULT := "usr_default"
+
+const SHOP_NAME := "task_man"

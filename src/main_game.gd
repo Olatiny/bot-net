@@ -17,6 +17,9 @@ extends CanvasLayer
 ## The current game board
 @onready var game_board := %Board as Board
 
+## The popup container
+@onready var popup_container := %PopupContainer as Control
+
 
 
 func _ready() -> void:
@@ -25,5 +28,5 @@ func _ready() -> void:
 
 
 func start_game() -> void:
-	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board)
+	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container)
 	GameManager.start_game()

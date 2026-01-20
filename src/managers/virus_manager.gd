@@ -180,8 +180,7 @@ func _try_event(timer: Timer, chance: float, action: Callable, delta: float) -> 
 func _spawn_popup() -> void:
 	# hook for UI / terminal
 	print("POPUP EVENT")
-	GameManager.terminal.push_new_message("Uh Oh! Get blocked loser :p", terminal_username)
-	#TODO
+	GameManager.spawn_popup()
 
 
 func _scramble_board() -> void:

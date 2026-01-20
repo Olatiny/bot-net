@@ -1,0 +1,126 @@
+[gd_scene load_steps=10 format=3 uid="uid://dg6wd25bdpqwa"]
+
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_m2kid"]
+[ext_resource type="StyleBox" uid="uid://dpgmw2epqenug" path="res://assets/styles/terminal_style.tres" id="2_xhsjt"]
+[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="3_4bf6m"]
+[ext_resource type="Script" uid="uid://cn8w7ja6xnxr" path="res://src/scenes/game_popup.gd" id="3_xhsjt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bupss"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[sub_resource type="Animation" id="Animation_4bf6m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xhsjt"]
+resource_name = "intro"
+length = 0.30001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6cmbk"]
+resource_name = "outro"
+length = 0.30001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6cmbk"]
+_data = {
+&"RESET": SubResource("Animation_4bf6m"),
+&"intro": SubResource("Animation_xhsjt"),
+&"outro": SubResource("Animation_6cmbk")
+}
+
+[node name="GamePopup" type="PanelContainer"]
+offset_left = 764.0
+offset_top = 229.0
+offset_right = 1174.0
+offset_bottom = 612.0
+pivot_offset = Vector2(205, 191)
+theme = ExtResource("1_m2kid")
+theme_override_styles/panel = ExtResource("2_xhsjt")
+script = ExtResource("3_xhsjt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_m2kid")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_bupss")
+text = "POPUP"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(48.97, 0)
+layout_mode = 2
+theme = ExtResource("1_m2kid")
+text = "X"
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_4bf6m")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6cmbk")
+}
+autoplay = "intro"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
