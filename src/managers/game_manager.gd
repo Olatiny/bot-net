@@ -141,15 +141,16 @@ func set_pause(pause_state: bool):
 ## Spawns a popup at a random location on the board, or one submitted
 func spawn_popup(coords := Vector2(-1, -1)):
 	GameManager.terminal.push_new_message("Uh Oh! Get blocked loser :p", virus_name)
-	
-	var popup := POPUP_SCENE.instantiate() as GamePopup
-	
-	if coords.x < 0 || coords.y < 0:
-		var size := popup_container.size - (2 * popup.size)
-		coords = Vector2(randf_range(0, size.x), randf_range(0, size.y)) + popup.size
-	
-	popup.global_position = coords
-	popup_container.add_child(popup)
+	var spawn_coords := coords
+	for i in range (0, 5):
+		var popup := POPUP_SCENE.instantiate() as GamePopup
+		
+		if coords.x < 0 || coords.y < 0:
+			var size := popup_container.size - (2 * popup.size)
+			spawn_coords = Vector2(randf_range(0, size.x), randf_range(0, size.y)) + popup.size
+		
+		popup.global_position = spawn_coords
+		popup_container.add_child(popup)
 
 
 ## Used to scramble the board, called by virus manager
