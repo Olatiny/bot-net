@@ -133,14 +133,6 @@ func _spawn_virus() -> void:
 	spawn_timer.start()
 
 
-func _select_path() -> Path2D:
-	if _bruteforce_active:
-		return _paths[0] # forced path during attack
-		#TODO
-
-	return _paths[_rng.randi_range(0, _paths.size() - 1)]
-
-
 ####################
 ### EVENT SYSTEM ###
 ####################
@@ -186,7 +178,7 @@ func _create_backdoor() -> void:
 		path.create_backdoor()
 
 	GameManager.terminal.push_new_message("hey this is the door I used to get into ur mom's house", terminal_username)
-	# TODO add icons
+	# TODO add visuals
 
 
 func _start_bruteforce() -> void:
@@ -194,6 +186,7 @@ func _start_bruteforce() -> void:
 	bruteforce_timer.start()
 	_bruteforce_idx = randi_range(0, 5)
 	GameManager.terminal.push_new_message("LEEEEROYYYYYYYY", terminal_username)
+	#TODO add visuals
 
 
 func _end_bruteforce() -> void:
