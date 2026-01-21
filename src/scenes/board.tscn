@@ -132,4 +132,4 @@ position = Vector2(1312, 617)
 curve = SubResource("Curve2D_fh8u8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1312, 437)
+position = Vector2(1309, 437)

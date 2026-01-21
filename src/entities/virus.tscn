@@ -148,7 +148,7 @@ _data = {
 &"ouchie": SubResource("Animation_a020v")
 }
 
-[node name="Virus" type="PathFollow2D"]
+[node name="Virus" type="PathFollow2D" groups=["enemies"]]
 rotates = false
 script = ExtResource("1_a020v")
 
@@ -157,11 +157,11 @@ modulate = Color(0.7189592, 0, 0.18116358, 1)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_hcnuk")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 collision_layer = 2
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemies"]]
 shape = SubResource("CircleShape2D_a020v")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

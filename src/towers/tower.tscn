@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_stebd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ipjxq"]
-radius = 150.0
+radius = 222.38031
 
 [node name="tower" type="Node2D"]
 script = ExtResource("1_vedim")
@@ -17,6 +17,7 @@ scale = Vector2(0.75, 0.7421875)
 texture = ExtResource("2_stebd")
 
 [node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
@@ -26,6 +27,6 @@ shape = SubResource("CircleShape2D_ipjxq")
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_entered" from="DetectionRange" to="." method="_on_detection_range_body_entered"]
-[connection signal="body_exited" from="DetectionRange" to="." method="_on_detection_range_body_exited"]
+[connection signal="area_entered" from="DetectionRange" to="." method="_on_detection_range_area_entered"]
+[connection signal="area_exited" from="DetectionRange" to="." method="_on_detection_range_area_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

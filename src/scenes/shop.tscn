@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmm6p7845mpuy"]
+[gd_scene load_steps=10 format=3 uid="uid://dmm6p7845mpuy"]
 
 [ext_resource type="StyleBox" uid="uid://dpgmw2epqenug" path="res://assets/styles/terminal_style.tres" id="1_4ji2o"]
 [ext_resource type="Script" uid="uid://cjm2wqxbcqkr" path="res://src/scenes/shop.gd" id="1_q7y2j"]
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="3_k60ia"]
+[ext_resource type="Script" uid="uid://diuf2na1dy8fn" path="res://src/scenes/buttonintegration.gd" id="4_duy3l"]
 [ext_resource type="PackedScene" uid="uid://ds8iimwkoqso3" path="res://src/scenes/button.tscn" id="4_k60ia"]
+[ext_resource type="PackedScene" uid="uid://bx7x3s16y1ywr" path="res://src/towers/tower.tscn" id="5_twr02"]
+[ext_resource type="PackedScene" uid="uid://u0hpbk31udpt" path="res://src/areatower/areatower.tscn" id="6_cjlig"]
+[ext_resource type="PackedScene" uid="uid://byvaonestqs7" path="res://src/firewall/firewall.tscn" id="7_5sg2m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k60ia"]
 bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
@@ -64,22 +68,30 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Button" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+script = ExtResource("4_duy3l")
+tower_scene = ExtResource("5_twr02")
+aoe_tower_scene = ExtResource("6_cjlig")
+wall_scene = ExtResource("7_5sg2m")
+
+[node name="Button" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "ENCRYPT
 XXX RAM"
 
-[node name="Button2" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+[node name="Button2" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "FIREWALL
 XXX RAM"
 
-[node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+[node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "TOWER A
 XXX RAM"
 
-[node name="Button4" parent="VBoxContainer/HBoxContainer2/VBoxContainer" instance=ExtResource("4_k60ia")]
+[node name="Button4" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "TOWER B
 XXX RAM"
@@ -114,3 +126,7 @@ layout_mode = 2
 disabled = true
 text = "CLICK TOWERS
 TO UPGRADE"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button2" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_wall_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button3" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button4" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_aoe_build_button_pressed"]

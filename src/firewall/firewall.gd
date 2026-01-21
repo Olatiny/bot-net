@@ -1,27 +1,39 @@
 extends StaticBody2D
 
-@export var max_health: int = 200
-@export var thorn_damage: int = 50 # Damage dealt to enemy on contact
+@export var max_health: int = 20
+@export var thorn_damage: int = 10 
 var current_health: int
 
 func _ready():
 	current_health = max_health
 
+func _on_thorn_area_area_entered(area: Area2D):
+
+	# Try to find where the Virus script (and process_attack) lives
+	var virus_node = null
+	
+	if area.has_method("process_attack"):
+		virus_node = area
+
+	elif area.get_parent() and area.get_parent().has_method("process_attack"):
+		virus_node = area.get_parent()
+
+	else:
+
+		return
+
+	# Check the group
+	if virus_node.is_in_group("enemies") or area.is_in_group("enemies"):
+
+		# Apply damage
+		var health_before = virus_node.health
+		virus_node.process_attack(thorn_damage)
+		# Damage the wall
+		take_damage(2) 
+
+
+
 func take_damage(amount: int):
 	current_health -= amount
-	print("Wall Health: ", current_health)
 	if current_health <= 0:
-		die()
-
-func _on_thorn_area_body_entered(body):
-	# If an enemy touches the wall
-	if body.is_in_group("enemies"):
-		# 1. Damage the enemy
-		if body.has_method("take_damage"):
-			body.take_damage(thorn_damage)
-		
-		# 2. Damage the wall (the wall takes damage for 'blocking')
-		take_damage(50) 
-
-func die():
-	queue_free()
+		queue_free()

@@ -31,4 +31,4 @@ position = Vector2(-1.5, 1.0000002)
 scale = Vector2(1.3984375, 0.296875)
 shape = SubResource("RectangleShape2D_wcfj2")
 
-[connection signal="body_entered" from="ThornArea" to="." method="_on_thorn_area_body_entered"]
+[connection signal="area_entered" from="ThornArea" to="." method="_on_thorn_area_area_entered"]
