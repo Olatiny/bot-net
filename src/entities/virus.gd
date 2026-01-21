@@ -47,6 +47,8 @@ func _process(delta: float) -> void:
 func _move_virus(delta: float):
 	if get_parent() is Path2D:
 		progress_ratio += delta * speed
+		if get_parent()._backdoor_active and progress_ratio >= 0.2 and progress_ratio <= 0.24:
+			progress_ratio = 0.75
 	
 	# interpolates scale based on current health out of maximum
 	var curr_scalar = lerpf(min_scale, max_scale, float(health) / float(max_health))

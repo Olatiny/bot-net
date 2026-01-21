@@ -33,9 +33,9 @@ func _process(_delta: float) -> void:
 
 ## Returns the path at the corresponding index
 func get_virus_path(path_idx: int) -> Path2D:
-	if path_idx < 0 || invalid_paths.has(path_container.get_child(path_idx)):
-		return get_random_virus_path()
-	
+	if path_idx == -1:
+		return valid_paths.pick_random()
+		
 	return path_container.get_child(path_idx) as Path2D
 
 
@@ -103,6 +103,9 @@ func reset_board():
 
 func clear_path(path: Path2D):
 	for virus in path.get_children():
+		if not virus is Virus:
+			continue
+		
 		virus.queue_free()
 
 
