@@ -39,7 +39,7 @@ var _rng := RandomNumberGenerator.new()
 var _current_wave := 0
 var _spawning := false
 var _bruteforce_active := false
-
+var _bruteforce_idx := -1
 var _paths: Array[Path2D] = []
 
 
@@ -60,11 +60,6 @@ var _paths: Array[Path2D] = []
 
 func _ready() -> void:
 	_rng.randomize()
-
-	# cache paths
-	# TODO
-
-	#assert(_paths.size() >= 6)
 
 	_setup_timer(spawn_timer, true)
 	_setup_timer(popup_timer)
@@ -120,14 +115,10 @@ func _spawn_virus() -> void:
 		return
 
 	var virus := virus_scene.instantiate() as Virus
-
-	#var path := _select_path()
-	#path.add_child(virus)
-	#virus.progress_ratio = 0.0
 	
 	var path_idx = -1
 	if _bruteforce_active:
-		pass #TODO: store path for brute force
+		path_idx = _bruteforce_idx
 	
 	GameManager.game_board.add_virus_to_path(virus, path_idx)
 
@@ -140,14 +131,6 @@ func _spawn_virus() -> void:
 
 	# stagger next spawn dynamically
 	spawn_timer.start()
-
-
-func _select_path() -> Path2D:
-	if _bruteforce_active:
-		return _paths[0] # forced path during attack
-		#TODO
-
-	return _paths[_rng.randi_range(0, _paths.size() - 1)]
 
 
 ####################
@@ -189,14 +172,21 @@ func _scramble_board() -> void:
 
 func _create_backdoor() -> void:
 	print("BACKDOOR CREATED")
+	
+	var path: Path2D = GameManager.game_board.get_virus_path([0, 1, 4, 5].pick_random())
+	if not GameManager.game_board.invalid_paths.has(path) and path.is_node_ready():
+		path.create_backdoor()
+
 	GameManager.terminal.push_new_message("hey this is the door I used to get into ur mom's house", terminal_username)
-	#TODO
+	# TODO add visuals
 
 
 func _start_bruteforce() -> void:
 	_bruteforce_active = true
 	bruteforce_timer.start()
+	_bruteforce_idx = randi_range(0, 5)
 	GameManager.terminal.push_new_message("LEEEEROYYYYYYYY", terminal_username)
+	#TODO add visuals
 
 
 func _end_bruteforce() -> void:
