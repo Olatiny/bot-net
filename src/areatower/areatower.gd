@@ -5,7 +5,7 @@ var upgrade_level: int = 1
 var targets: Array = []
 var is_selected: bool = false 
 @onready var selection_visual = $SelectionVisual
-@onready var damage_zone = $DamageZone
+@onready var damage_zone = $detection
 @onready var attack_visual = $attack_visual
 @onready var timer = $Timer
 

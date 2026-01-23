@@ -68,7 +68,7 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer" groups=["manager"]]
+[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer" groups=["manager", "shop"]]
 layout_mode = 2
 size_flags_vertical = 6
 script = ExtResource("4_duy3l")
