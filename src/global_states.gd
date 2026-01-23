@@ -25,3 +25,14 @@ const USR_VIRUS := "usr/M.A.L."
 const USR_DEFAULT := "usr_default"
 
 const SHOP_NAME := "task_man"
+
+
+######################
+### GLOBAL SIGNALS ###
+######################
+
+@warning_ignore("unused_signal")
+signal folder_opened(folder: GameFolder)
+
+@warning_ignore("unused_signal")
+signal folder_closed(folder: GameFolder)

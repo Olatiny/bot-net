@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7otd8s7djy8i"]
+
+[ext_resource type="Script" uid="uid://nb6kxseip3hf" path="res://src/entities/virus_folder_container.gd" id="1_qrx31"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fvv3"]
+
+[node name="FolderVirusContainer" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 34
+motion_mode = 1
+script = ExtResource("1_qrx31")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5fvv3")

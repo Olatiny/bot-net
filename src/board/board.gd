@@ -5,6 +5,9 @@ extends Node2D
 ## Parent container of all possible path nodes
 @onready var path_container: Node2D = $Paths
 
+## box to display folder contents inside
+@onready var folder_viewer := %FolderViewer as FolderViewer
+
 
 ## List of OK paths
 var valid_paths: Array[Path2D]
@@ -12,6 +15,17 @@ var valid_paths: Array[Path2D]
 ## List of Blacklisted Paths. Maintained in parallel with valid_paths to make a few things slightly easier
 var invalid_paths: Array[Path2D]
 
+## Public state tracking if folder is open
+var is_folder_open:
+	get():
+		return is_instance_valid(opened_folder)
+
+## Opened folder
+var opened_folder: GameFolder = null
+
+
+## virus path container ref
+var VIRUS_PATH_CONTAINER_SCENE := preload("res://src/entities/virus_path_container.tscn")
 
 ## Virus scene reference
 var VIRUS_SCENE := preload("res://src/entities/virus.tscn")
@@ -19,6 +33,9 @@ var VIRUS_SCENE := preload("res://src/entities/virus.tscn")
 
 func _ready() -> void:
 	var paths = path_container.get_children()
+	
+	GlobalStates.folder_opened.connect(_on_folder_opened)
+	GlobalStates.folder_closed.connect(_on_folder_closed)
 	
 	for path in paths:
 		valid_paths.push_back(path)
@@ -45,7 +62,31 @@ func get_random_virus_path() -> Path2D:
 
 ## adds a virus to a path
 func add_virus_to_path(virus: Virus, path_idx := -1):
-	get_virus_path(path_idx).add_child(virus)
+	var container := VIRUS_PATH_CONTAINER_SCENE.instantiate() as VirusPathContainer
+	container.add_virus(virus)
+	get_virus_path(path_idx).add_child(container)
+
+
+## open a folder and populate contents
+func open_folder(in_folder: GameFolder):
+	# folder already opened
+	if is_instance_valid(opened_folder):
+		return
+	
+	folder_viewer.open_folder(in_folder)
+
+
+## close the currently opened folder
+func close_folder():
+	if !is_folder_open:
+		return
+	
+	opened_folder = null
+
+
+## adds a virus to the folder simulation box
+func add_virus_to_folder_simulation(_in_virus: Virus):
+	push_warning("TODO: virus not added while folder open")
 
 
 ## Invalidates the current path
@@ -102,9 +143,25 @@ func reset_board():
 
 func clear_path(path: Path2D):
 	for virus in path.get_children():
+		if virus is not VirusPathContainer && virus is not VirusFolderContainer:
+			continue
+		
 		virus.queue_free()
 
 
 func clear_path_by_idx(path_idx: int):
 	for virus in path_container.get_child(path_idx).get_children():
+		if virus is not VirusPathContainer && virus is not VirusFolderContainer:
+			continue
+	
 		virus.queue_free()
+
+
+func _on_folder_opened(folder: GameFolder):
+	#$CanvasLayer/ColorRect.visible = true
+	open_folder(folder)
+
+
+func _on_folder_closed(_folder: GameFolder):
+	#$CanvasLayer/ColorRect.visible = false
+	close_folder()

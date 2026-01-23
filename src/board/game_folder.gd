@@ -28,7 +28,10 @@ enum FOLDER_TYPE {
 
 
 ## List of virus data for contained viruses, needed to populate internal view
-var virus_data_list: Array[VirusData]
+var virus_list: Array[Virus]
+
+## State tracking open vs. close
+var folder_open := false
 
 ## private field checking for mouse over
 var _mouse_over := false
@@ -42,7 +45,7 @@ func _process(delta: float) -> void:
 		print("Folder clicked!")
 		_try_open_folder()
 	
-	tolerance += virus_data_list.size() * delta
+	tolerance += virus_list.size() * delta
 	$ProgressBar.value = tolerance
 	
 	if tolerance >= 100:
@@ -63,12 +66,28 @@ func _try_open_folder():
 	## IF NOT DEFEATED, OPEN INTERFACE
 	## IF DEFEATED, AND ENCRYPT PRIMED, OPEN RECAPTURE MINI-GAME
 	## IF DEFEATED, AND NO ENCRYPT PRIMED, DO NOTHING
+	
+	# TODO: debug this later somethin up with this it only sorta works
+	_on_mouse_exited() # necessary because apparently covering the folder doesn't trigger mouse exited?
+	GlobalStates.folder_opened.emit(self)
 
 
 ## adds virus data to folder, adjusts 
-func add_virus_data(in_virus_data: VirusData):
-	virus_data_list.push_back(in_virus_data)
-	tolerance += in_virus_data.curr_health
+func add_virus_to_folder(in_virus: Virus):
+	virus_list.push_back(in_virus)
+	tolerance += in_virus.max_health
+	
+	if !is_instance_valid(in_virus.get_parent()):
+		add_child(in_virus)
+	else:
+		in_virus.call_deferred("reparent", self, true)
+	
+	if folder_open:
+		GameManager.game_board.add_virus_to_simulation(in_virus)
+		in_virus.set_enabled(true)
+	else:
+		in_virus.set_enabled(false)
+	
 	$ProgressBar.value = tolerance
 
 
@@ -91,7 +110,7 @@ func neutralize_folder():
 	if current_state == FOLDER_TYPE.ROOT:
 		return
 	
-	virus_data_list.clear()
+	virus_list.clear()
 	tolerance = 0.0
 	current_state = FOLDER_TYPE.NEUTRAL
 

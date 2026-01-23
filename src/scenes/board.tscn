@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://qmnrwsay8150"]
+[gd_scene load_steps=11 format=4 uid="uid://qmnrwsay8150"]
 
 [ext_resource type="TileSet" uid="uid://buikna7oujr48" path="res://src/board/board_tileset.tres" id="1_7yose"]
 [ext_resource type="Script" uid="uid://hk1l7d7qe3w1" path="res://src/board/board.gd" id="1_v43tc"]
 [ext_resource type="PackedScene" uid="uid://cynuw703np806" path="res://src/board/game_folder.tscn" id="3_ntdqk"]
+[ext_resource type="PackedScene" uid="uid://whs5tsn0pnbf" path="res://src/scenes/folder_viewer.tscn" id="4_v43tc"]
 
 [sub_resource type="Curve2D" id="Curve2D_7yose"]
 _data = {
@@ -133,3 +134,13 @@ curve = SubResource("Curve2D_fh8u8")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1312, 437)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FolderViewer" parent="CanvasLayer" instance=ExtResource("4_v43tc")]
+unique_name_in_owner = true
+
+[node name="SubViewport" parent="CanvasLayer/FolderViewer/VBoxContainer/SubViewportContainer" index="0"]
+size = Vector2i(2, 2)
+
+[editable path="CanvasLayer/FolderViewer"]

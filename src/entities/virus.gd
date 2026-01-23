@@ -1,8 +1,8 @@
-## A base class for the viruses. 
-## Extends path follow 2D so they can automatically follow a path using 
-## `progress_ratio`
 class_name Virus
-extends PathFollow2D
+extends Node2D
+
+
+signal virus_defeated()
 
 
 ## The speed of movement for the virus along the path
@@ -27,6 +27,9 @@ extends PathFollow2D
 ## state for defeated animation playing
 var defeated := false
 
+## enabled state, basically if this guy's in a folder disable collision / hide
+var enabled := true
+
 ## private state for mouse over
 var _mouse_over := false
 
@@ -38,39 +41,16 @@ var _mouse_over := false
 
 
 func _process(delta: float) -> void:
-	_move_virus(delta)
+	if !enabled:
+		return
+	
+	get_parent().move_virus(delta)
 	
 	if _mouse_over && Input.is_action_just_pressed("attack"):
 		process_attack(GameManager.player_attack_damage)
-
-
-func _move_virus(delta: float):
-	if get_parent() is Path2D:
-		progress_ratio += delta * speed
 	
-	# interpolates scale based on current health out of maximum
 	var curr_scalar = lerpf(min_scale, max_scale, float(health) / float(max_health))
 	scale = Vector2(curr_scalar, curr_scalar)
-
-
-## Handles collisions
-func _on_area_entered(other_area: Area2D) -> void:
-	if other_area.get_parent() is GameFolder:
-		try_add_to_folder(other_area.get_parent())
-		return
-
-
-## Adds a virus to a folder 
-## 
-## essentially, deletes this node and puts data into folder.
-## when folder opened, it repopulates with viruses of corresponding tracked data
-func try_add_to_folder(collided_folder: GameFolder):
-	# if any of these states, don't skip this folder.
-	if [GameFolder.FOLDER_TYPE.DEFEATED, GameFolder.FOLDER_TYPE.ROOT].has(collided_folder.current_state):
-		return
-	
-	collided_folder.add_virus_data(convert_to_data())
-	queue_free()
 
 
 ## processes attack damage
@@ -94,22 +74,45 @@ func process_attack(attack_damage: int):
 	await animation_player.animation_finished
 
 
-## Converts virus to data
-func convert_to_data() -> VirusData:
-	return VirusData.new(max_health, health, tier, progress_ratio)
-
-
 ## Loads virus from data
 func load_from_data(data: VirusData):
 	max_health = data.max_health
 	health = data.curr_health
 	tier = data.tier
-	progress_ratio = data.progress_ratio
 
 
+## Handles collisions
+func _on_area_entered(other_area: Area2D) -> void:
+	if other_area.get_parent() is GameFolder:
+		try_add_to_folder(other_area.get_parent())
+		return
+
+
+## Adds a virus to a folder 
+## 
+## essentially, deletes this node and puts data into folder.
+## when folder opened, it repopulates with viruses of corresponding tracked data
+func try_add_to_folder(collided_folder: GameFolder):
+	# if any of these states, don't skip this folder.
+	if [GameFolder.FOLDER_TYPE.DEFEATED, GameFolder.FOLDER_TYPE.ROOT].has(collided_folder.current_state):
+		return
+	
+	collided_folder.add_virus_to_folder(self)
+
+
+func set_enabled(enabled_state: bool):
+	enabled = enabled_state
+	
+	visible = enabled
+	$Area2D.set_deferred("monitoring", enabled)
+	$Area2D.set_deferred("monitorable", enabled)
+
+
+## mouse over event
 func _mouse_entered() -> void:
 	_mouse_over = true
 
 
+## mouse exit event
 func _mouse_exited() -> void:
 	_mouse_over = false

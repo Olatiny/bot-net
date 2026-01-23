@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bofklg7vucxc8"]
 
 [ext_resource type="Script" uid="uid://c3mn4y86fhq8v" path="res://src/managers/virus_manager.gd" id="1_qjmrk"]
-[ext_resource type="PackedScene" uid="uid://jw3v8uk0n1t7" path="res://src/entities/virus.tscn" id="2_b1e5g"]
+[ext_resource type="PackedScene" uid="uid://dsk7f8nc5edjo" path="res://src/entities/virus.tscn" id="2_b1e5g"]
 
 [node name="VirusManager" type="Node"]
 script = ExtResource("1_qjmrk")

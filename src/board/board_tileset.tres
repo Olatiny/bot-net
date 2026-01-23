@@ -114,7 +114,10 @@ texture = ExtResource("1_d0olp")
 6:0/0 = 0
 7:0/0 = 0
 0:1/0 = 0
+1:1/next_alternative_id = 2
 1:1/0 = 0
+1:1/1 = 1
+1:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:1/0 = 0
 3:1/0 = 0
 4:1/0 = 0
@@ -172,6 +175,8 @@ texture = ExtResource("1_d0olp")
 
 [resource]
 tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 32
+physics_layer_0/collision_mask = 2
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Path Basic"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
