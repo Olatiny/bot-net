@@ -21,7 +21,13 @@ func _input(event):
 		
 		
 # --- BUTTON SIGNALS ---
-
+func _on_upgrade_firewall_button_pressed():
+	# This one line tells every node in the "firewalls" group 
+	# to run its "upgrade_wall" function.
+	get_tree().call_group("firewalls", "upgrade_wall")
+	
+	# Optional: Deduct currency here
+	# gold -= upgrade_cost
 func _on_build_button_pressed():
 	# For the standard projectile tower
 	start_placement(tower_scene)

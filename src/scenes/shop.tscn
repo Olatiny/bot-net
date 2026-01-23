@@ -130,3 +130,4 @@ TO UPGRADE"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button2" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_wall_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button3" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button4" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_aoe_build_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/Button2" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_upgrade_firewall_button_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://byvaonestqs7"]
+[gd_scene load_steps=6 format=3 uid="uid://byvaonestqs7"]
 
 [ext_resource type="Script" uid="uid://dve26by85f5y0" path="res://src/firewall/firewall.gd" id="1_yvk1g"]
 [ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_y7g4w"]
+[ext_resource type="Texture2D" uid="uid://f1yd8p6tabtw" path="res://assets/wall_spritesheet.png" id="2_yvk1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3tst3"]
 size = Vector2(135.8659, 161.68422)
@@ -11,11 +12,14 @@ size = Vector2(126.569824, 121.26315)
 
 [node name="Firewall" type="StaticBody2D"]
 script = ExtResource("1_yvk1g")
+upgraded_sprite = ExtResource("2_y7g4w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
-scale = Vector2(1.3984375, 0.296875)
-texture = ExtResource("2_y7g4w")
+position = Vector2(-1.004879, -1.9843745)
+scale = Vector2(5.9336586, 4.9960938)
+texture = ExtResource("2_yvk1g")
+region_enabled = true
+region_rect = Rect2(0.60530853, 0, 30.972382, 7.033684)
 
 [node name="ThornArea" type="Area2D" parent="."]
 position = Vector2(-1, 0)
