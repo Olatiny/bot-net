@@ -68,7 +68,7 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer" groups=["manager"]]
 layout_mode = 2
 size_flags_vertical = 6
 script = ExtResource("4_duy3l")
@@ -121,6 +121,7 @@ text = "FIREWALL UP
 XXX RAM"
 
 [node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(280, 168)
 layout_mode = 2
 disabled = true
@@ -131,3 +132,4 @@ TO UPGRADE"
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button3" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button4" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_aoe_build_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/Button2" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_upgrade_firewall_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/Button3" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_upgrade_towers_button_pressed"]

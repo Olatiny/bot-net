@@ -3,9 +3,46 @@ extends VBoxContainer
 @export var tower_scene: PackedScene 
 @export var aoe_tower_scene: PackedScene
 @export var wall_scene: PackedScene
+@export var upgrade_cost_per_tower: int = 50 
+var selected_towers: Array = []
+@onready var upgrade_button = $%Button3
 
 var ghost_tower: Node2D = null
 var is_placing: bool = false
+
+
+func _unhandled_input(event):
+	if is_placing:
+		return
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		check_for_tower_click(get_global_mouse_position())
+		
+func check_for_tower_click(mouse_pos):
+	for tower in get_tree().get_nodes_in_group("towers"):
+		if tower.global_position.distance_to(mouse_pos) < 32:
+			var now_selected = tower.toggle_selection()
+			if now_selected:
+				selected_towers.append(tower)
+			else:
+				selected_towers.erase(tower)
+			update_upgrade_ui()
+			break
+func update_upgrade_ui():
+	var total_cost = selected_towers.size() * upgrade_cost_per_tower
+	if selected_towers.size() > 0:
+		upgrade_button.text = "Upgrade Towers ($" + str(total_cost) + ")"
+		upgrade_button.disabled = false
+	else:
+		upgrade_button.text = "Select Towers to Upgrade"
+		upgrade_button.disabled = true	
+	
+func _on_upgrade_towers_button_pressed():
+	for tower in selected_towers:
+		tower.apply_upgrade()
+	selected_towers.clear()
+	update_upgrade_ui()
+	
+
 
 func _process(_delta):
 	if is_placing and ghost_tower:
@@ -85,7 +122,12 @@ func finalize_placement():
 			zone.monitoring = true
 			
 	ghost_tower = null
-
+func toggle_tower_selection(tower):
+	if tower in selected_towers:
+		selected_towers.erase(tower)
+	else:
+		selected_towers.append(tower)
+	update_upgrade_ui()
 func cancel_placement():
 	is_placing = false
 	if ghost_tower:
