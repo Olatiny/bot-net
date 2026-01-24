@@ -136,11 +136,7 @@ curve = SubResource("Curve2D_fh8u8")
 position = Vector2(1312, 437)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
 
 [node name="FolderViewer" parent="CanvasLayer" instance=ExtResource("4_v43tc")]
 unique_name_in_owner = true
-
-[node name="SubViewport" parent="CanvasLayer/FolderViewer/VBoxContainer/SubViewportContainer" index="0"]
-size = Vector2i(2, 2)
-
-[editable path="CanvasLayer/FolderViewer"]

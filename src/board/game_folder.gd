@@ -23,6 +23,12 @@ enum FOLDER_TYPE {
 ## current health of this folder
 @export var tolerance := 0.0
 
+## max shield value
+@export var max_shield := 25.0
+
+## shield value
+@export var shield := 0.0
+
 ## The path that should be disabled if this folder is defeated
 @export var path_to_disable: Path2D = null
 
@@ -45,8 +51,7 @@ func _process(delta: float) -> void:
 		print("Folder clicked!")
 		_try_open_folder()
 	
-	tolerance += virus_list.size() * delta
-	$ProgressBar.value = tolerance
+	_process_dot(delta)
 	
 	if tolerance >= 100:
 		current_state = FOLDER_TYPE.DEFEATED
@@ -60,8 +65,8 @@ func _process(delta: float) -> void:
 
 ## TODO: implement folder opening
 func _try_open_folder():
-	if is_instance_valid(GameManager.terminal):
-		GameManager.terminal.push_new_message("Folder clicked!")
+	#if is_instance_valid(GameManager.terminal):
+		#GameManager.terminal.push_new_message("Folder clicked!")
 	
 	## IF NOT DEFEATED, OPEN INTERFACE
 	## IF DEFEATED, AND ENCRYPT PRIMED, OPEN RECAPTURE MINI-GAME
@@ -69,6 +74,11 @@ func _try_open_folder():
 	
 	# TODO: debug this later somethin up with this it only sorta works
 	_on_mouse_exited() # necessary because apparently covering the folder doesn't trigger mouse exited?
+	
+	if GameManager.game_board.is_folder_open:
+		return
+	
+	folder_open = true
 	GlobalStates.folder_opened.emit(self)
 
 
@@ -80,10 +90,12 @@ func add_virus_to_folder(in_virus: Virus):
 	if !is_instance_valid(in_virus.get_parent()):
 		add_child(in_virus)
 	else:
-		in_virus.call_deferred("reparent", self, true)
+		#in_virus.animation_player.pause.call_deferred()
+		in_virus.reparent.call_deferred(self)
+		#in_virus.animation_player.clear_caches.call_deferred()
 	
 	if folder_open:
-		GameManager.game_board.add_virus_to_simulation(in_virus)
+		GameManager.game_board.folder_viewer.add_virus_to_sim(in_virus)
 		in_virus.set_enabled(true)
 	else:
 		in_virus.set_enabled(false)
@@ -125,3 +137,25 @@ func _try_change_path_validity():
 		game_board.invalidate_path(path_to_disable)
 	elif current_state != FOLDER_TYPE.DEFEATED && !game_board.check_path_valid(path_to_disable):
 		game_board.validate_path(path_to_disable)
+
+
+func remove_virus(in_virus: Virus):
+	virus_list.erase(in_virus)
+	
+	tolerance -= in_virus.max_health
+	tolerance = max(tolerance, 0)
+
+
+func _process_dot(_delta: float):
+	#tolerance += virus_list.size() * delta
+	$ProgressBar.value = tolerance
+
+
+func encrypt_folder(amount: float):
+	var temp = tolerance - amount
+	
+	if temp < 0:
+		shield = -1 * temp
+		tolerance = 0
+	else:
+		tolerance = temp

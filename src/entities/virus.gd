@@ -2,9 +2,6 @@ class_name Virus
 extends Node2D
 
 
-signal virus_defeated()
-
-
 ## The speed of movement for the virus along the path
 @export var speed = 0.15
 
@@ -41,7 +38,7 @@ var _mouse_over := false
 
 
 func _process(delta: float) -> void:
-	if !enabled:
+	if !enabled || !is_instance_valid(get_parent()) || !get_parent().has_method("move_virus"):
 		return
 	
 	get_parent().move_virus(delta)
@@ -67,6 +64,7 @@ func process_attack(attack_damage: int):
 		animation_player.play("ouchie")
 	else:
 		defeated = true
+		GlobalStates.virus_defeated.emit(self)
 		# NOTE: this animation calls queue_free when it finishes
 		animation_player.stop()
 		animation_player.play("defeat")

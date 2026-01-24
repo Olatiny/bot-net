@@ -36,6 +36,7 @@ func _ready() -> void:
 	
 	GlobalStates.folder_opened.connect(_on_folder_opened)
 	GlobalStates.folder_closed.connect(_on_folder_closed)
+	GlobalStates.virus_defeated.connect(_on_virus_defeated)
 	
 	for path in paths:
 		valid_paths.push_back(path)
@@ -73,6 +74,7 @@ func open_folder(in_folder: GameFolder):
 	if is_instance_valid(opened_folder):
 		return
 	
+	opened_folder = in_folder
 	folder_viewer.open_folder(in_folder)
 
 
@@ -81,6 +83,7 @@ func close_folder():
 	if !is_folder_open:
 		return
 	
+	opened_folder.folder_open = false
 	opened_folder = null
 
 
@@ -165,3 +168,11 @@ func _on_folder_opened(folder: GameFolder):
 func _on_folder_closed(_folder: GameFolder):
 	#$CanvasLayer/ColorRect.visible = false
 	close_folder()
+
+
+func _on_virus_defeated(virus: Virus):
+	if virus.get_parent() is not VirusFolderContainer:
+		return
+	
+	if is_instance_valid(opened_folder):
+		opened_folder.remove_virus(virus)

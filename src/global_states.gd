@@ -36,3 +36,6 @@ signal folder_opened(folder: GameFolder)
 
 @warning_ignore("unused_signal")
 signal folder_closed(folder: GameFolder)
+
+@warning_ignore("unused_signal")
+signal virus_defeated(virus: Virus)

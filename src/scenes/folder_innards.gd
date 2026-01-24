@@ -11,7 +11,7 @@ var folder: GameFolder = null
 
 func place_virus(in_container: VirusFolderContainer):
 	playground.add_child(in_container)
-	in_container.position = position + Vector2(100, 100)
+	in_container.position = position + Vector2(randi_range(-200, 200), randi_range(-200, 200))
 
 
 func unload_folder():
