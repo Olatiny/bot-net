@@ -32,6 +32,9 @@ func check_for_tower_click(mouse_pos):
 
 func update_upgrade_ui():
 	var total_cost = selected_towers.size() * upgrade_cost_per_tower
+	if !is_instance_valid(upgrade_button):
+		return
+	
 	if selected_towers.size() > 0:
 		upgrade_button.text = "Upgrade Towers ($" + str(total_cost) + ")"
 		upgrade_button.disabled = false
