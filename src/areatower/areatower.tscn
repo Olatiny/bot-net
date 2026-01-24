@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bce5xk40l8ep3" path="res://src/areatower/areatower.gd" id="1_eahom"]
 [ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_dxn1p"]
+[ext_resource type="Texture2D" uid="uid://dq0mkajgk1goa" path="res://src/entities/download.png" id="3_dxn1p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ginh"]
-radius = 150.0
+radius = 174.48495
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_vpv6n"]
-
-[node name="Areatower" type="Node2D"]
+[node name="Areatower" type="Node2D" groups=["towers"]]
 script = ExtResource("1_eahom")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.7683716e-07, -0.9999981)
+scale = Vector2(0.78125, 0.671875)
 texture = ExtResource("2_dxn1p")
 
 [node name="detection" type="Area2D" parent="."]
@@ -21,16 +22,23 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_1ginh")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.5
 autostart = true
 
 [node name="attack_visual" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 0, 0.1882353)
-position = Vector2(1.0000033, 6.4999886)
-scale = Vector2(346, 307)
-texture = SubResource("CanvasTexture_vpv6n")
+position = Vector2(0, -1.0000076)
+scale = Vector2(2.9453125, 2.8515625)
+texture = ExtResource("2_dxn1p")
 
-[connection signal="body_entered" from="detection" to="." method="_on_damage_zone_body_entered"]
-[connection signal="body_exited" from="detection" to="." method="_on_damage_zone_body_exited"]
+[node name="SelectionVisual" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 0.078431375)
+self_modulate = Color(0, 1, 0, 0.14901961)
+position = Vector2(-7.6293945e-06, 1)
+scale = Vector2(0.4784483, 0.47420844)
+texture = ExtResource("3_dxn1p")
+
+[connection signal="area_entered" from="detection" to="." method="_on_damage_zone_area_entered"]
+[connection signal="area_exited" from="detection" to="." method="_on_damage_zone_area_exited"]
+[connection signal="input_event" from="detection" to="." method="_on_detection_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

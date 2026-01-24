@@ -1,3 +1,4 @@
+
 class_name Board
 extends Node2D
 
@@ -50,9 +51,9 @@ func _process(_delta: float) -> void:
 
 ## Returns the path at the corresponding index
 func get_virus_path(path_idx: int) -> Path2D:
-	if path_idx < 0 || invalid_paths.has(path_container.get_child(path_idx)):
-		return get_random_virus_path()
-	
+	if path_idx == -1:
+		return valid_paths.pick_random()
+		
 	return path_container.get_child(path_idx) as Path2D
 
 
