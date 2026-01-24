@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://qmnrwsay8150"]
+[gd_scene load_steps=12 format=4 uid="uid://qmnrwsay8150"]
 
 [ext_resource type="TileSet" uid="uid://buikna7oujr48" path="res://src/board/board_tileset.tres" id="1_7yose"]
 [ext_resource type="Script" uid="uid://hk1l7d7qe3w1" path="res://src/board/board.gd" id="1_v43tc"]
 [ext_resource type="PackedScene" uid="uid://cynuw703np806" path="res://src/board/game_folder.tscn" id="3_ntdqk"]
+[ext_resource type="Script" uid="uid://dbfpvpow154oi" path="res://src/board/game_path.gd" id="4_ntdqk"]
 [ext_resource type="PackedScene" uid="uid://whs5tsn0pnbf" path="res://src/scenes/folder_viewer.tscn" id="4_v43tc"]
 
 [sub_resource type="Curve2D" id="Curve2D_7yose"]
@@ -84,59 +85,70 @@ position = Vector2(1696, 512)
 
 [node name="Folder5" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(832, 832)
-path_to_disable = NodePath("../../Paths/Path")
+path_to_disable = NodePath("")
 
 [node name="Folder6" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1024, 832)
-path_to_disable = NodePath("../../Paths/Path2")
+path_to_disable = NodePath("")
 
 [node name="Folder7" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1216, 832)
-path_to_disable = NodePath("../../Paths/Path3")
+path_to_disable = NodePath("")
 
 [node name="Folder8" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1408, 832)
-path_to_disable = NodePath("../../Paths/Path4")
+path_to_disable = NodePath("")
 
 [node name="Folder9" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1600, 832)
-path_to_disable = NodePath("../../Paths/Path5")
+path_to_disable = NodePath("")
 
 [node name="Folder10" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1792, 832)
-path_to_disable = NodePath("../../Paths/Path6")
+path_to_disable = NodePath("")
 
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Path" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_7yose")
+script = ExtResource("4_ntdqk")
+metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path2" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_v43tc")
+script = ExtResource("4_ntdqk")
+metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path3" type="Path2D" parent="Paths"]
 position = Vector2(1316, 755)
 curve = SubResource("Curve2D_ntdqk")
+script = ExtResource("4_ntdqk")
+metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path4" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_0wql5")
+script = ExtResource("4_ntdqk")
+metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path5" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_iy2xe")
+script = ExtResource("4_ntdqk")
+metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path6" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_fh8u8")
+script = ExtResource("4_ntdqk")
+metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1312, 437)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
 
 [node name="FolderViewer" parent="CanvasLayer" instance=ExtResource("4_v43tc")]
 unique_name_in_owner = true

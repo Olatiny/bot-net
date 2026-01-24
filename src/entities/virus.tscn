@@ -157,7 +157,7 @@ modulate = Color(0.7189592, 0, 0.18116358, 1)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_hcnuk")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
 scale = Vector2(1.5629709, 1.5629709)
 collision_layer = 2
 collision_mask = 16

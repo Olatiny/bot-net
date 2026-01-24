@@ -1,7 +1,9 @@
+class_name GamePath
 extends Path2D
 
 var _backdoor_active := false
 @onready var backdoor_timer := Timer.new()
+
 
 func _ready() -> void:
 	backdoor_timer.one_shot = true
@@ -19,7 +21,8 @@ func create_backdoor() -> void:
 		
 	_backdoor_active = true
 	backdoor_timer.start()
-	
+
+
 func _destroy_backdoor() -> void:
 	_backdoor_active = false
 	

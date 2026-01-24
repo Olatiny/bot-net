@@ -47,6 +47,9 @@ func _process(delta: float) -> void:
 	if current_state == FOLDER_TYPE.ROOT:
 		return
 	
+	while virus_list.has(null):
+		virus_list.erase(null)
+	
 	if Input.is_action_just_pressed("attack") && _mouse_over:
 		print("Folder clicked!")
 		_try_open_folder()
@@ -73,7 +76,14 @@ func _try_open_folder():
 	## IF DEFEATED, AND NO ENCRYPT PRIMED, DO NOTHING
 	
 	# TODO: debug this later somethin up with this it only sorta works
-	_on_mouse_exited() # necessary because apparently covering the folder doesn't trigger mouse exited?
+	
+	# Encrypt instead of open
+	if GameManager.encrypt_charges > 0:
+		encrypt_folder()
+		GameManager.encrypt_charges -= 1
+		return
+	
+	#_on_mouse_exited() # necessary because apparently covering the folder doesn't trigger mouse exited?
 	
 	if GameManager.game_board.is_folder_open:
 		return
@@ -142,20 +152,32 @@ func _try_change_path_validity():
 func remove_virus(in_virus: Virus):
 	virus_list.erase(in_virus)
 	
-	tolerance -= in_virus.max_health
+	tolerance -= in_virus.max_health * 2.5
 	tolerance = max(tolerance, 0)
 
 
-func _process_dot(_delta: float):
-	#tolerance += virus_list.size() * delta
+func _process_dot(delta: float):
+	var dot_amount = virus_list.size() * delta
+	
+	if shield > 0:
+		shield -= dot_amount
+		shield = max(shield, 0)
+	else:
+		tolerance += dot_amount
+	
 	$ProgressBar.value = tolerance
+	$ShieldBar.value = shield
+	
+	$ShieldBar.visible = shield > 0
 
 
-func encrypt_folder(amount: float):
-	var temp = tolerance - amount
+func encrypt_folder():
+	var temp = tolerance - max_shield
 	
 	if temp < 0:
 		shield = -1 * temp
 		tolerance = 0
 	else:
 		tolerance = temp
+	
+	$ShieldBar.value = shield

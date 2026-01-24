@@ -1,3 +1,4 @@
+class_name Tower
 extends Node2D
 
 @export var projectile_scene: PackedScene
@@ -10,6 +11,7 @@ var current_target: Node2D = null
 
 @onready var selection_visual = $SelectionVisual
 @onready var timer = $Timer
+
 
 func _ready():
 	# Ensure visual is hidden at start
@@ -28,6 +30,7 @@ func toggle_selection():
 	# Visual feedback: Tints the tower slightly brighter when selected
 	modulate = Color(1.5, 1.5, 1.5) if is_selected else Color(1, 1, 1)
 	return is_selected
+
 
 func _on_detection_range_input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
@@ -63,13 +66,16 @@ func _on_detection_range_area_entered(area: Area2D):
 		if not targets.has(area):
 			targets.append(area)
 
+
 func _on_detection_range_area_exited(area: Area2D):
 	targets.erase(area)
+
 
 func _physics_process(_delta):
 	current_target = get_closest_target()
 	if is_instance_valid(current_target):
 		look_at(current_target.global_position)
+
 
 func get_closest_target():
 	var closest = null
@@ -87,9 +93,11 @@ func get_closest_target():
 	targets = valid_targets
 	return closest
 
+
 func _on_timer_timeout():
 	if is_instance_valid(current_target):
 		shoot()
+
 
 func shoot():
 	if not projectile_scene: return

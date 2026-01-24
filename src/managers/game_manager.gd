@@ -30,10 +30,13 @@ enum GAME_STATE {READY, ACTIVE, SHOP, GAME_OVER}
 var current_state: GAME_STATE = GAME_STATE.READY
 
 ## current player currency
-var player_ram := 0
+var player_ram := 0.0
 
 ## current player ram income every second
-var ram_income := 1
+var ram_income := 1.0
+
+## encrypt charges
+var encrypt_charges := 0
 
 ## Current player click attack damage
 var player_attack_damage := 1
@@ -90,6 +93,7 @@ func _process(delta: float) -> void:
 		return
 	
 	elapsed_time += delta
+	player_ram += ram_income * delta
 
 
 ## Called by game scene to initialize this singleton's references
@@ -115,6 +119,8 @@ func start_game() -> void:
 	## TODO: idk maybe like a little ready ? loading bar or somth
 	elapsed_time = 0.0
 	player_ram = 0
+	ram_income = 10
+	encrypt_charges = 0
 	current_wave_idx = 0
 	game_over_canvas.visible = false
 	game_board.reset_board()
@@ -223,3 +229,19 @@ func get_time_string():
 	time_string += ":"
 	time_string += str(secs)
 	return time_string
+
+
+func add_ram(amount: int):
+	player_ram += amount
+
+
+func check_can_afford(amount: int) -> bool:
+	return player_ram > amount
+
+
+func try_purchase(amount: int) -> bool:
+	if !check_can_afford(amount):
+		return false
+	
+	player_ram -= amount
+	return true

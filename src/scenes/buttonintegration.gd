@@ -16,7 +16,8 @@ func _unhandled_input(event):
 		return
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		check_for_tower_click(get_global_mouse_position())
-		
+
+
 func check_for_tower_click(mouse_pos):
 	for tower in get_tree().get_nodes_in_group("towers"):
 		if tower.global_position.distance_to(mouse_pos) < 32:
@@ -27,6 +28,8 @@ func check_for_tower_click(mouse_pos):
 				selected_towers.erase(tower)
 			update_upgrade_ui()
 			break
+
+
 func update_upgrade_ui():
 	var total_cost = selected_towers.size() * upgrade_cost_per_tower
 	if selected_towers.size() > 0:
@@ -35,13 +38,14 @@ func update_upgrade_ui():
 	else:
 		upgrade_button.text = "Select Towers to Upgrade"
 		upgrade_button.disabled = true	
-	
+
+
 func _on_upgrade_towers_button_pressed():
 	for tower in selected_towers:
 		tower.apply_upgrade()
+	
 	selected_towers.clear()
 	update_upgrade_ui()
-	
 
 
 func _process(_delta):
@@ -49,14 +53,16 @@ func _process(_delta):
 		# Follow the mouse
 		ghost_tower.global_position = get_global_mouse_position()
 
+
 func _input(event):
 	if is_placing and event.is_action_pressed("left_click"):
 		get_viewport().set_input_as_handled()
 		finalize_placement()
+	
 	if is_placing and event.is_action_pressed("ui_cancel"):
 		cancel_placement()
-		
-		
+
+
 # --- BUTTON SIGNALS ---
 func _on_upgrade_firewall_button_pressed():
 	# This one line tells every node in the "firewalls" group 
@@ -65,9 +71,12 @@ func _on_upgrade_firewall_button_pressed():
 	
 	# Optional: Deduct currency here
 	# gold -= upgrade_cost
+
+
 func _on_build_button_pressed():
 	# For the standard projectile tower
 	start_placement(tower_scene)
+
 
 func _on_aoe_build_button_pressed():
 	# For the AoE pulse tower
@@ -79,7 +88,6 @@ func _on_build_wall_button_pressed():
 	start_placement(wall_scene)
 
 
-
 func start_placement(selected_tower: PackedScene):
 	if is_placing: return # Prevent overlapping placements
 	
@@ -87,6 +95,7 @@ func start_placement(selected_tower: PackedScene):
 	ghost_tower = selected_tower.instantiate()
 	
 	get_tree().current_scene.add_child(ghost_tower)
+	
 	# Make it look like a "ghost"
 	ghost_tower.modulate.a = 0.5
 	
@@ -112,7 +121,7 @@ func finalize_placement():
 	ghost_tower.set_process(true)
 	ghost_tower.set_physics_process(true)
 	
-	ghost_tower.reparent(GameManager.game_board,false)
+	ghost_tower.reparent(GameManager.game_board, false)
 	ghost_tower.position.y -= 140
 	
 	# Enable detection
@@ -122,12 +131,16 @@ func finalize_placement():
 			zone.monitoring = true
 			
 	ghost_tower = null
+
+
 func toggle_tower_selection(tower):
 	if tower in selected_towers:
 		selected_towers.erase(tower)
 	else:
 		selected_towers.append(tower)
 	update_upgrade_ui()
+
+
 func cancel_placement():
 	is_placing = false
 	if ghost_tower:

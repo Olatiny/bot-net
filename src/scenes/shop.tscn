@@ -12,17 +12,25 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k60ia"]
 bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
 
-[node name="Shop" type="PanelContainer"]
+[node name="Shop" type="PanelContainer" node_paths=PackedStringArray("button_price_dict")]
 custom_minimum_size = Vector2(690, 530)
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("1_4ji2o")
 script = ExtResource("1_q7y2j")
+button_price_dict = {
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt"): 400.0,
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall"): 1000.0,
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower"): 600.0,
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower"): 600.0,
+NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/Click"): 3000.0,
+NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade"): 3000.0
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="ShopLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_k60ia")
 theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
@@ -37,11 +45,13 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+[node name="RamAmountLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("3_k60ia")
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 text = "RAM: 0"
 fit_content = true
 scroll_active = false
@@ -54,13 +64,13 @@ size_flags_vertical = 6
 mouse_filter = 2
 theme_override_constants/separation = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="TowerOptions" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/TowerOptions"]
 layout_mode = 2
 theme = ExtResource("3_k60ia")
 text = "DEFENSES"
@@ -68,7 +78,7 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/VBoxContainer" groups=["manager", "shop"]]
+[node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/TowerOptions" groups=["manager", "shop"]]
 layout_mode = 2
 size_flags_vertical = 6
 script = ExtResource("4_duy3l")
@@ -76,33 +86,33 @@ tower_scene = ExtResource("5_twr02")
 aoe_tower_scene = ExtResource("6_cjlig")
 wall_scene = ExtResource("7_5sg2m")
 
-[node name="Button" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
+[node name="Encrypt" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "ENCRYPT
 XXX RAM"
 
-[node name="Button2" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
+[node name="Firewall" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "FIREWALL
 XXX RAM"
 
-[node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
+[node name="AimTower" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "TOWER A
 XXX RAM"
 
-[node name="Button4" parent="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" instance=ExtResource("4_k60ia")]
+[node name="AOETower" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "TOWER B
 XXX RAM"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+[node name="UpgradeOptions" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/VBoxContainer2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2/UpgradeOptions"]
 layout_mode = 2
 theme = ExtResource("3_k60ia")
 text = "UPGRADES"
@@ -110,17 +120,17 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Button" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+[node name="Click" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "CLICK UP
 XXX RAM"
 
-[node name="Button2" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+[node name="FirewallUpgrade" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
 layout_mode = 2
 text = "FIREWALL UP
 XXX RAM"
 
-[node name="Button3" parent="VBoxContainer/HBoxContainer2/VBoxContainer2" instance=ExtResource("4_k60ia")]
+[node name="TowerPrompt" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(280, 168)
 layout_mode = 2
@@ -128,8 +138,15 @@ disabled = true
 text = "CLICK TOWERS
 TO UPGRADE"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button2" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_wall_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button3" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_build_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration/Button4" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_aoe_build_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/Button2" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_upgrade_firewall_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/VBoxContainer2/Button3" to="VBoxContainer/HBoxContainer2/VBoxContainer/buttonintegration" method="_on_upgrade_towers_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt" to="." method="_on_encrypt_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_build_wall_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_build_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_aoe_build_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/Click" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_upgrade_firewall_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/TowerPrompt" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_upgrade_towers_button_pressed"]

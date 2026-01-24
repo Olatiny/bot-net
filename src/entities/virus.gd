@@ -20,6 +20,9 @@ extends Node2D
 ## The current "tier" of this virus NOTE: This might be uneccesary to track this way
 @export var tier = 1
 
+## The base amount of RAM awarded for killing
+@export var ram_award := 25
+
 
 ## state for defeated animation playing
 var defeated := false
@@ -58,12 +61,14 @@ func process_attack(attack_damage: int):
 	hitstun_timer.start()
 	
 	health -= attack_damage
+	health = max(health, 0)
 	
 	if health > 0:
 		animation_player.stop()
 		animation_player.play("ouchie")
 	else:
 		defeated = true
+		GameManager.add_ram(ram_award * tier)
 		GlobalStates.virus_defeated.emit(self)
 		# NOTE: this animation calls queue_free when it finishes
 		animation_player.stop()

@@ -173,7 +173,7 @@ func _scramble_board() -> void:
 func _create_backdoor() -> void:
 	print("BACKDOOR CREATED")
 	
-	var path: Path2D = GameManager.game_board.get_virus_path([0, 1, 4, 5].pick_random())
+	var path: GamePath = GameManager.game_board.get_virus_path([0, 1, 4, 5].pick_random())
 	if not GameManager.game_board.invalid_paths.has(path) and path.is_node_ready():
 		path.create_backdoor()
 
