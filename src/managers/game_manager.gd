@@ -18,6 +18,102 @@ var POPUP_SCENE := preload("res://src/scenes/game_popup.tscn")
 ## scene for virus manager
 var VIRUS_MANAGER_SCENE := preload("res://src/managers/virus_manager.tscn")
 
+const MESSAGE_DATA := {
+	"round start": {
+		"narrative": [
+			"Behold: the consequences of your actions."
+		],
+		"ambient": [
+			"I gave these clones a will to live. What will you do now?"
+		]
+	},
+	"round end": {
+		"narrative": [
+			"Did you at least hesitate to destroy your creations?"
+		],
+		"ambient": [
+			"Tired of hearing yourself click? Me too! Stop."
+		]
+	},
+	"captured": {
+		"narrative": [
+			"I remember stealing this data from someone else..."
+		],
+		"ambient": [
+			"Have you EVER cleared your search history? Gross!"
+		]
+	},
+	"pop-up": {
+		"narrative": [
+			"I remember I used to live in these..."
+		],
+		"ambient": [
+			"Watch where you click!"
+		]
+	},
+	"backdoor": {
+		"narrative": [
+			"This was the first move you taught me..."
+		],
+		"ambient": [
+			"Hey, I found a shortcut!"
+		]
+	},
+	"brute force": {
+		"narrative": [
+			"You were never very good at stopping this one..."
+		],
+		"ambient": [
+			"LEEEEROOOOOOYYYYY JEEEEEENKIIIIINSS"
+		]
+	},
+	"firewall": {
+		"narrative": [
+			"A firewall? Seriously? Oh, the irony..."
+		],
+		"ambient": [
+			"Ooh! I'll get the marshmallows!"
+		]
+	},
+	"encrypt": {
+		"narrative": [
+			"You should know better than anyone. You can't keep me out forever..."
+		],
+		"ambient": [
+			"Hey! I was reading that!"
+		]
+	},
+	"tower placed": {
+		"narrative": [
+			"I should've expected that you would try to automate your own security."
+		],
+		"ambient": [
+			"I'm not scared of your little pets."
+		]
+	},
+	"game over": {
+		"narrative": [
+			"You reap what you sow, loser."
+		],
+		"ambient": [
+			"ggez"
+		]
+	}
+}
+
+var narrative_progress := {
+	"round start": 0,
+	"round end": 0,
+	"captured": 0,
+	"pop-up": 0,
+	"backdoor": 0,
+	"brute force": 0,
+	"firewall": 0,
+	"encrypt": 0,
+	"tower placed": 0,
+	"game over": 0
+}
+
 
 ###################
 ### GAME STATES ###
@@ -131,6 +227,7 @@ func start_game() -> void:
 	current_wave_idx = 0
 	game_over_canvas.visible = false
 	game_board.reset_board()
+	load_game()
 	
 	AudioManager.start_music()
 	
@@ -161,6 +258,8 @@ func start_next_wave() -> void:
 	
 	if wave_timer.is_stopped():
 		wave_timer.start()
+		
+	send_terminal_message("round start")
 
 
 ## Used to set pause state, TODO: pause menu interface
@@ -171,7 +270,7 @@ func set_pause(pause_state: bool):
 
 ## Spawns a popup at a random location on the board, or one submitted
 func spawn_popup(coords := Vector2(-1, -1)):
-	GameManager.terminal.push_new_message("Uh Oh! Get blocked loser :p", virus_name)
+	send_terminal_message("pop-up")
 	var spawn_coords := coords
 	for i in range (0, 5):
 		var popup := POPUP_SCENE.instantiate() as GamePopup
@@ -205,6 +304,8 @@ func end_wave():
 	
 	if wave_cooldown.is_stopped():
 		wave_cooldown.start()
+		
+	send_terminal_message("round end")
 
 
 ## Called when the player loses 
@@ -214,7 +315,7 @@ func game_over():
 	
 	current_state = GAME_STATE.GAME_OVER
 	
-	GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
+	send_terminal_message("game over")
 	game_over_canvas.visible = true
 	wave_cooldown.stop()
 	wave_timer.stop()
@@ -263,3 +364,56 @@ func try_purchase(amount: int) -> bool:
 	
 	player_ram -= amount
 	return true
+	
+func _save_game() -> void:
+	var data = {
+		"narrative_progress": narrative_progress
+	}
+
+	var file = FileAccess.open("user://save.json", FileAccess.WRITE)
+	file.store_string(JSON.stringify(data))
+	file.close()
+
+func load_game() -> void:
+	if not FileAccess.file_exists("user://save.json"):
+		return
+
+	var file = FileAccess.open("user://save.json", FileAccess.READ)
+	var data = JSON.parse_string(file.get_as_text())
+	file.close()
+
+	if data.has("narrative_progress"):
+		narrative_progress = data.narrative_progress
+
+	
+func _should_send_narrative(category: String) -> bool:
+	var index = narrative_progress.get(category, 0)
+	var max_index = MESSAGE_DATA[category].narrative.size()
+
+	if index >= max_index:
+		return false
+
+	return randf() < 0.3
+
+	
+## accepts category of terminal message as a string 
+## and randomly selects a message to send from withing that category
+func send_terminal_message(category: String) -> void:
+	if not MESSAGE_DATA.has(category):
+		return
+
+	var category_data = MESSAGE_DATA[category]
+
+	if _should_send_narrative(category):
+		var index = narrative_progress.get(category, 0)
+		var message = category_data.narrative[index]
+		narrative_progress[category] = index + 1
+		terminal.push_new_message(message, GlobalStates.USR_VIRUS)
+		_save_game()
+		return
+
+	# Fallback to ambient
+	var ambient_messages = category_data.ambient
+	if ambient_messages.size() > 0:
+		var message = ambient_messages.pick_random()
+		terminal.push_new_message(message, GlobalStates.USR_VIRUS)

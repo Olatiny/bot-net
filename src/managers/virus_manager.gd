@@ -162,7 +162,6 @@ func _try_event(timer: Timer, chance: float, action: Callable, delta: float) -> 
 
 func _spawn_popup() -> void:
 	# hook for UI / terminal
-	print("POPUP EVENT")
 	GameManager.spawn_popup()
 
 
@@ -177,7 +176,7 @@ func _create_backdoor() -> void:
 	if not GameManager.game_board.invalid_paths.has(path) and path.is_node_ready():
 		path.create_backdoor()
 
-	GameManager.terminal.push_new_message("hey this is the door I used to get into ur mom's house", terminal_username)
+	GameManager.send_terminal_message("backdoor")
 	# TODO add visuals
 
 
@@ -185,8 +184,8 @@ func _start_bruteforce() -> void:
 	_bruteforce_active = true
 	bruteforce_timer.start()
 	_bruteforce_idx = randi_range(0, 5)
-	GameManager.terminal.push_new_message("LEEEEROYYYYYYYY", terminal_username)
-	#TODO add visuals
+	GameManager.send_terminal_message("brute force")
+	#TODO add visuals (remove message for end once this is done)
 
 
 func _end_bruteforce() -> void:
