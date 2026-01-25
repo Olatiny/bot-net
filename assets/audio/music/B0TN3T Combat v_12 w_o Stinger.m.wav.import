@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b8txkqwj7ke4s"
+path="res://.godot/imported/B0TN3T Combat v_12 w_o Stinger.m.wav-21e94b1c0573ee47e026bc8aaab8009e.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/B0TN3T Combat v_12 w_o Stinger.m.wav"
+dest_files=["res://.godot/imported/B0TN3T Combat v_12 w_o Stinger.m.wav-21e94b1c0573ee47e026bc8aaab8009e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

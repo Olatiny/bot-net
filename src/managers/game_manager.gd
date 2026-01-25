@@ -128,6 +128,8 @@ func start_game() -> void:
 	game_over_canvas.visible = false
 	game_board.reset_board()
 	
+	AudioManager.start_music()
+	
 	if !is_instance_valid(virus_manager):
 		virus_manager = VIRUS_MANAGER_SCENE.instantiate() as VirusManager
 		add_child(virus_manager)
@@ -146,6 +148,9 @@ func start_next_wave() -> void:
 		return
 	
 	current_wave_idx += 1
+	if current_wave_idx > 1:
+		AudioManager.fade_to_main()
+	
 	virus_manager.start_wave(current_wave_idx)
 	
 	terminal.push_new_message("[color=cb2a5e]VIRUS WAVE: [shake rate=20.0 level=25 connected=1]" + str(current_wave_idx) + "[/shake][/color]", system_name)
@@ -156,6 +161,7 @@ func start_next_wave() -> void:
 
 ## Used to set pause state, TODO: pause menu interface
 func set_pause(pause_state: bool):
+	AudioManager.pause(pause_state)
 	is_paused = pause_state
 
 
@@ -185,6 +191,8 @@ func end_wave():
 		#GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
 		return
 	
+	AudioManager.fade_to_shop()
+	
 	# NOTE: spacing was an accident but looks kinda cool actually?
 	GameManager.terminal.push_new_message("[color=white]Wave " + str(current_wave_idx) + " over.[/color]
 		[color=cb2a5e][shake rate=20.0 level=25 connected=1]" + str(ceili(wave_cooldown.wait_time)) + " seconds remain[/shake][/color]")
@@ -197,6 +205,9 @@ func end_wave():
 
 ## Called when the player loses 
 func game_over():
+	# TODO: switch to game over music when happen
+	AudioManager.pause(true)
+	
 	current_state = GAME_STATE.GAME_OVER
 	
 	GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)

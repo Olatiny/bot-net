@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cif6loitj7nna"]
+
+[ext_resource type="Script" uid="uid://c4okmehsaqoah" path="res://src/managers/music_looper_intro_handler_dude.gd" id="1_5xww0"]
+[ext_resource type="AudioStream" uid="uid://hq5n3wqg3mbh" path="res://assets/audio/music/B0TN3T Combat v_12 w_Stinger.wav" id="2_qmwaf"]
+[ext_resource type="AudioStream" uid="uid://b8txkqwj7ke4s" path="res://assets/audio/music/B0TN3T Combat v_12 w_o Stinger.m.wav" id="3_xlcsd"]
+
+[node name="Main" type="AudioStreamPlayer"]
+script = ExtResource("1_5xww0")
+stream_with_intro = ExtResource("2_qmwaf")
+stream_without_intro = ExtResource("3_xlcsd")
+
+[node name="FadeTimer" type="Timer" parent="."]
+one_shot = true

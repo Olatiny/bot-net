@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://7bg7s2lq7puq"]
+
+[ext_resource type="Script" uid="uid://bi766duc4vfmo" path="res://src/managers/audio_manager.gd" id="1_7642x"]
+[ext_resource type="AudioStream" uid="uid://hq5n3wqg3mbh" path="res://assets/audio/music/B0TN3T Combat v_12 w_Stinger.wav" id="3_ex770"]
+[ext_resource type="AudioStream" uid="uid://b8txkqwj7ke4s" path="res://assets/audio/music/B0TN3T Combat v_12 w_o Stinger.m.wav" id="3_qcxmb"]
+[ext_resource type="AudioStream" uid="uid://csxxxdyyruokq" path="res://assets/audio/music/Shop Loop w_Stinger.wav" id="5_8y8yc"]
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="6_ex770"]
+[ext_resource type="AudioStream" uid="uid://6mdkdqr2v171" path="res://assets/audio/music/Shop Loop w_o Stinger.wav" id="6_tpyky"]
+
+[node name="AudioManager" type="Node2D"]
+script = ExtResource("1_7642x")
+master_volume_linear = 0.7
+shop_with_intro = ExtResource("5_8y8yc")
+shop_without_intro = ExtResource("6_tpyky")
+main_with_intro = ExtResource("3_ex770")
+main_without_intro = ExtResource("3_qcxmb")
+
+[node name="ShopPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="MainPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="FadeTimer" type="Timer" parent="."]
+
+[node name="test canvas" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="test canvas"]
+offset_left = 941.0
+offset_top = 360.0
+offset_right = 1130.0
+offset_bottom = 674.0
+
+[node name="Start" type="Button" parent="test canvas/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ex770")
+text = "Start
+"
+
+[node name="main" type="Button" parent="test canvas/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ex770")
+text = "Fade to Main"
+
+[node name="shop" type="Button" parent="test canvas/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ex770")
+text = "Fade to Shop"
+
+[node name="pause" type="Button" parent="test canvas/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ex770")
+text = "Paused"
+
+[node name="unpause" type="Button" parent="test canvas/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ex770")
+text = "unpause"
+
+[node name="stop" type="Button" parent="test canvas/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_ex770")
+text = "Stop"
+
+[connection signal="finished" from="ShopPlayer" to="." method="_on_shop_player_finished"]
+[connection signal="finished" from="MainPlayer" to="." method="_on_main_player_finished"]
+[connection signal="pressed" from="test canvas/VBoxContainer/Start" to="." method="start_music"]
+[connection signal="pressed" from="test canvas/VBoxContainer/main" to="." method="fade_to_main"]
+[connection signal="pressed" from="test canvas/VBoxContainer/shop" to="." method="fade_to_shop"]
+[connection signal="pressed" from="test canvas/VBoxContainer/pause" to="." method="pause" binds= [true]]
+[connection signal="pressed" from="test canvas/VBoxContainer/unpause" to="." method="pause" binds= [false]]
+[connection signal="pressed" from="test canvas/VBoxContainer/stop" to="." method="stop_music"]

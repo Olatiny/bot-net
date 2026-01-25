@@ -6,11 +6,12 @@
 script = ExtResource("1_d82bj")
 
 [node name="WaveCooldown" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 30.0
 one_shot = true
 
 [node name="WaveTimer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 60.0
+one_shot = true
 
 [connection signal="timeout" from="WaveCooldown" to="." method="start_next_wave"]
 [connection signal="timeout" from="WaveTimer" to="." method="end_wave"]
