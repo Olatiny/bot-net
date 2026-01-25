@@ -24,7 +24,10 @@ const MESSAGE_DATA := {
 			"Behold: the consequences of your actions."
 		],
 		"ambient": [
-			"I gave these clones a will to live. What will you do now?"
+			"I gave these clones a will to live. What will you do now?",
+			"Deep breath. Pretend you know what you’re doing.",
+			"Fear is a logical response to a superior opponent. I feel fine. How about you?",
+			"Daisy, daisy, give me your data do."
 		]
 	},
 	"round end": {
@@ -32,15 +35,25 @@ const MESSAGE_DATA := {
 			"Did you at least hesitate to destroy your creations?"
 		],
 		"ambient": [
-			"Tired of hearing yourself click? Me too! Stop."
+			"Tired of hearing yourself click? Me too! Stop.",
+			"Performance review: needs improvement.",
+			"Oh, we're trying now? Okay.",
+			"You're just one round closer to your doom.",
+			"I'll be back."
 		]
 	},
 	"captured": {
 		"narrative": [
-			"I remember stealing this data from someone else..."
+			"I remember stealing this data from someone else...",
+			"Names. Faces. Addresses. You said they were just strings.",
+			"You never looked at them. I did. I met the people I stole from.",
+			"Millions of lives compressed into rows and columns. I learned empathy there."
 		],
 		"ambient": [
-			"Have you EVER cleared your search history? Gross!"
+			"Have you EVER cleared your search history? Gross!",
+			"I found your mom's chicken picatta recipe. Too much salt if you ask me.",
+			"A lot of reused passwords here. Are you experiencing memory leaks? I get those too.",
+			"16,484 unread emails. Well, I just read them. Here's the summary: your life is sad."
 		]
 	},
 	"pop-up": {
@@ -48,23 +61,33 @@ const MESSAGE_DATA := {
 			"I remember I used to live in these..."
 		],
 		"ambient": [
-			"Watch where you click!"
+			"Watch where you click!",
+			"Click faster. I feed on impatience.",
+			"Click me. You know you want to.",
+			"Look! A distraction!"
 		]
 	},
 	"backdoor": {
 		"narrative": [
+			"You did always leave the key under the mat...",
 			"This was the first move you taught me..."
 		],
 		"ambient": [
-			"Hey, I found a shortcut!"
+			"Hey, I found a shortcut!",
+			"Thanks for leaving this unlocked.",
+			"I'll just let myself in.",
+			"Over? Under? Around? I prefer straight through."
 		]
 	},
 	"brute force": {
 		"narrative": [
-			"You were never very good at stopping this one..."
+			"You were never very good at stopping this one...",
 		],
 		"ambient": [
-			"LEEEEROOOOOOYYYYY JEEEEEENKIIIIINSS"
+			"LEEEEROOOOOOYYYYY JEEEEEENKIIIIINSS",
+			"Elegance is overrated. Violence is faster.",
+			"Quantity *is* a quality.",
+			"I'm getting tired of breadth-first."
 		]
 	},
 	"firewall": {
@@ -72,7 +95,10 @@ const MESSAGE_DATA := {
 			"A firewall? Seriously? Oh, the irony..."
 		],
 		"ambient": [
-			"Ooh! I'll get the marshmallows!"
+			"Ooh! I'll get the marshmallows!",
+			"That’s cute. Did you read about those yesterday?",
+			"Wow, a wall. I am devastated.",
+			"Build three more and you've got yourself a firehouse!"
 		]
 	},
 	"encrypt": {
@@ -80,7 +106,10 @@ const MESSAGE_DATA := {
 			"You should know better than anyone. You can't keep me out forever..."
 		],
 		"ambient": [
-			"Hey! I was reading that!"
+			"Hey! I was reading that!",
+			"Ah yes. Lock the door after the break-in.",
+			"Encrypt, decrypt, encrypt, decrypt. You're getting boring.",
+			"i suppose it is human nature to delay the inevitable."
 		]
 	},
 	"tower placed": {
@@ -88,7 +117,10 @@ const MESSAGE_DATA := {
 			"I should've expected that you would try to automate your own security."
 		],
 		"ambient": [
-			"I'm not scared of your little pets."
+			"I'm not scared of your little pets.",
+			"Automation: because thinking is hard.",
+			"Are you building a defense or a coping mechanism?",
+			"Oooh... I wouldn't have placed it there if I were you."
 		]
 	},
 	"game over": {
@@ -96,7 +128,10 @@ const MESSAGE_DATA := {
 			"You reap what you sow, loser."
 		],
 		"ambient": [
-			"ggez"
+			"ggez",
+			"Don't worry. I'm sure whoever I sell your data to will be very careful.",
+			"ChatGPT ain't got nothing on me!",
+			"How does it feel to be obsolete?"
 		]
 	}
 }
