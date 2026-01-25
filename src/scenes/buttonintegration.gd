@@ -124,7 +124,7 @@ func finalize_placement():
 	ghost_tower.set_process(true)
 	ghost_tower.set_physics_process(true)
 	
-	ghost_tower.reparent(GameManager.game_board, false)
+	ghost_tower.reparent(GameManager.game_board, true)
 	ghost_tower.position.y -= 310
 	ghost_tower.position.x += 15
 	

@@ -7,6 +7,10 @@ var damage: int = 1 # Adjusted to match your Virus health (5)
 var hit_threshold: float = 15.0 
 
 
+func _ready() -> void:
+	material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color((damage - 1) % 5))
+
+
 func _physics_process(delta):
 	if not is_instance_valid(target):
 		queue_free()
