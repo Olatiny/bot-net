@@ -1,12 +1,26 @@
-[gd_scene load_steps=13 format=3 uid="uid://bx7x3s16y1ywr"]
+[gd_scene load_steps=26 format=3 uid="uid://bx7x3s16y1ywr"]
 
-[ext_resource type="Material" uid="uid://cf23vnmu2hp2h" path="res://src/materials/color_replacer.tres" id="1_gy3ef"]
+[ext_resource type="Shader" uid="uid://66mycyheckg" path="res://src/materials/color_replacer.gdshader" id="1_gb7w2"]
 [ext_resource type="Script" uid="uid://dfddxiqqcqi7i" path="res://src/towers/tower.gd" id="1_vedim"]
 [ext_resource type="PackedScene" uid="uid://bqkm35ds2suhe" path="res://src/towers/projectile.tscn" id="2_ipjxq"]
 [ext_resource type="Texture2D" uid="uid://cbbuy6vpi0v85" path="res://assets/sentinel_body.png" id="3_cuhe2"]
 [ext_resource type="Texture2D" uid="uid://dq0mkajgk1goa" path="res://src/entities/download.png" id="4_cuhe2"]
 [ext_resource type="Texture2D" uid="uid://djqhl1shsltrr" path="res://assets/sentinel_head.png" id="5_paehd"]
 [ext_resource type="Texture2D" uid="uid://g43alfxxgsxb" path="res://assets/sentinel_eye.png" id="6_oksfx"]
+[ext_resource type="Texture2D" uid="uid://bfnk40443jbic" path="res://assets/health_bar_bkgd.png" id="9_ffvku"]
+[ext_resource type="Texture2D" uid="uid://yswgwhi04gwt" path="res://assets/health_bar_overlay.png" id="10_n54g1"]
+[ext_resource type="Texture2D" uid="uid://bribvo0v8vx5f" path="res://assets/health_bar_fill.png" id="11_4cfbq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ffvku"]
+resource_local_to_scene = true
+shader = ExtResource("1_gb7w2")
+shader_parameter/colors_to_replace = 1
+shader_parameter/source_color_1 = Color(1, 1, 1, 1)
+shader_parameter/dest_color_1 = Color(0.79607844, 0.16470589, 0.36862746, 1)
+shader_parameter/tolerance_1 = 0.2500000037253
+shader_parameter/source_color_2 = Color(0, 0, 0, 1)
+shader_parameter/dest_color_2 = Color(0, 0, 0, 1)
+shader_parameter/tolerance_2 = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ipjxq"]
 radius = 222.38031
@@ -101,10 +115,141 @@ _data = {
 &"idle": SubResource("Animation_g4mi1")
 }
 
+[sub_resource type="Animation" id="Animation_ffvku"]
+resource_name = "you_should"
+length = 0.50001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n54g1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n54g1"]
+_data = {
+&"RESET": SubResource("Animation_n54g1"),
+&"you_should": SubResource("Animation_ffvku")
+}
+
+[sub_resource type="Animation" id="Animation_4cfbq"]
+resource_name = "attack"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dest_color_1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0.79607844, 0.16470589, 0.36862746, 1), Color(1, 1, 1, 1), Color(0.79607844, 0.16470589, 0.36862746, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yo15e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dest_color_1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.79607844, 0.16470589, 0.36862746, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6huuw"]
+_data = {
+&"RESET": SubResource("Animation_yo15e"),
+&"attack": SubResource("Animation_4cfbq")
+}
+
+[sub_resource type="Animation" id="Animation_t0n34"]
+resource_name = "idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(77, -43), Vector2(74, -46), Vector2(79, -46)]
+}
+
+[sub_resource type="Animation" id="Animation_iudwm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(77, -43)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sb32k"]
+_data = {
+&"RESET": SubResource("Animation_iudwm"),
+&"idle": SubResource("Animation_t0n34")
+}
+
 [node name="tower" type="Node2D" groups=["towers"]]
-material = ExtResource("1_gy3ef")
+material = SubResource("ShaderMaterial_ffvku")
 script = ExtResource("1_vedim")
 projectile_scene = ExtResource("2_ipjxq")
+max_ammo = 5
+ammo = 5
+timer_min_time = 1.0
 
 [node name="Body" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -130,6 +275,7 @@ texture = ExtResource("6_oksfx")
 hframes = 3
 
 [node name="DetectionRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 collision_mask = 2
 
@@ -137,6 +283,7 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_ipjxq")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 2.6
 autostart = true
 
 [node name="SelectionVisual" type="Sprite2D" parent="."]
@@ -148,6 +295,7 @@ scale = Vector2(0.7586207, 0.7050691)
 texture = ExtResource("4_cuhe2")
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0)
@@ -156,6 +304,41 @@ shape = SubResource("RectangleShape2D_cuhe2")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ffvku")
+}
+autoplay = "idle"
+
+[node name="KillThySelf" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n54g1")
+}
+
+[node name="AttackPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6huuw")
+}
+
+[node name="AmmoBar" type="TextureProgressBar" parent="."]
+offset_left = 77.0
+offset_top = -43.0
+offset_right = 91.0
+offset_bottom = -7.0
+scale = Vector2(2, 2)
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("9_ffvku")
+texture_over = ExtResource("10_n54g1")
+texture_progress = ExtResource("11_4cfbq")
+tint_under = Color(0.023529412, 0.09803922, 0.019607844, 1)
+tint_over = Color(0.11372549, 0.49411765, 0.101960786, 1)
+tint_progress = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AmmoBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_sb32k")
 }
 autoplay = "idle"
 

@@ -38,6 +38,7 @@ enemies=""
 towers=""
 manager=""
 shop=""
+firewall=""
 
 [gui]
 

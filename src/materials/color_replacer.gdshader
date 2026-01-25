@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform int colors_to_replace : hint_range(0, 1, 1);
+uniform int colors_to_replace : hint_range(0, 2, 1);
 
 uniform vec4 source_color_1 : source_color;
 

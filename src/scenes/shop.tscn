@@ -12,19 +12,13 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k60ia"]
 bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
 
-[node name="Shop" type="PanelContainer" node_paths=PackedStringArray("button_price_dict")]
+[node name="Shop" type="PanelContainer"]
 custom_minimum_size = Vector2(690, 530)
+offset_right = 690.0
+offset_bottom = 647.0
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("1_4ji2o")
 script = ExtResource("1_q7y2j")
-button_price_dict = {
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt"): 400.0,
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall"): 1000.0,
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower"): 600.0,
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower"): 600.0,
-NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/Click"): 3000.0,
-NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade"): 3000.0
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -57,6 +51,22 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="RamAmountLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("3_k60ia")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "LVL: 1"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
@@ -79,6 +89,7 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="buttonintegration" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2/TowerOptions" groups=["manager", "shop"]]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 6
 script = ExtResource("4_duy3l")
@@ -87,26 +98,35 @@ aoe_tower_scene = ExtResource("6_cjlig")
 wall_scene = ExtResource("7_5sg2m")
 
 [node name="Encrypt" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Click on a folder to heal / add shield to it"
 text = "ENCRYPT
 XXX RAM"
 
 [node name="Firewall" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Place on a path to block the virus!"
 text = "FIREWALL
 XXX RAM"
 
 [node name="AimTower" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "A tower that shoots projectiles"
 text = "TOWER A
 XXX RAM"
 
 [node name="AOETower" parent="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "A tower that creates an AOE on a slow interval"
 text = "TOWER B
 XXX RAM"
 
 [node name="UpgradeOptions" type="VBoxContainer" parent="VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
@@ -120,34 +140,49 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
-[node name="Click" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
+[node name="PlayerUp" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Upgrades the damage and RAM gained from clicks"
 text = "CLICK UP
 XXX RAM"
 
 [node name="FirewallUpgrade" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
 layout_mode = 2
+tooltip_text = "Increases potency of firewall"
 text = "FIREWALL UP
+XXX RAM"
+
+[node name="SentinelUpgrade" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Increases damage and max ammo of Sentinel"
+text = "SENTINEL UP
+XXX RAM"
+
+[node name="QuarrantineUpgrade" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Increases damage and max ammo of Quarrantine"
+text = "QUARRANTINE UP
 XXX RAM"
 
 [node name="TowerPrompt" parent="VBoxContainer/HBoxContainer2/UpgradeOptions" instance=ExtResource("4_k60ia")]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(280, 168)
 layout_mode = 2
 disabled = true
 text = "CLICK TOWERS
 TO UPGRADE"
 
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt" to="." method="_on_encrypt_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt" to="." method="_button_pressed" flags=18]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_build_wall_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall" to="." method="_button_pressed" flags=18]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_build_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower" to="." method="_button_pressed" flags=18]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_aoe_build_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower" to="." method="_button_pressed" flags=18]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/Click" to="." method="upgrade_click"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/Click" to="." method="_button_pressed" flags=18]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_upgrade_firewall_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/PlayerUp" to="." method="_button_pressed" flags=18]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/SentinelUpgrade" to="." method="_button_pressed" flags=18]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/QuarrantineUpgrade" to="." method="_button_pressed" flags=18]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer2/UpgradeOptions/TowerPrompt" to="VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration" method="_on_upgrade_towers_button_pressed"]

@@ -8,7 +8,7 @@ var hit_threshold: float = 15.0
 
 
 func _ready() -> void:
-	material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color((damage - 1) % 5))
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color((damage - 1) % 5))
 
 
 func _physics_process(delta):

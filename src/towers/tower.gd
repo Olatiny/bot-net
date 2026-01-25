@@ -3,6 +3,10 @@ extends Node2D
 
 @export var projectile_scene: PackedScene
 @export var damage: int = 10
+@export var max_ammo: int = 25
+@export var ammo: int = 25
+@export var timer_min_time := 0.5
+@export var timer_upgrade_decrease := 0.2
 
 var upgrade_level: int = 1
 var is_selected: bool = false
@@ -19,6 +23,9 @@ func _ready():
 	if selection_visual:
 		selection_visual.visible = false
 	
+	$AmmoBar.value = ammo
+	$AmmoBar.max_value = max_ammo
+	
 	# Ensure the tower is in the 'towers' group so the Shop can find it
 	add_to_group("towers")
 
@@ -34,28 +41,37 @@ func toggle_selection():
 	return is_selected
 
 
-func _on_detection_range_input_event(_viewport, event, _shape_idx):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			toggle_selection()
-			
-			# Tell the shop (VBoxContainer) we were clicked
-			# Using a group is safer than searching the tree
-			var shop = get_tree().get_first_node_in_group("shop")
-			if shop:
-				shop.toggle_tower_selection(self)
+func _on_detection_range_input_event(_viewport, _event, _shape_idx):
+	return # NOTE: refactored tower upgrading to be on purchase in shop
+	#if event is InputEventMouseButton and event.pressed:
+		#if event.button_index == MOUSE_BUTTON_LEFT:
+			#toggle_selection()
+			#
+			## Tell the shop (VBoxContainer) we were clicked
+			## Using a group is safer than searching the tree
+			#var shop = get_tree().get_first_node_in_group("shop")
+			#if shop:
+				#shop.toggle_tower_selection(self)
 
 # --- UPGRADE LOGIC ---
 
 func apply_upgrade():
 	upgrade_level += 1
+	timer.wait_time -= 0.2
+	timer.wait_time = max(timer.wait_time, 0.5)
+	max_ammo += 5
+	ammo += 5
+	
 	damage += 5  # Increase projectile damage
 	
-	material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
 	
-	if timer:
-		# Shoot 15% faster with each upgrade
-		timer.wait_time = max(0.15, timer.wait_time * 0.85)
+	$AmmoBar.value = ammo
+	$AmmoBar.max_value = max_ammo
+
+	#if timer:
+		## Shoot 15% faster with each upgrade
+		#timer.wait_time = max(0.15, timer.wait_time * 0.85)
 	
 	# Reset selection state after upgrading
 	is_selected = false
@@ -120,3 +136,12 @@ func shoot():
 	# If your projectile has a damage variable, set it here:
 	if "damage" in p:
 		p.damage = damage
+	
+	$AmmoBar.value = ammo
+	$AmmoBar.max_value = max_ammo
+	$AttackPlayer.play("attack")
+	
+	if ammo > 0:
+		ammo -= 1
+	else:
+		$KillThySelf.play("you_should")

@@ -16,12 +16,12 @@ enum COLLISION_LAYERS {
 ## Global dict of colors for tiers
 const TIER_COLORS: Array[Color] = [
 	Color("bc0463"),
-	Color("a54902"),
+	Color("f2700eff"),
 	Color("bba600"),
-	Color("1d7e1a"),
-	Color("04767f"),
-	Color("5f31f9"),
-	Color("aa04a7"),
+	Color("5f8c0aff"),
+	Color("08b9c4ff"),
+	Color("758bfdff"),
+	Color("d00fceff"),
 ]
 
 ## global function to get a correct tier color
@@ -62,3 +62,6 @@ signal mouse_hover(state: bool)
 
 @warning_ignore("unused_signal")
 signal mouse_tier_change(new_tier: int)
+
+@warning_ignore("unused_signal")
+signal currency_changed(val: float)

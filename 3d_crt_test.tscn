@@ -144,7 +144,7 @@ omni_attenuation = 0.647
 curve = SubResource("Curve3D_sbjjg")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.36324906, -3.7876493e-09, -0.93163556, 0, 1.0000001, -4.065169e-09, 0.93162984, 1.4768311e-09, 0.3632513, 18.36039, 0, 21.091715)
+transform = Transform3D(0.36324906, -3.7876497e-09, -0.93163556, 0, 1.0000002, -4.065169e-09, 0.93162984, 1.4768313e-09, 0.3632513, 18.36039, 0, 21.091715)
 progress = 62.590736
 rotation_mode = 4
 cubic_interp = false

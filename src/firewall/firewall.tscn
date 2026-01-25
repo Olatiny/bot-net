@@ -1,25 +1,201 @@
-[gd_scene load_steps=6 format=3 uid="uid://byvaonestqs7"]
+[gd_scene load_steps=23 format=3 uid="uid://byvaonestqs7"]
 
+[ext_resource type="Shader" uid="uid://66mycyheckg" path="res://src/materials/color_replacer.gdshader" id="1_3tst3"]
 [ext_resource type="Script" uid="uid://dve26by85f5y0" path="res://src/firewall/firewall.gd" id="1_yvk1g"]
 [ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_y7g4w"]
-[ext_resource type="Texture2D" uid="uid://f1yd8p6tabtw" path="res://assets/wall_spritesheet.png" id="2_yvk1g"]
+[ext_resource type="Texture2D" uid="uid://bttu2v2rnhsob" path="res://assets/firewall.png" id="3_y7g4w"]
+[ext_resource type="Texture2D" uid="uid://bfnk40443jbic" path="res://assets/health_bar_bkgd.png" id="5_a3lpo"]
+[ext_resource type="Texture2D" uid="uid://yswgwhi04gwt" path="res://assets/health_bar_overlay.png" id="6_4n7fj"]
+[ext_resource type="Texture2D" uid="uid://bribvo0v8vx5f" path="res://assets/health_bar_fill.png" id="7_050ds"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wcfj2"]
+resource_local_to_scene = true
+shader = ExtResource("1_3tst3")
+shader_parameter/colors_to_replace = 2
+shader_parameter/source_color_1 = Color(1, 1, 1, 1)
+shader_parameter/dest_color_1 = Color(0.79607844, 0.16470589, 0.36862746, 1)
+shader_parameter/tolerance_1 = 0.2500000037253
+shader_parameter/source_color_2 = Color(0.24705882, 0.003921569, 0.003921569, 1)
+shader_parameter/dest_color_2 = Color(0.09803922, 0.015686275, 0.015686275, 1)
+shader_parameter/tolerance_2 = 0.2500000037253
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3tst3"]
-size = Vector2(135.8659, 161.68422)
+size = Vector2(135.8659, 461.4737)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wcfj2"]
-size = Vector2(126.569824, 121.26315)
+size = Vector2(126.569824, 458.10526)
 
-[node name="Firewall" type="StaticBody2D"]
+[sub_resource type="Animation" id="Animation_wcfj2"]
+resource_name = "idle"
+length = 1.50001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_8sp01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3lpo"]
+_data = {
+&"RESET": SubResource("Animation_8sp01"),
+&"idle": SubResource("Animation_wcfj2")
+}
+
+[sub_resource type="Animation" id="Animation_ffvku"]
+resource_name = "you_should"
+length = 0.50001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n54g1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n54g1"]
+_data = {
+&"RESET": SubResource("Animation_n54g1"),
+&"you_should": SubResource("Animation_ffvku")
+}
+
+[sub_resource type="Animation" id="Animation_4cfbq"]
+resource_name = "attack"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dest_color_1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0.79607844, 0.16470589, 0.36862746, 1), Color(1, 1, 1, 1), Color(0.79607844, 0.16470589, 0.36862746, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yo15e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/dest_color_1")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.79607844, 0.16470589, 0.36862746, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6huuw"]
+_data = {
+&"RESET": SubResource("Animation_yo15e"),
+&"attack": SubResource("Animation_4cfbq")
+}
+
+[sub_resource type="Animation" id="Animation_t0n34"]
+resource_name = "idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(77, -43), Vector2(74, -46), Vector2(79, -46)]
+}
+
+[sub_resource type="Animation" id="Animation_iudwm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(77, -43)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sb32k"]
+_data = {
+&"RESET": SubResource("Animation_iudwm"),
+&"idle": SubResource("Animation_t0n34")
+}
+
+[node name="Firewall" type="StaticBody2D" groups=["firewall"]]
+material = SubResource("ShaderMaterial_wcfj2")
 script = ExtResource("1_yvk1g")
 upgraded_sprite = ExtResource("2_y7g4w")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.004879, -1.9843745)
-scale = Vector2(5.9336586, 4.9960938)
-texture = ExtResource("2_yvk1g")
-region_enabled = true
-region_rect = Rect2(0.60530853, 0, 30.972382, 7.033684)
 
 [node name="ThornArea" type="Area2D" parent="."]
 position = Vector2(-1, 0)
@@ -27,12 +203,61 @@ scale = Vector2(1.3984375, 0.296875)
 collision_mask = 2
 
 [node name="ThornAreacollision" type="CollisionShape2D" parent="ThornArea"]
-position = Vector2(-1.4301698, -3.3684187)
+position = Vector2(-1.4301698, -11.789461)
 shape = SubResource("RectangleShape2D_3tst3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 1.0000002)
+position = Vector2(-1.5, -3.000002)
 scale = Vector2(1.3984375, 0.296875)
 shape = SubResource("RectangleShape2D_wcfj2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(-1.004879, -1.9843745)
+scale = Vector2(4, 4)
+texture = ExtResource("3_y7g4w")
+hframes = 5
+region_rect = Rect2(0.60530853, 0, 30.972382, 7.033684)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_a3lpo")
+}
+autoplay = "idle"
+
+[node name="KillThySelf" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n54g1")
+}
+
+[node name="AttackPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6huuw")
+}
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = 77.0
+offset_top = -43.0
+offset_right = 91.0
+offset_bottom = -7.0
+scale = Vector2(2, 2)
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("5_a3lpo")
+texture_over = ExtResource("6_4n7fj")
+texture_progress = ExtResource("7_050ds")
+tint_under = Color(0.023529412, 0.09803922, 0.019607844, 1)
+tint_over = Color(0.11372549, 0.49411765, 0.101960786, 1)
+tint_progress = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HealthBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_sb32k")
+}
+autoplay = "idle"
 
 [connection signal="area_entered" from="ThornArea" to="." method="_on_thorn_area_area_entered"]

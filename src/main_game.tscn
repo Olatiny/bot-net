@@ -72,19 +72,11 @@ alignment = 1
 [node name="Terminal" parent="GameHUD/VBoxContainer" instance=ExtResource("4_qhh1e")]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Shop" parent="GameHUD/VBoxContainer" node_paths=PackedStringArray("button_price_dict") instance=ExtResource("5_qhh1e")]
+[node name="Shop" parent="GameHUD/VBoxContainer" instance=ExtResource("5_qhh1e")]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 3
-button_price_dict = {
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt"): 400.0,
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall"): 1000.0,
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower"): 600.0,
-NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower"): 600.0,
-NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/Click"): 3000.0,
-NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade"): 3000.0
-}
 
 [node name="BoardWindow" type="PanelContainer" parent="GameHUD"]
 custom_minimum_size = Vector2(1200, 1060)

@@ -1,10 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://u0hpbk31udpt"]
+[gd_scene load_steps=23 format=3 uid="uid://u0hpbk31udpt"]
 
 [ext_resource type="Script" uid="uid://bce5xk40l8ep3" path="res://src/areatower/areatower.gd" id="1_eahom"]
 [ext_resource type="Material" uid="uid://cf23vnmu2hp2h" path="res://src/materials/color_replacer.tres" id="1_vpv6n"]
 [ext_resource type="Texture2D" uid="uid://do23img3qvki7" path="res://assets/quarrantine_body.png" id="2_1ginh"]
 [ext_resource type="Texture2D" uid="uid://dq0mkajgk1goa" path="res://src/entities/download.png" id="3_dxn1p"]
 [ext_resource type="Texture2D" uid="uid://ygosfd2s3anc" path="res://assets/quarrantine_aoe.png" id="3_vpv6n"]
+[ext_resource type="Texture2D" uid="uid://bfnk40443jbic" path="res://assets/health_bar_bkgd.png" id="7_el8xx"]
+[ext_resource type="Texture2D" uid="uid://yswgwhi04gwt" path="res://assets/health_bar_overlay.png" id="8_iudwm"]
+[ext_resource type="Texture2D" uid="uid://bribvo0v8vx5f" path="res://assets/health_bar_fill.png" id="9_sb32k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1ginh"]
 radius = 222.0
@@ -113,9 +116,112 @@ _data = {
 &"idle": SubResource("Animation_kq0am")
 }
 
+[sub_resource type="Animation" id="Animation_ffvku"]
+resource_name = "you_should"
+length = 0.50001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_n54g1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n54g1"]
+_data = {
+&"RESET": SubResource("Animation_n54g1"),
+&"you_should": SubResource("Animation_ffvku")
+}
+
+[sub_resource type="Animation" id="Animation_t0n34"]
+resource_name = "idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(77, -43), Vector2(74, -46), Vector2(79, -46)]
+}
+
+[sub_resource type="Animation" id="Animation_iudwm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(77, -43)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sb32k"]
+_data = {
+&"RESET": SubResource("Animation_iudwm"),
+&"idle": SubResource("Animation_t0n34")
+}
+
 [node name="Areatower" type="Node2D" groups=["towers"]]
 material = ExtResource("1_vpv6n")
 script = ExtResource("1_eahom")
+
+[node name="detection" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
+shape = SubResource("CircleShape2D_1ginh")
+
+[node name="selectıonarea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="selectıonarea"]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_1ginh")
 
 [node name="body" type="Sprite2D" parent="."]
 use_parent_material = true
@@ -136,14 +242,8 @@ hframes = 3
 region_rect = Rect2(107.80786, 0, 35.97174, 35.886265)
 region_filter_clip_enabled = true
 
-[node name="detection" type="Area2D" parent="."]
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
-shape = SubResource("CircleShape2D_1ginh")
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 5.0
 autostart = true
 
 [node name="SelectionVisual" type="Sprite2D" parent="."]
@@ -153,12 +253,6 @@ self_modulate = Color(0, 1, 0, 0.14901961)
 position = Vector2(0.87500477, -0.35483313)
 scale = Vector2(0.64547414, 0.70967746)
 texture = ExtResource("3_dxn1p")
-
-[node name="selectıonarea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="selectıonarea"]
-position = Vector2(-0.5, -5)
-shape = SubResource("RectangleShape2D_1ginh")
 
 [node name="AttackPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -171,7 +265,37 @@ libraries = {
 }
 autoplay = "idle"
 
+[node name="KillThySelf" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n54g1")
+}
+
+[node name="AmmoBar" type="TextureProgressBar" parent="."]
+offset_left = 77.0
+offset_top = -43.0
+offset_right = 91.0
+offset_bottom = -7.0
+scale = Vector2(2, 2)
+fill_mode = 3
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("7_el8xx")
+texture_over = ExtResource("8_iudwm")
+texture_progress = ExtResource("9_sb32k")
+tint_under = Color(0.023529412, 0.09803922, 0.019607844, 1)
+tint_over = Color(0.11372549, 0.49411765, 0.101960786, 1)
+tint_progress = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AmmoBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_sb32k")
+}
+autoplay = "idle"
+
 [connection signal="area_entered" from="detection" to="." method="_on_damage_zone_area_entered"]
 [connection signal="area_exited" from="detection" to="." method="_on_damage_zone_area_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="input_event" from="selectıonarea" to="." method="_on_detection_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

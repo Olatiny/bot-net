@@ -1,6 +1,11 @@
+class_name AreaTower
 extends Node2D
 
 @export var damage: int = 2
+@export var max_ammo: int = 25
+@export var ammo: int = 25
+@export var timer_min_time := 1.5
+@export var timer_upgrade_decrease := 0.2
 
 var upgrade_level: int = 1
 var targets: Array = []
@@ -15,6 +20,10 @@ var is_selected: bool = false
 func _ready():
 	if selection_visual:
 		selection_visual.visible = false
+	
+	$AmmoBar.value = ammo
+	$AmmoBar.max_value = max_ammo
+	
 	#attack_visual.visible = false
 	#attack_visual.modulate.a = 0.0
 
@@ -31,11 +40,19 @@ func toggle_selection():
 
 func apply_upgrade():
 	upgrade_level += 1
-	material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
+	timer.wait_time -= 0.2
+	timer.wait_time = max(timer.wait_time, 0.5)
+	max_ammo += 5
+	ammo += 5
+
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
 	damage += 10 # Increase damage
-	
-	if timer:
-		timer.wait_time = max(0.2, timer.wait_time * 0.8)
+
+	$AmmoBar.value = ammo
+	$AmmoBar.max_value = max_ammo
+
+	#if timer:
+		#timer.wait_time = max(0.2, timer.wait_time * 0.8)
 		
 	is_selected = false
 	if selection_visual:
@@ -87,6 +104,14 @@ func attack():
 		else:
 			# Clean up the list if the enemy was destroyed elsewhere
 			targets.erase(target_node)
+	
+	$AmmoBar.value = ammo
+	$AmmoBar.max_value = max_ammo
+	
+	if ammo > 0:
+		ammo -= 1
+	else:
+		$KillThySelf.play("you_should")
 
 
 func show_pulse():
@@ -101,14 +126,15 @@ func show_pulse():
 	#tween.finished.connect(func(): attack_visual.visible = false)
 
 
-func _on_detection_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
-	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			toggle_selection()
-			
-			# Find the node in the 'manager' group instead of searching the tree
-			var shop_manager = get_tree().get_first_node_in_group("manager")
-			if shop_manager:
-				shop_manager.toggle_tower_selection(self)
-			else:
-				print("Error: Manager group not found!")
+func _on_detection_input_event(_viewport: Node, _event: InputEvent, _shape_idx: int):
+	return # NOTE: Upgrading refactored to be on purchase
+	#if event is InputEventMouseButton and event.pressed:
+		#if event.button_index == MOUSE_BUTTON_LEFT:
+			#toggle_selection()
+			#
+			## Find the node in the 'manager' group instead of searching the tree
+			#var shop_manager = get_tree().get_first_node_in_group("manager")
+			#if shop_manager:
+				#shop_manager.toggle_tower_selection(self)
+			#else:
+				#print("Error: Manager group not found!")

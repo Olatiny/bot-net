@@ -1,26 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bpvki6pfh7o81"]
+[gd_scene load_steps=34 format=3 uid="uid://bpvki6pfh7o81"]
 
 [ext_resource type="Texture2D" uid="uid://cytqhln8a8tsb" path="res://assets/mouse_sheet.png" id="1_fiovx"]
 [ext_resource type="Material" uid="uid://cf23vnmu2hp2h" path="res://src/materials/color_replacer.tres" id="1_lf52b"]
 [ext_resource type="Script" uid="uid://dj542x44hqv3e" path="res://src/scenes/mouse.gd" id="1_qivrn"]
-
-[sub_resource type="Animation" id="Animation_qivrn"]
-resource_name = "idle"
-length = 0.90001
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="4_u7sjv"]
 
 [sub_resource type="Animation" id="Animation_lf52b"]
 length = 0.001
@@ -35,6 +18,35 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:clicked")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mmche"]
+resource_name = "click"
+length = 0.30001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -67,37 +79,8 @@ tracks/0/keys = {
 "values": [3, 4, 5]
 }
 
-[sub_resource type="Animation" id="Animation_mmche"]
-resource_name = "click"
-length = 0.30001
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [6, 7, 8]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:clicked")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_fjeoi"]
-resource_name = "shield_idle"
+[sub_resource type="Animation" id="Animation_qivrn"]
+resource_name = "idle"
 length = 0.90001
 loop_mode = 1
 step = 0.1
@@ -111,25 +94,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_fue5q"]
-resource_name = "shield_hover"
-length = 0.90001
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [12, 13, 14]
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_q2rot"]
@@ -159,6 +124,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fue5q"]
+resource_name = "shield_hover"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_fjeoi"]
+resource_name = "shield_idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u7sjv"]
@@ -266,6 +267,92 @@ graph_offset = Vector2(-38, -21)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qivrn"]
 size = Vector2(9, 26.5)
 
+[sub_resource type="Animation" id="Animation_l6b4c"]
+resource_name = "flash"
+length = 1.50001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChangeLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChangeLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChangeLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.2), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_q2rft"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChangeLabel:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ChangeLabel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ChangeLabel:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gymix"]
+_data = {
+&"RESET": SubResource("Animation_q2rft"),
+&"flash": SubResource("Animation_l6b4c")
+}
+
 [node name="Mouse" type="Node2D"]
 material = ExtResource("1_lf52b")
 script = ExtResource("1_qivrn")
@@ -277,6 +364,20 @@ texture = ExtResource("1_fiovx")
 offset = Vector2(8, 7.75)
 hframes = 3
 vframes = 6
+
+[node name="ChangeLabel" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 49.0
+offset_right = 200.0
+offset_bottom = 51.0
+pivot_offset = Vector2(29, 26)
+theme = ExtResource("4_u7sjv")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[shake rate=20.0 level=25 connected=1]+50 RAM[/shake]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -298,6 +399,11 @@ collision_mask = 86
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(3.5, 11.75)
 shape = SubResource("RectangleShape2D_qivrn")
+
+[node name="RamChangePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gymix")
+}
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

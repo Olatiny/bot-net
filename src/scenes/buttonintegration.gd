@@ -1,3 +1,4 @@
+class_name ButtonIntegration
 extends VBoxContainer
 
 @export var tower_scene: PackedScene 
@@ -39,8 +40,8 @@ func update_upgrade_ui():
 		upgrade_button.text = "Upgrade Towers ($" + str(total_cost) + ")"
 		upgrade_button.disabled = false
 	else:
-		upgrade_button.text = "Select Towers to Upgrade"
-		upgrade_button.disabled = true	
+		upgrade_button.text = "Select Towers\n to Upgrade"
+		upgrade_button.disabled = true
 
 
 func _on_upgrade_towers_button_pressed():
@@ -54,7 +55,10 @@ func _on_upgrade_towers_button_pressed():
 func _process(_delta):
 	if is_placing and ghost_tower:
 		# Follow the mouse
-		ghost_tower.global_position = get_global_mouse_position()
+		var mouse_pos := get_viewport().get_mouse_position()
+		var sub_viewport_transform := get_viewport().canvas_transform.origin
+		#var main_viewport_transform := get_viewport().get_viewport().canvas_transform.origin
+		ghost_tower.global_position = mouse_pos - sub_viewport_transform - Vector2(0, 100)# - get_viewport().get_camera_2d().position
 
 
 func _input(event):
@@ -97,7 +101,7 @@ func start_placement(selected_tower: PackedScene):
 	is_placing = true
 	ghost_tower = selected_tower.instantiate()
 	
-	GameManager.temp_tower_parent.add_child(ghost_tower)
+	GameManager.game_board.add_child(ghost_tower)
 	
 	# Make it look like a "ghost"
 	ghost_tower.modulate.a = 0.5
@@ -119,14 +123,14 @@ func finalize_placement():
 	ghost_tower.modulate.a = 1.0
 	
 	# Ensure it stays exactly where the ghost was
-	ghost_tower.global_position = get_global_mouse_position()
+	#ghost_tower.global_position = get_global_mouse_position()
 	
 	ghost_tower.set_process(true)
 	ghost_tower.set_physics_process(true)
 	
-	ghost_tower.reparent(GameManager.game_board, true)
-	ghost_tower.position.y -= 310
-	ghost_tower.position.x += 15
+	#ghost_tower.reparent(GameManager.game_board, false)
+	#ghost_tower.position.y -= 310
+	#ghost_tower.position.x -= 400
 	
 	# Enable detection
 	for zone_name in ["DetectionRange", "DamageZone", "ThornArea"]:

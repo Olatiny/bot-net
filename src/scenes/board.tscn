@@ -43,9 +43,12 @@ _data = {
 point_count = 7
 
 [node name="Board" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_v43tc")
 
 [node name="Decoration" type="Node2D" parent="."]
+z_index = -1
+y_sort_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="Decoration"]
 visible = false
@@ -70,6 +73,7 @@ tile_map_data = PackedByteArray("AAAMAA0AAAAFAAEAAAANAAoAAAAGAAEAAAAOAAkAAAAGAAE
 tile_set = ExtResource("1_7yose")
 
 [node name="Folders" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Folder" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(1312, -128)
@@ -109,6 +113,7 @@ position = Vector2(1792, 1024)
 path_to_disable = NodePath("../../Paths/Path6")
 
 [node name="Paths" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="Path" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)

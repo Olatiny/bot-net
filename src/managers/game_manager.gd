@@ -57,6 +57,31 @@ var current_wave_idx := 0
 var is_paused := false
 
 
+######################
+### UPGRADE LEVELS ###
+######################
+
+## Affects player income and damage
+var player_level := 1:
+	set(value):
+		player_level = value
+		player_attack_damage = 1 + value * 2
+		ram_income = 10 + value * 5
+
+## Affects potency of encrypt
+var encrypt_level := 1
+
+## Affects tower damage
+var sentinel_tower_level := 1
+
+## Affects tower damage 
+var quarrantine_tower_level := 1
+
+## Affects tower ammo
+var firewall_level := 1
+
+
+
 ###################
 ###  NODE REFS  ###
 ###################
@@ -155,6 +180,7 @@ func start_next_wave() -> void:
 	if current_wave_idx > 1:
 		AudioManager.fade_to_main()
 	
+	shop.toggle_shop_phase(false)
 	virus_manager.start_wave(current_wave_idx)
 	
 	terminal.push_new_message("[color=cb2a5e]VIRUS WAVE: [shake rate=20.0 level=25 connected=1]" + str(current_wave_idx) + "[/shake][/color]", system_name)
@@ -196,6 +222,7 @@ func end_wave():
 		return
 	
 	AudioManager.fade_to_shop()
+	shop.toggle_shop_phase(true)
 	
 	# NOTE: spacing was an accident but looks kinda cool actually?
 	GameManager.terminal.push_new_message("[color=white]Wave " + str(current_wave_idx) + " over.[/color]
@@ -251,6 +278,7 @@ func get_time_string():
 
 func add_ram(amount: int):
 	player_ram += amount
+	GlobalStates.currency_changed.emit(amount)
 
 
 func check_can_afford(amount: int) -> bool:
