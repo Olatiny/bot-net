@@ -140,16 +140,16 @@ distance_fade_length = 2009.81
 omni_range = 126.304
 omni_attenuation = 0.647
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9905195, 18.773594)
+size = 34.974
+
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_sbjjg")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(0.36324906, -3.7876497e-09, -0.93163556, 0, 1.0000002, -4.065169e-09, 0.93162984, 1.4768313e-09, 0.3632513, 18.36039, 0, 21.091715)
-progress = 62.590736
+transform = Transform3D(-0.028887836, 0.0130444635, -0.9994465, 0, 0.999916, 0.01304923, 0.9995237, 0.00037700587, -0.028885605, -1.0735118, 0.08004377, 23.473883)
+progress = 42.90631
 rotation_mode = 4
 cubic_interp = false
 tilt_enabled = false
-
-[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D"]
-transform = Transform3D(-0.18106404, 0.020629639, 0.9832548, 0.113203205, 0.9935717, 0, -0.9769344, 0.11130759, -0.18223546, 0, 0, 0)
-size = 34.974
