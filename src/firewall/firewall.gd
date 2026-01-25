@@ -15,8 +15,6 @@ func upgrade_wall():
 	upgrade_level +=1
 	max_health += 20
 	current_health = max_health
-	if upgraded_sprite:
-		$Sprite2D.texture = upgraded_sprite
 	print("Firewall upgraded to Level ", upgrade_level, ". Max Health: ", max_health)
 func _on_thorn_area_area_entered(area: Area2D):
 

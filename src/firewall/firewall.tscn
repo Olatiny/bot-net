@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://byvaonestqs7"]
+[gd_scene load_steps=5 format=3 uid="uid://byvaonestqs7"]
 
 [ext_resource type="Script" uid="uid://dve26by85f5y0" path="res://src/firewall/firewall.gd" id="1_yvk1g"]
-[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_y7g4w"]
 [ext_resource type="Texture2D" uid="uid://f1yd8p6tabtw" path="res://assets/wall_spritesheet.png" id="2_yvk1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3tst3"]
@@ -11,8 +10,8 @@ size = Vector2(135.8659, 161.68422)
 size = Vector2(126.569824, 121.26315)
 
 [node name="Firewall" type="StaticBody2D"]
+collision_mask = 2
 script = ExtResource("1_yvk1g")
-upgraded_sprite = ExtResource("2_y7g4w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-1.004879, -1.9843745)
