@@ -5,7 +5,7 @@ extends VBoxContainer
 @export var wall_scene: PackedScene
 @export var upgrade_cost_per_tower: int = 50 
 var selected_towers: Array = []
-@onready var upgrade_button = $%Button3
+@onready var upgrade_button = $%TowerPrompt
 
 var ghost_tower: Node2D = null
 var is_placing: bool = false

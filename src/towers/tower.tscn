@@ -1,28 +1,33 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx7x3s16y1ywr"]
+[gd_scene load_steps=7 format=3 uid="uid://bx7x3s16y1ywr"]
 
 [ext_resource type="Script" uid="uid://dfddxiqqcqi7i" path="res://src/towers/tower.gd" id="1_vedim"]
 [ext_resource type="PackedScene" uid="uid://bqkm35ds2suhe" path="res://src/towers/projectile.tscn" id="2_ipjxq"]
-[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_stebd"]
+[ext_resource type="Texture2D" uid="uid://cbv0qcjkgopnh" path="res://assets/tower_spritesheet.png" id="3_cuhe2"]
 [ext_resource type="Texture2D" uid="uid://dq0mkajgk1goa" path="res://src/entities/download.png" id="4_cuhe2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ipjxq"]
 radius = 222.38031
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cuhe2"]
+size = Vector2(155, 160)
 
 [node name="tower" type="Node2D" groups=["towers"]]
 script = ExtResource("1_vedim")
 projectile_scene = ExtResource("2_ipjxq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1.0000019)
-scale = Vector2(0.75, 0.7421875)
-texture = ExtResource("2_stebd")
+position = Vector2(0.9999695, -1)
+scale = Vector2(6.952381, 4.8124995)
+texture = ExtResource("3_cuhe2")
+region_enabled = true
+region_rect = Rect2(0, 0, 21.860039, 32.442055)
+region_filter_clip_enabled = true
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
-position = Vector2(-1, 1)
 shape = SubResource("CircleShape2D_ipjxq")
 
 [node name="Timer" type="Timer" parent="."]
@@ -36,7 +41,13 @@ position = Vector2(-1.0000019, -0.9999981)
 scale = Vector2(0.7586207, 0.7050691)
 texture = ExtResource("4_cuhe2")
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_cuhe2")
+
 [connection signal="area_entered" from="DetectionRange" to="." method="_on_detection_range_area_entered"]
 [connection signal="area_exited" from="DetectionRange" to="." method="_on_detection_range_area_exited"]
-[connection signal="input_event" from="DetectionRange" to="." method="_on_detection_range_input_event"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="input_event" from="Area2D" to="." method="_on_detection_range_input_event"]

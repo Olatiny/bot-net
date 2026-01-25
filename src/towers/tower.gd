@@ -73,8 +73,7 @@ func _on_detection_range_area_exited(area: Area2D):
 
 func _physics_process(_delta):
 	current_target = get_closest_target()
-	if is_instance_valid(current_target):
-		look_at(current_target.global_position)
+
 
 
 func get_closest_target():

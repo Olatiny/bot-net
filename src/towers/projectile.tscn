@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bqkm35ds2suhe"]
 
 [ext_resource type="Script" uid="uid://c0ltbx7j664xn" path="res://src/towers/projectile.gd" id="1_qxf0c"]
-[ext_resource type="Texture2D" uid="uid://cq6glhl1n4id2" path="res://icon.svg" id="2_dgwo2"]
+[ext_resource type="Texture2D" uid="uid://cbv0qcjkgopnh" path="res://assets/tower_spritesheet.png" id="2_7wt26"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxmqc"]
 size = Vector2(15, 45.25)
@@ -11,9 +11,13 @@ collision_mask = 2
 script = ExtResource("1_qxf0c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.5, 0)
-scale = Vector2(0.1328125, 0.359375)
-texture = ExtResource("2_dgwo2")
+position = Vector2(-4.7683716e-07, -1.0000005)
+rotation = -0.43458697
+scale = Vector2(3.0011003, 4.1476583)
+texture = ExtResource("2_7wt26")
+region_enabled = true
+region_rect = Rect2(14.872339, 11.478191, 6.3102417, 8.667915)
+region_filter_clip_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, -0.375)

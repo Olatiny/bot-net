@@ -14,7 +14,7 @@ func _physics_process(delta):
 
 	var direction = (target.global_position - global_position).normalized()
 	global_position += direction * speed * delta
-	look_at(target.global_position)
+
 
 	# Distance check for high-speed reliability
 	if global_position.distance_to(target.global_position) < hit_threshold:

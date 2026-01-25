@@ -18,7 +18,7 @@ func toggle_selection():
 	is_selected =!is_selected
 	if selection_visual:
 		selection_visual.visible = is_selected
-	modulate = Color(1.5, 1.5, 1.5) if is_selected else Color(0.912, 0.912, 0.452, 0.745)
+	modulate = Color(1.5, 1.5, 1.5) if is_selected else Color(1, 1, 1, 1)
 	return is_selected
 
 
@@ -78,8 +78,8 @@ func show_pulse():
 	attack_visual.visible = true
 	var tween = get_tree().create_tween()
 	
-	attack_visual.modulate.a = 0.5 
-	tween.tween_property(attack_visual, "modulate:a", 0.0, 0.5) 
+	attack_visual.modulate.a = 0.3 
+	tween.tween_property(attack_visual, "modulate:a", 0.0, 0.3) 
 
 	tween.finished.connect(func(): attack_visual.visible = false)
 	
