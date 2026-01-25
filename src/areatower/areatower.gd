@@ -1,35 +1,46 @@
 extends Node2D
 
 @export var damage: int = 2
+
 var upgrade_level: int = 1
 var targets: Array = []
 var is_selected: bool = false 
+
 @onready var selection_visual = $SelectionVisual
 @onready var damage_zone = $detection
 @onready var attack_visual = $attack_visual
 @onready var timer = $Timer
 
+
 func _ready():
 	if selection_visual:
 		selection_visual.visible = false
-	attack_visual.visible = false
-	attack_visual.modulate.a = 0.0
+	#attack_visual.visible = false
+	#attack_visual.modulate.a = 0.0
+
+
 func toggle_selection():
 	is_selected =!is_selected
+	
 	if selection_visual:
 		selection_visual.visible = is_selected
+		
 	modulate = Color(1.5, 1.5, 1.5) if is_selected else Color(1, 1, 1, 1)
 	return is_selected
 
 
 func apply_upgrade():
 	upgrade_level += 1
+	material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
 	damage += 10 # Increase damage
+	
 	if timer:
 		timer.wait_time = max(0.2, timer.wait_time * 0.8)
+		
 	is_selected = false
 	if selection_visual:
 		selection_visual.visible = false
+		
 	modulate = Color(1, 1, 1) # Reset highlight color
 
 
@@ -42,17 +53,20 @@ func _on_damage_zone_area_entered(area: Area2D):
 			print("Enemy entered AoE range: ", area.name)
 			targets.append(area)
 
+
 # FIX 2: Change to _on_damage_zone_area_exited
 func _on_damage_zone_area_exited(area: Area2D):
 	if targets.has(area):
 		print("Enemy left AoE range")
 		targets.erase(area)
 
+
 func _on_timer_timeout():
 	# DEBUG: This will show in the bottom 'Output' console
 	if targets.size() > 0:
 		print("AoE Timer Ticking... Enemies in range: ", targets.size())
 		attack()
+
 
 func attack():
 	show_pulse()
@@ -74,15 +88,19 @@ func attack():
 			# Clean up the list if the enemy was destroyed elsewhere
 			targets.erase(target_node)
 
-func show_pulse():
-	attack_visual.visible = true
-	var tween = get_tree().create_tween()
-	
-	attack_visual.modulate.a = 0.3 
-	tween.tween_property(attack_visual, "modulate:a", 0.0, 0.3) 
 
-	tween.finished.connect(func(): attack_visual.visible = false)
-	
+func show_pulse():
+	#$AttackPlayer.stop()
+	$AttackPlayer.play("attack")
+	#attack_visual.visible = true
+	#var tween = get_tree().create_tween()
+	#
+	#attack_visual.modulate.a = 0.3 
+	#tween.tween_property(attack_visual, "modulate:a", 0.0, 0.3) 
+#
+	#tween.finished.connect(func(): attack_visual.visible = false)
+
+
 func _on_detection_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:

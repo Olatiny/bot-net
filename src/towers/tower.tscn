@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bx7x3s16y1ywr"]
+[gd_scene load_steps=13 format=3 uid="uid://bx7x3s16y1ywr"]
 
+[ext_resource type="Material" uid="uid://cf23vnmu2hp2h" path="res://src/materials/color_replacer.tres" id="1_gy3ef"]
 [ext_resource type="Script" uid="uid://dfddxiqqcqi7i" path="res://src/towers/tower.gd" id="1_vedim"]
 [ext_resource type="PackedScene" uid="uid://bqkm35ds2suhe" path="res://src/towers/projectile.tscn" id="2_ipjxq"]
-[ext_resource type="Texture2D" uid="uid://cbv0qcjkgopnh" path="res://assets/tower_spritesheet.png" id="3_cuhe2"]
+[ext_resource type="Texture2D" uid="uid://cbbuy6vpi0v85" path="res://assets/sentinel_body.png" id="3_cuhe2"]
 [ext_resource type="Texture2D" uid="uid://dq0mkajgk1goa" path="res://src/entities/download.png" id="4_cuhe2"]
+[ext_resource type="Texture2D" uid="uid://djqhl1shsltrr" path="res://assets/sentinel_head.png" id="5_paehd"]
+[ext_resource type="Texture2D" uid="uid://g43alfxxgsxb" path="res://assets/sentinel_eye.png" id="6_oksfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ipjxq"]
 radius = 222.38031
@@ -11,17 +14,120 @@ radius = 222.38031
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cuhe2"]
 size = Vector2(155, 160)
 
+[sub_resource type="Animation" id="Animation_g4mi1"]
+resource_name = "idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Eye:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_gb7w2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Head:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Eye:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ffvku"]
+_data = {
+&"RESET": SubResource("Animation_gb7w2"),
+&"idle": SubResource("Animation_g4mi1")
+}
+
 [node name="tower" type="Node2D" groups=["towers"]]
+material = ExtResource("1_gy3ef")
 script = ExtResource("1_vedim")
 projectile_scene = ExtResource("2_ipjxq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="."]
+use_parent_material = true
 position = Vector2(0.9999695, -1)
-scale = Vector2(6.952381, 4.8124995)
+scale = Vector2(4, 4)
 texture = ExtResource("3_cuhe2")
-region_enabled = true
+hframes = 3
 region_rect = Rect2(0, 0, 21.860039, 32.442055)
 region_filter_clip_enabled = true
+
+[node name="Head" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -5)
+scale = Vector2(4, 4)
+texture = ExtResource("5_paehd")
+hframes = 3
+
+[node name="Eye" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -5)
+scale = Vector2(4, 4)
+texture = ExtResource("6_oksfx")
+hframes = 3
 
 [node name="DetectionRange" type="Area2D" parent="."]
 collision_layer = 4
@@ -46,6 +152,12 @@ texture = ExtResource("4_cuhe2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_cuhe2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ffvku")
+}
+autoplay = "idle"
 
 [connection signal="area_entered" from="DetectionRange" to="." method="_on_detection_range_area_entered"]
 [connection signal="area_exited" from="DetectionRange" to="." method="_on_detection_range_area_exited"]

@@ -3,6 +3,7 @@ extends Node2D
 
 @export var projectile_scene: PackedScene
 @export var damage: int = 10
+
 var upgrade_level: int = 1
 var is_selected: bool = false
 
@@ -17,6 +18,7 @@ func _ready():
 	# Ensure visual is hidden at start
 	if selection_visual:
 		selection_visual.visible = false
+	
 	# Ensure the tower is in the 'towers' group so the Shop can find it
 	add_to_group("towers")
 
@@ -49,6 +51,8 @@ func apply_upgrade():
 	upgrade_level += 1
 	damage += 5  # Increase projectile damage
 	
+	material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
+	
 	if timer:
 		# Shoot 15% faster with each upgrade
 		timer.wait_time = max(0.15, timer.wait_time * 0.85)
@@ -57,7 +61,9 @@ func apply_upgrade():
 	is_selected = false
 	if selection_visual:
 		selection_visual.visible = false
+	
 	modulate = Color(1, 1, 1)
+
 
 # --- COMBAT LOGIC ---
 
@@ -99,14 +105,18 @@ func _on_timer_timeout():
 
 
 func shoot():
-	if not projectile_scene: return
+	if not projectile_scene: 
+		return
+	
 	var p = projectile_scene.instantiate()
 	
 	# Use GameManager to place the projectile on the board
 	GameManager.game_board.add_child(p) 
 
-	p.global_position = self.global_position 
+	p.global_position = global_position
+	p.position.y -= 30
 	p.target = current_target
+	
 	# If your projectile has a damage variable, set it here:
 	if "damage" in p:
 		p.damage = damage
