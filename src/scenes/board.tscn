@@ -6,41 +6,41 @@
 [ext_resource type="Script" uid="uid://dbfpvpow154oi" path="res://src/board/game_path.gd" id="4_ntdqk"]
 [ext_resource type="PackedScene" uid="uid://whs5tsn0pnbf" path="res://src/scenes/folder_viewer.tscn" id="4_v43tc"]
 
-[sub_resource type="Curve2D" id="Curve2D_7yose"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3, -457, 0, 0, 0, 0, -3, -302, 0, 0, 0, 0, -383, -299, 0, 0, 0, 0, -386, 58, 0, 0, 0, 0, -480, 59, 0, 0, 0, 0, -482, 244)
-}
-point_count = 6
-
-[sub_resource type="Curve2D" id="Curve2D_v43tc"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4, -459, 0, 0, 0, 0, -4, -306, 0, 0, 0, 0, -382, -299, 0, 0, 0, 0, -390, 54, 0, 0, 0, 0, -290, 56, 0, 0, 0, 0, -287, 240)
-}
-point_count = 6
-
 [sub_resource type="Curve2D" id="Curve2D_ntdqk"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -7, -600, 0, 0, 0, 0, -7, -145, 0, 0, 0, 0, -8, -85, 0, 0, 0, 0, -100, -80, 0, 0, 0, 0, -101, 107)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -748, 0, 0, 0, 0, -4, -527, 0, 0, 0, 0, -316, -528, 0, 0, 0, 0, -387, -461, 0, 0, 0, 0, -389, -2, 0, 0, 0, 0, -481, 83, 0, 0, 0, 0, -479, 407)
 }
-point_count = 5
+point_count = 7
 
 [sub_resource type="Curve2D" id="Curve2D_0wql5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -3, -459, 0, 0, 0, 0, -4, -9, 0, 0, 0, 0, -4, 55, 0, 0, 0, 0, 98, 58, 0, 0, 0, 0, 98, 251)
+"points": PackedVector2Array(0, 0, 0, 0, -1, -749, 0, 0, 0, 0, -5, -527, 0, 0, 0, 0, -312, -528, 0, 0, 0, 0, -389, -457, 0, 0, 0, 0, -389, 1, 0, 0, 0, 0, -289, 82, 0, 0, 0, 0, -288, 406)
 }
-point_count = 5
+point_count = 7
 
 [sub_resource type="Curve2D" id="Curve2D_iy2xe"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4, -460, 0, 0, 0, 0, -3, -303, 0, 0, 0, 0, 380, -305, 0, 0, 0, 0, 381, 58, 0, 0, 0, 0, 288, 63, 0, 0, 0, 0, 289, 251)
+"points": PackedVector2Array(0, 0, 0, 0, -7, -890, 0, 0, 0, 0, -8, -91, 0, 0, 0, 0, -100, 7, 0, 0, 0, 0, -101, 271)
 }
-point_count = 6
+point_count = 4
 
 [sub_resource type="Curve2D" id="Curve2D_fh8u8"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2, -461, 0, 0, 0, 0, -1, -305, 0, 0, 0, 0, 378, -305, 0, 0, 0, 0, 381, 60, 0, 0, 0, 0, 478, 60, 0, 0, 0, 0, 481, 248)
+"points": PackedVector2Array(0, 0, 0, 0, -1, -753, 0, 0, 0, 0, -6, 43, 0, 0, 0, 0, 95, 150, 0, 0, 0, 0, 98, 410)
 }
-point_count = 6
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_td7d0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -755, 0, 0, 0, 0, -1, -528, 0, 0, 0, 0, 314, -522, 0, 0, 0, 0, 380, -452, 0, 0, 0, 0, 380, -12, 0, 0, 0, 0, 289, 87, 0, 0, 0, 0, 287, 411)
+}
+point_count = 7
+
+[sub_resource type="Curve2D" id="Curve2D_jy8l4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -3, -758, 0, 0, 0, 0, -3, -528, 0, 0, 0, 0, 313, -524, 0, 0, 0, 0, 380, -449, 0, 0, 0, 0, 378, -11, 0, 0, 0, 0, 479, 86, 0, 0, 0, 0, 481, 408)
+}
+point_count = 7
 
 [node name="Board" type="Node2D"]
 script = ExtResource("1_v43tc")
@@ -64,84 +64,85 @@ tile_set = ExtResource("1_7yose")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Decoration"]
 modulate = Color(0.11372549, 0.49411765, 0.101960786, 1)
+position = Vector2(-1, 0)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAMAA0AAAAFAAIAAAANAAoAAAAGAAAAAAAOAAYAAAAEAAEAAAAOAAcAAAAGAAEAAAAOAAgAAAAGAAEAAAAOAAkAAAAEAAEAAAAPAAoAAAAGAAAAAAAQAAoAAAAHAAAAAAAQAAsAAAAHAAEAAAAQAAwAAAAHAAEAAAAQAA0AAAAHAAIAAAARAAUAAAAGAAIAAAASAAUAAAAGAAIAAAASAAoAAAAFAAAAAAASAAsAAAAFAAEAAAASAAwAAAAFAAEAAAASAA0AAAAFAAIAAAATAAUAAAAGAAIAAAATAAoAAAAGAAAAAAAUAAIAAAAGAAEAAAAUAAMAAAAEAAEAAAAUAAQAAAAGAAEAAAAUAAUAAAAGAAEAAAAUAAYAAAAEAAEAAAAUAAcAAAAGAAEAAAAUAAgAAAAGAAEAAAAUAAkAAAAEAAEAAAAVAAUAAAAGAAIAAAAVAAoAAAAGAAAAAAAWAAUAAAAGAAIAAAAWAAoAAAAHAAAAAAAWAAsAAAAHAAEAAAAWAAwAAAAHAAEAAAAWAA0AAAAHAAIAAAAXAAUAAAAGAAIAAAAYAAUAAAAGAAIAAAAYAAoAAAAFAAAAAAAYAAsAAAAFAAEAAAAYAAwAAAAFAAEAAAAYAA0AAAAFAAIAAAAZAAUAAAAGAAIAAAAZAAoAAAAGAAAAAAAaAAYAAAAEAAEAAAAaAAcAAAAGAAEAAAAaAAgAAAAGAAEAAAAaAAkAAAAEAAEAAAAbAAoAAAAGAAAAAAAcAAoAAAAHAAAAAAAcAAsAAAAHAAEAAAAcAAwAAAAHAAEAAAAcAA0AAAAHAAIAAAANAAsAAAAHAAEAAAANAAwAAAAHAAEAAAAMAAwAAAAFAAEAAAAMAAsAAAAFAAEAAAAMAAoAAAAFAAAAAAAPAAsAAAAFAAEAAAAPAAwAAAAFAAEAAAAPAA0AAAAFAAIAAAANAA0AAAAHAAIAAAATAAsAAAAHAAEAAAATAAwAAAAHAAEAAAATAA0AAAAHAAIAAAAVAA0AAAAFAAIAAAAVAAwAAAAFAAEAAAAVAAsAAAAFAAEAAAAZAA0AAAAHAAIAAAAZAAwAAAAHAAEAAAAZAAsAAAAHAAEAAAAbAAsAAAAFAAEAAAAbAAwAAAAFAAEAAAAbAA0AAAAFAAIAAAATAAcAAAAFAAAAAAATAAgAAAAFAAIAAAAVAAcAAAAHAAAAAAAVAAgAAAAHAAIAAAAUAAoAAAAGAAIAAAAZAAcAAAAFAAAAAAAZAAgAAAAFAAIAAAAbAAgAAAAHAAIAAAAbAAcAAAAHAAAAAAAPAAgAAAAHAAIAAAAPAAcAAAAHAAAAAAAOAAoAAAAGAAIAAAAaAAoAAAAGAAIAAAAaAAUAAAAGAAEAAAAQAAUAAAAGAAIAAAAPAAUAAAAGAAIAAAAOAAUAAAAGAAEAAAANAAcAAAAFAAAAAAANAAgAAAAFAAIAAAAPAAQAAAAGAAAAAAAQAAQAAAAGAAAAAAARAAQAAAAGAAAAAAASAAQAAAAGAAAAAAATAAQAAAAGAAAAAAAVAAQAAAAGAAAAAAAWAAQAAAAGAAAAAAAXAAQAAAAGAAAAAAAYAAQAAAAGAAAAAAAZAAQAAAAGAAAAAAAaAAQAAAAGAAAAAAAOAAQAAAAGAAAAAAANAAQAAAAFAAAAAAANAAUAAAAFAAIAAAAbAAQAAAAHAAAAAAAbAAUAAAAHAAIAAAATAAIAAAAFAAIAAAAVAAIAAAAHAAIAAAAVAAEAAAAHAAAAAAAUAAEAAAAGAAAAAAATAAEAAAAFAAAAAAA=")
+tile_map_data = PackedByteArray("AAAMAA0AAAAFAAEAAAANAAoAAAAGAAEAAAAOAAkAAAAGAAEAAAAPAAoAAAAGAAEAAAAQAAoAAAAHAAAAAAAQAAsAAAAHAAEAAAAQAAwAAAAHAAEAAAAQAA0AAAAHAAEAAAASAAsAAAAFAAAAAAASAAwAAAAFAAEAAAASAA0AAAAFAAEAAAATAAoAAAAFAAAAAAAUAAcAAAAGAAEAAAAUAAkAAAAEAAEAAAAVAAoAAAAHAAAAAAAWAAsAAAAHAAAAAAAWAAwAAAAHAAEAAAAWAA0AAAAHAAEAAAAYAAoAAAAFAAAAAAAYAAsAAAAFAAEAAAAYAAwAAAAFAAEAAAAYAA0AAAAFAAEAAAAZAAoAAAAGAAEAAAAaAAYAAAAGAAEAAAAaAAcAAAAGAAEAAAAaAAgAAAAEAAEAAAAaAAkAAAAGAAEAAAAbAAoAAAAGAAEAAAAcAAoAAAAHAAAAAAAcAAsAAAAHAAEAAAAcAAwAAAAHAAEAAAAcAA0AAAAHAAEAAAANAAsAAAAHAAEAAAANAAwAAAAHAAEAAAAMAAwAAAAFAAEAAAAMAAsAAAAFAAEAAAAMAAoAAAAFAAAAAAAPAAsAAAAFAAEAAAAPAAwAAAAFAAEAAAAPAA0AAAAFAAEAAAANAA0AAAAHAAEAAAATAAsAAAAGAAEAAAATAAwAAAAHAAEAAAATAA0AAAAHAAEAAAAVAA0AAAAFAAEAAAAVAAwAAAAFAAEAAAAVAAsAAAAGAAEAAAAZAA0AAAAHAAEAAAAZAAwAAAAHAAEAAAAZAAsAAAAHAAEAAAAbAAsAAAAFAAEAAAAbAAwAAAAFAAEAAAAbAA0AAAAFAAEAAAATAAcAAAAGAAEAAAAVAAcAAAAGAAEAAAAUAAoAAAAGAAEAAAAOAAoAAAAGAAIAAAAaAAoAAAAGAAIAAAAaAAUAAAAGAAEAAAATAP3/AAAFAAAAAAAUAP3/AAAGAAAAAAAVAP3/AAAHAAAAAAAVAP7/AAAHAAIAAAAUAP7/AAAGAAEAAAATAP7/AAAFAAIAAAAUAP//AAAEAAEAAAAaAAIAAAAGAAEAAAAaAAMAAAAEAAEAAAAMAA4AAAAFAAEAAAAMAA8AAAAFAAEAAAAMABAAAAAFAAIAAAANABAAAAAHAAIAAAANAA8AAAAHAAEAAAANAA4AAAAHAAEAAAAPAA4AAAAFAAEAAAAPAA8AAAAFAAEAAAAQAA8AAAAHAAEAAAAQAA4AAAAHAAEAAAAQABAAAAAHAAIAAAAPABAAAAAFAAIAAAASAA4AAAAFAAEAAAASAA8AAAAFAAEAAAASABAAAAAFAAIAAAATABAAAAAHAAIAAAATAA8AAAAHAAEAAAATAA4AAAAHAAEAAAAVAA4AAAAFAAEAAAAVAA8AAAAFAAEAAAAWAA8AAAAHAAEAAAAWAA4AAAAHAAEAAAAVABAAAAAFAAIAAAAWABAAAAAHAAIAAAAYAA4AAAAFAAEAAAAYAA8AAAAFAAEAAAAYABAAAAAFAAIAAAAZABAAAAAHAAIAAAAZAA8AAAAHAAEAAAAZAA4AAAAHAAEAAAAbAA4AAAAFAAEAAAAbAA8AAAAFAAEAAAAbABAAAAAFAAIAAAAcABAAAAAHAAIAAAAcAA8AAAAHAAEAAAAcAA4AAAAHAAEAAAAUAAEAAAAGAAEAAAAUAAIAAAAGAAEAAAAUAAMAAAAEAAEAAAAUAAQAAAAEAAEAAAAUAAUAAAAGAAEAAAAUAAYAAAAGAAEAAAAOAAgAAAAEAAEAAAAOAAcAAAAGAAEAAAAOAAYAAAAGAAEAAAAOAAUAAAAGAAEAAAAOAAQAAAAGAAEAAAAOAAMAAAAEAAEAAAAOAAIAAAAGAAEAAAAaAAQAAAAGAAEAAAANAAQAAAAFAAAAAAAPAAQAAAAHAAAAAAAZAAQAAAAFAAAAAAAbAAQAAAAHAAAAAAAPAAEAAAAGAAAAAAAQAAEAAAAGAAMAAAARAAEAAAAGAAMAAAASAAEAAAAGAAMAAAATAAEAAAAGAAEAAAAVAAEAAAAGAAEAAAAWAAEAAAAGAAMAAAAXAAEAAAAGAAMAAAAYAAEAAAAGAAMAAAAZAAEAAAAGAAAAAAAUAAAAAAAGAAEAAAANAAUAAAAGAAEAAAAPAAUAAAAGAAEAAAAZAAUAAAAGAAEAAAAbAAUAAAAGAAEAAAANAAIAAAAFAAMAAAAPAAIAAAAHAAIAAAATAAIAAAAFAAIAAAAVAAIAAAAHAAIAAAAZAAIAAAAFAAIAAAAbAAIAAAAHAAMAAAAMAAUAAAAFAAAAAAAQAAUAAAAHAAAAAAAPAAYAAAAGAAEAAAANAAYAAAAGAAEAAAAZAAYAAAAGAAEAAAAYAAUAAAAFAAAAAAAcAAUAAAAHAAAAAAAbAAYAAAAGAAEAAAATAAAAAAAFAAAAAAAVAAAAAAAHAAAAAAANAAcAAAAFAAIAAAAPAAcAAAAHAAIAAAAMAAYAAAAFAAIAAAAQAAYAAAAHAAIAAAAYAAYAAAAFAAIAAAAZAAcAAAAFAAIAAAAUAAgAAAAGAAEAAAAbAAcAAAAHAAIAAAAcAAYAAAAHAAIAAAASAAcAAAAFAAIAAAASAAYAAAAFAAAAAAATAAYAAAAGAAEAAAAVAAYAAAAGAAEAAAAWAAYAAAAHAAAAAAAWAAcAAAAHAAIAAAATAAUAAAAFAAAAAAAVAAUAAAAHAAAAAAAbAAkAAAAHAAAAAAAZAAkAAAAFAAAAAAANAAkAAAAFAAAAAAAPAAkAAAAHAAAAAAAaAAEAAAAHAAAAAAAOAAEAAAAFAAAAAAAVAAgAAAAHAAIAAAATAAgAAAAFAAIAAAAUAAsAAAAGAAIAAAA=")
 tile_set = ExtResource("1_7yose")
 
 [node name="Folders" type="Node2D" parent="."]
 
 [node name="Folder" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(1312, 128)
+position = Vector2(1312, -128)
 current_state = 0
 
 [node name="Folder2" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(928, 512)
+position = Vector2(928, 384)
 
 [node name="Folder3" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(1312, 512)
+position = Vector2(1312, 448)
 
 [node name="Folder4" parent="Folders" instance=ExtResource("3_ntdqk")]
-position = Vector2(1696, 512)
+position = Vector2(1696, 384)
 
 [node name="Folder5" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
-position = Vector2(832, 832)
-path_to_disable = NodePath("")
+position = Vector2(832, 1024)
+path_to_disable = NodePath("../../Paths/Path")
 
 [node name="Folder6" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
-position = Vector2(1024, 832)
-path_to_disable = NodePath("")
+position = Vector2(1024, 1024)
+path_to_disable = NodePath("../../Paths/Path2")
 
 [node name="Folder7" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
-position = Vector2(1216, 832)
-path_to_disable = NodePath("")
+position = Vector2(1216, 1024)
+path_to_disable = NodePath("../../Paths/Path3")
 
 [node name="Folder8" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
-position = Vector2(1408, 832)
-path_to_disable = NodePath("")
+position = Vector2(1408, 1024)
+path_to_disable = NodePath("../../Paths/Path4")
 
 [node name="Folder9" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
-position = Vector2(1600, 832)
-path_to_disable = NodePath("")
+position = Vector2(1600, 1024)
+path_to_disable = NodePath("../../Paths/Path5")
 
 [node name="Folder10" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
-position = Vector2(1792, 832)
-path_to_disable = NodePath("")
+position = Vector2(1792, 1024)
+path_to_disable = NodePath("../../Paths/Path6")
 
 [node name="Paths" type="Node2D" parent="."]
 
 [node name="Path" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
-curve = SubResource("Curve2D_7yose")
+curve = SubResource("Curve2D_ntdqk")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path2" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
-curve = SubResource("Curve2D_v43tc")
+curve = SubResource("Curve2D_0wql5")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path3" type="Path2D" parent="Paths"]
 position = Vector2(1316, 755)
-curve = SubResource("Curve2D_ntdqk")
+curve = SubResource("Curve2D_iy2xe")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path4" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
-curve = SubResource("Curve2D_0wql5")
+curve = SubResource("Curve2D_fh8u8")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path5" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
-curve = SubResource("Curve2D_iy2xe")
+curve = SubResource("Curve2D_td7d0")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path6" type="Path2D" parent="Paths"]
 position = Vector2(1312, 617)
-curve = SubResource("Curve2D_fh8u8")
+curve = SubResource("Curve2D_jy8l4")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 

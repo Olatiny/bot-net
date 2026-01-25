@@ -82,6 +82,9 @@ var game_over_menu: GameOverMenu = null
 ## game over parent
 var game_over_canvas: Control = null
 
+## temp tower parent
+var temp_tower_parent: Node2D = null
+
 
 
 ## Timer for length of wave
@@ -105,7 +108,8 @@ func initialize_node_refs(in_virus_manager: VirusManager,
 		in_shop: Shop, 
 		in_game_board: Board, 
 		in_popup_container: Control,
-		in_game_over_canvas: Control) -> void:
+		in_game_over_canvas: Control,
+		in_temp_tower_parent) -> void:
 	virus_manager = in_virus_manager
 	terminal = in_terminal
 	shop = in_shop
@@ -113,7 +117,7 @@ func initialize_node_refs(in_virus_manager: VirusManager,
 	popup_container = in_popup_container
 	game_over_canvas = in_game_over_canvas
 	game_over_menu = in_game_over_canvas.get_child(0)
-	
+	temp_tower_parent = in_temp_tower_parent
 
 
 ## Called to start the game loop, resets / starts game

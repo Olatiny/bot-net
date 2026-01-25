@@ -31,5 +31,5 @@ func _ready() -> void:
 
 
 func start_game() -> void:
-	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container, game_over_canvas)
+	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container, game_over_canvas, $TempTowerParent)
 	GameManager.start_game()

@@ -97,7 +97,7 @@ func start_placement(selected_tower: PackedScene):
 	is_placing = true
 	ghost_tower = selected_tower.instantiate()
 	
-	get_tree().current_scene.add_child(ghost_tower)
+	GameManager.temp_tower_parent.add_child(ghost_tower)
 	
 	# Make it look like a "ghost"
 	ghost_tower.modulate.a = 0.5
@@ -125,7 +125,8 @@ func finalize_placement():
 	ghost_tower.set_physics_process(true)
 	
 	ghost_tower.reparent(GameManager.game_board, false)
-	ghost_tower.position.y -= 140
+	ghost_tower.position.y -= 310
+	ghost_tower.position.x += 15
 	
 	# Enable detection
 	for zone_name in ["DetectionRange", "DamageZone", "ThornArea"]:

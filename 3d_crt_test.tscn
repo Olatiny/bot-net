@@ -1,35 +1,46 @@
-[gd_scene load_steps=15 format=3 uid="uid://dvgyrbcbh567s"]
+[gd_scene load_steps=21 format=3 uid="uid://dvgyrbcbh567s"]
 
-[ext_resource type="Shader" uid="uid://c6p3lh6xico6c" path="res://src/materials/pixelate.gdshader" id="1_04u4j"]
+[ext_resource type="Script" uid="uid://crculil6se286" path="res://3d_crt_test.gd" id="1_7etww"]
 [ext_resource type="PackedScene" uid="uid://cj01a4v4rn7mv" path="res://src/main_game.tscn" id="1_n6cjk"]
 [ext_resource type="Shader" uid="uid://ddlynu18jv1ut" path="res://src/materials/crt_test.gdshader" id="2_cn0d0"]
-[ext_resource type="Script" uid="uid://xdtl7hgfhdbh" path="res://crt_buddy.gd" id="4_6c7sm"]
+[ext_resource type="Texture2D" uid="uid://ds17t6sl0eyqf" path="res://3D_asset/PBR/Screen_BaseColor.1001.png" id="5_4l6pq"]
+[ext_resource type="Texture2D" uid="uid://cbfqdmbyj7uch" path="res://3D_asset/PBR/Screen_Metallic.1001.png" id="6_7etww"]
+[ext_resource type="Texture2D" uid="uid://boa3gfptae16p" path="res://3D_asset/PBR/Screen_Normal.1001.png" id="7_nt2yy"]
+[ext_resource type="Texture2D" uid="uid://rw4rfs10ivke" path="res://3D_asset/PBR/Screen_Roughness.1001.png" id="8_kagal"]
+[ext_resource type="ArrayMesh" uid="uid://h1v6iyon1c35" path="res://3D_asset/screen.obj" id="9_rfl71"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c7sm"]
-albedo_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+[sub_resource type="QuadMesh" id="QuadMesh_7etww"]
+size = Vector2(4, 3)
+subdivide_width = 5
+subdivide_depth = 5
 
-[sub_resource type="BoxMesh" id="BoxMesh_cn0d0"]
-material = SubResource("StandardMaterial3D_6c7sm")
+[sub_resource type="ViewportTexture" id="ViewportTexture_7etww"]
+viewport_path = NodePath("GameSubviewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_cn0d0"]
-shader = ExtResource("1_04u4j")
-shader_parameter/pixelation = 0.01
-shader_parameter/opacity = 1.0
+[sub_resource type="ViewportTexture" id="ViewportTexture_nt2yy"]
+viewport_path = NodePath("GameSubviewport")
 
-[sub_resource type="Gradient" id="Gradient_3su6u"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.007843138, 0.039215688, 0.007843138, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt2yy"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_7etww")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = SubResource("ViewportTexture_nt2yy")
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_6c7sm"]
-gradient = SubResource("Gradient_3su6u")
-width = 1209
-height = 819
+[sub_resource type="BoxShape3D" id="BoxShape3D_7etww"]
+size = Vector3(4.1054077, 3.1242676, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_04u4j"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_rfl71"]
+viewport_path = NodePath("GameSubviewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7etww"]
+resource_local_to_scene = true
+render_priority = 0
 shader = ExtResource("2_cn0d0")
-shader_parameter/overlay = true
+shader_parameter/SCREEN_TEXTURE = SubResource("ViewportTexture_rfl71")
+shader_parameter/overlay = false
 shader_parameter/scanlines_opacity = 0.01600000076
-shader_parameter/scanlines_width = 0.0
+shader_parameter/scanlines_width = 0.0250000011875
 shader_parameter/grille_opacity = 0.0
 shader_parameter/resolution = Vector2(1920, 1080)
 shader_parameter/pixelate = false
@@ -44,116 +55,101 @@ shader_parameter/static_noise_intensity = 0.19600000931
 shader_parameter/aberration = 0.00500004773750006
 shader_parameter/brightness = 1.0
 shader_parameter/discolor = false
-shader_parameter/warp_amount = 0.530000025175
+shader_parameter/warp_amount = 0.258000012255
 shader_parameter/clip_warp = true
-shader_parameter/vignette_intensity = 0.61
+shader_parameter/vignette_intensity = 1.725
 shader_parameter/vignette_opacity = 0.21200001007
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_04u4j"]
-viewport_path = NodePath("CanvasLayer2/Control/SubViewportContainer/SubViewport")
+[sub_resource type="QuadMesh" id="QuadMesh_nt2yy"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_7etww")
+size = Vector2(4, 3)
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n6cjk"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c7sm"]
+albedo_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
 
-[sub_resource type="Sky" id="Sky_cn0d0"]
-sky_material = SubResource("ProceduralSkyMaterial_n6cjk")
+[sub_resource type="BoxMesh" id="BoxMesh_cn0d0"]
+material = SubResource("StandardMaterial3D_6c7sm")
 
-[sub_resource type="Environment" id="Environment_04u4j"]
-background_mode = 2
-background_energy_multiplier = 1.34
-sky = SubResource("Sky_cn0d0")
-ambient_light_sky_contribution = 0.72
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwadd"]
+albedo_texture = ExtResource("5_4l6pq")
+metallic = 1.0
+metallic_texture = ExtResource("6_7etww")
+roughness_texture = ExtResource("8_kagal")
+normal_enabled = true
+normal_texture = ExtResource("7_nt2yy")
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="Curve3D" id="Curve3D_sbjjg"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -35.66835, 4.454504, 5.523821, 0, 0, 0, 0, 0, 0, -30.01677, 3.0300179, 16.208694, 0, 0, 0, 0, 0, 0, -19.101574, 2.8559456, 21.337566, 0, 0, 0, 0, 0, 0, -11.331589, 0.21397781, 23.177408, 0, 0, 0, 0, 0, 0, 5.057082, 0, 23.651066, 0, 0, 0, 0, 0, 0, 18.166634, 0, 21.167263, 0, 0, 0, 0, 0, 0, 28.133419, 0, 17.281143, 0, 0, 0, 0, 0, 0, 34.635036, 0, 12.307026, 0, 0, 0, 0, 0, 0, 39.141533, 0, 5.349436),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 9
+
+[node name="3dCrtTest" type="Node3D"]
+script = ExtResource("1_7etww")
+
+[node name="GameSubviewport" type="SubViewport" parent="."]
+handle_input_locally = false
+physics_object_picking = true
+gui_embed_subwindows = true
+size = Vector2i(1920, 1440)
+render_target_update_mode = 4
+
+[node name="MainGame" parent="GameSubviewport" instance=ExtResource("1_n6cjk")]
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.3506594, 0, 0, 0, 6.3506594, 0, 0, 0, 1, 0, 9.391, -4.061375)
+mesh = SubResource("QuadMesh_7etww")
+surface_material_override/0 = SubResource("StandardMaterial3D_nt2yy")
+
+[node name="Area3D" type="Area3D" parent="Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+transform = Transform3D(0.99997485, 0, 0, 0, 0.99997485, 0, 0, 0, 1, -0.024499446, -0.007930398, 0)
+shape = SubResource("BoxShape3D_7etww")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(6.3506594, 0, 0, 0, 6.3506594, 0, 0, 0, 1, 0, 9.391, -1.5510354)
+mesh = SubResource("QuadMesh_nt2yy")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(7.498343, 0, 0, 0, 5.06498, 0, 0, 0, 1, 0, 0, -3.1884558)
+transform = Transform3D(218.89938, 0, 0, 0, 126.9598, 0, 0, 0, 13.324689, -0.9452915, 39.77169, -34.254345)
 mesh = SubResource("BoxMesh_cn0d0")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(11.305715, 0, 0, 0, -2.2139731e-07, -1, 0, 5.0649796, -4.3711385e-08, 0, -3, -3.1884558)
+transform = Transform3D(-232.8415, 0, 0, 0, -2.950051e-06, -10.805349, 0, 67.489296, -4.723168e-07, -0.9452915, -17.708029, 2.8740501)
 mesh = SubResource("BoxMesh_cn0d0")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.89655375)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 0
-follow_viewport_enabled = true
-
-[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_cn0d0")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-texture = SubResource("GradientTexture2D_6c7sm")
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-follow_viewport_enabled = true
-
-[node name="Control" type="Control" parent="CanvasLayer2"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.87, 0.87)
-pivot_offset = Vector2(960, 540)
-mouse_filter = 2
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = 960.0
-offset_bottom = 540.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.7, 0.7)
-pivot_offset = Vector2(960, 540)
-
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/Control/SubViewportContainer"]
-handle_input_locally = false
-physics_object_picking = true
-size = Vector2i(1920, 1080)
-render_target_update_mode = 4
-
-[node name="MainGame" parent="CanvasLayer2/Control/SubViewportContainer/SubViewport" instance=ExtResource("1_n6cjk")]
-
-[node name="crt_buddy" type="TextureRect" parent="CanvasLayer2/Control" node_paths=PackedStringArray("viewport")]
-clip_children = 2
-material = SubResource("ShaderMaterial_04u4j")
-clip_contents = true
-custom_minimum_size = Vector2(1920, 1440)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -720.0
-offset_right = 960.0
-offset_bottom = 720.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.75, 0.75)
-pivot_offset = Vector2(960, 720)
-mouse_filter = 2
-texture = SubResource("ViewportTexture_04u4j")
-script = ExtResource("4_6c7sm")
-viewport = NodePath("../SubViewportContainer/SubViewport")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.41545537, 0.90961355, 0, -0.90961355, 0.41545537, 0, 5.544836, 0)
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.835, 0)
+material_override = SubResource("StandardMaterial3D_qwadd")
+mesh = ExtResource("9_rfl71")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_04u4j")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7706299, 8.804083, 8.523164)
+light_energy = 5.235
+light_indirect_energy = 5.612
+light_size = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 497.79
+distance_fade_shadow = 507.79
+distance_fade_length = 2009.81
+omni_range = 126.304
+omni_attenuation = 0.647
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_sbjjg")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.36324906, -3.7876493e-09, -0.93163556, 0, 1.0000001, -4.065169e-09, 0.93162984, 1.4768311e-09, 0.3632513, 18.36039, 0, 21.091715)
+progress = 62.590736
+rotation_mode = 4
+cubic_interp = false
+tilt_enabled = false
+
+[node name="Camera3D" type="Camera3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(-0.18106404, 0.020629639, 0.9832548, 0.113203205, 0.9935717, 0, -0.9769344, 0.11130759, -0.18223546, 0, 0, 0)
+size = 34.974

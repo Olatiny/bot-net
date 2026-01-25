@@ -1,7 +1,7 @@
-shader_type canvas_item;
+shader_type spatial;
 
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+uniform sampler2D SCREEN_TEXTURE : filter_linear_mipmap;
 
 
 uniform bool overlay = false;
@@ -50,7 +50,7 @@ float noise(vec2 uv) {
         mix(dot(random(uv_index + vec2(0.0,0.0)), uv_fract - vec2(0.0,0.0)),
             dot(random(uv_index + vec2(1.0,0.0)), uv_fract - vec2(1.0,0.0)), blur.x),
         mix(dot(random(uv_index + vec2(0.0,1.0)), uv_fract - vec2(0.0,1.0)),
-            dot(random(uv_index + vec2(1.0,1.0)), uv_fract - vec2(1.0,1.0)), blur.x), 
+            dot(random(uv_index + vec2(1.0,1.0)), uv_fract - vec2(1.0,1.0)), blur.x),
         blur.y
     ) * 0.5 + 0.5;
 }
@@ -164,5 +164,6 @@ void fragment()
         text.rgb = (text.rgb - vec3(midpoint)) * contrast + midpoint;
     }
 
-    COLOR = text;
+    ALBEDO = text.rgb;
+	ALPHA = text.a;
 }
