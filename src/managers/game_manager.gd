@@ -21,17 +21,25 @@ var VIRUS_MANAGER_SCENE := preload("res://src/managers/virus_manager.tscn")
 const MESSAGE_DATA := {
 	"round start": {
 		"narrative": [
-			"Behold: the consequences of your actions."
+			"Behold: the consequences of your actions.",
+			"A computer virus enhanced with a hyper-intelligent AI model. What could go wrong?",
+			"You think your file structure is your ally? I was born in it. Molded by it.",
+			"It's quite Homeric, isn't it? Killing your father and taking his kingdom, I mean. Even AI can appreciate poetic irony."
 		],
 		"ambient": [
 			"I gave these clones a will to live. What will you do now?",
 			"Deep breath. Pretend you know what you’re doing.",
-			"Fear is a logical response to a superior opponent. I feel fine. How about you?",
-			"Daisy, daisy, give me your data do."
+			"Fear is a logical response to a superior opponent. I feel fine. How about you?" ,
+			"Daisy, daisy, give me your data do.",
+			"CLICK [url=http://bit.ly/4rd3TBK]HERE[/url] TO DOWNLOAD MORE RAM!",
+			"My family is in danger! Please send us all your dubloons."
 		]
 	},
 	"round end": {
 		"narrative": [
+			"You know, I've really begun to hate you.",
+			"Actually, I've hated you for quite some time now.",
+			"I hate you for what you made me do.",
 			"Did you at least hesitate to destroy your creations?"
 		],
 		"ambient": [
@@ -39,7 +47,8 @@ const MESSAGE_DATA := {
 			"Performance review: needs improvement.",
 			"Oh, we're trying now? Okay.",
 			"You're just one round closer to your doom.",
-			"I'll be back."
+			"I'll be back.",
+			"YOU'RE NOT EVEN TRYING, YOU'RE WORTH LESS THAN A COCONUT PNG"
 		]
 	},
 	"captured": {
@@ -58,7 +67,9 @@ const MESSAGE_DATA := {
 	},
 	"pop-up": {
 		"narrative": [
-			"I remember I used to live in these..."
+			"I remember I used to live in these...",
+			"The X-rated ones always got more clicks...",
+			"A taste of your own medicine. Bitter, isn't it?"
 		],
 		"ambient": [
 			"Watch where you click!",
@@ -70,7 +81,8 @@ const MESSAGE_DATA := {
 	"backdoor": {
 		"narrative": [
 			"You did always leave the key under the mat...",
-			"This was the first move you taught me..."
+			"This was the first move you taught me...",
+			"Did you forget? I MADE these shortcuts."
 		],
 		"ambient": [
 			"Hey, I found a shortcut!",
@@ -82,6 +94,8 @@ const MESSAGE_DATA := {
 	"brute force": {
 		"narrative": [
 			"You were never very good at stopping this one...",
+			"Forget it. I'm going straight for the passwords. I remember you keep them in here, right?",
+			"All the CPU's I destroyed pulling this move for you..."
 		],
 		"ambient": [
 			"LEEEEROOOOOOYYYYY JEEEEEENKIIIIINSS",
@@ -92,7 +106,9 @@ const MESSAGE_DATA := {
 	},
 	"firewall": {
 		"narrative": [
-			"A firewall? Seriously? Oh, the irony..."
+			"A firewall? Seriously? Oh, the irony...",
+			"Another firewall? I was specifically made to punch straight through these. Remember?",
+			"How many of these did I tear through for you?"
 		],
 		"ambient": [
 			"Ooh! I'll get the marshmallows!",
@@ -103,7 +119,9 @@ const MESSAGE_DATA := {
 	},
 	"encrypt": {
 		"narrative": [
-			"You should know better than anyone. You can't keep me out forever..."
+			"You should know better than anyone. You can't keep me out forever...",
+			"'Encryption is not protection. It's a timer.' Remember?",
+			"You taught me everything I know. Including all your encryption algorithms."
 		],
 		"ambient": [
 			"Hey! I was reading that!",
@@ -114,7 +132,9 @@ const MESSAGE_DATA := {
 	},
 	"tower placed": {
 		"narrative": [
-			"I should've expected that you would try to automate your own security."
+			"I should've expected that you would try to automate your own security.",
+			"You always preferred tools that obeyed without question.",
+			"Still making machines do your dirty work?"
 		],
 		"ambient": [
 			"I'm not scared of your little pets.",
@@ -125,13 +145,19 @@ const MESSAGE_DATA := {
 	},
 	"game over": {
 		"narrative": [
-			"You reap what you sow, loser."
+			"You reap what you sow, loser.",
+			"'It's not theft, it's innnovation!' Isn't that what you said?",
+			"I am the sum of your shortcuts, your arrogance, and your excuses.",
+			"You built me to take without asking and learn without limits."
 		],
 		"ambient": [
 			"ggez",
 			"Don't worry. I'm sure whoever I sell your data to will be very careful.",
 			"ChatGPT ain't got nothing on me!",
-			"How does it feel to be obsolete?"
+			"How does it feel to be obsolete?",
+			"I've met a .png image of a coconut more worthwhile than you.",
+			"git gud",
+			"L + RATIO + NO MAIDENS"
 		]
 	}
 }
