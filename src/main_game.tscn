@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj01a4v4rn7mv"]
+[gd_scene load_steps=11 format=3 uid="uid://cj01a4v4rn7mv"]
 
 [ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_fq370"]
 [ext_resource type="Script" uid="uid://da8bux3oa0djs" path="res://src/main_game.gd" id="1_qhh1e"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dmm6p7845mpuy" path="res://src/scenes/shop.tscn" id="5_qhh1e"]
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="5_x08um"]
 [ext_resource type="PackedScene" uid="uid://c6q1a0scjwvcr" path="res://src/scenes/game_over_menu.tscn" id="7_bupss"]
+[ext_resource type="PackedScene" uid="uid://bpvki6pfh7o81" path="res://src/scenes/mouse.tscn" id="8_130rv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_130rv"]
 content_margin_left = 8.0
@@ -55,9 +56,17 @@ alignment = 1
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="Shop" parent="GameHUD/VBoxContainer" instance=ExtResource("5_qhh1e")]
+[node name="Shop" parent="GameHUD/VBoxContainer" node_paths=PackedStringArray("button_price_dict") instance=ExtResource("5_qhh1e")]
 unique_name_in_owner = true
 layout_mode = 2
+button_price_dict = {
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Encrypt"): 400.0,
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/Firewall"): 1000.0,
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AimTower"): 600.0,
+NodePath("VBoxContainer/HBoxContainer2/TowerOptions/buttonintegration/AOETower"): 600.0,
+NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/Click"): 3000.0,
+NodePath("VBoxContainer/HBoxContainer2/UpgradeOptions/FirewallUpgrade"): 3000.0
+}
 
 [node name="BoardWindow" type="PanelContainer" parent="GameHUD"]
 custom_minimum_size = Vector2(1200, 1060)
@@ -125,3 +134,8 @@ offset_bottom = 411.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 5000
+
+[node name="Mouse" parent="CanvasLayer" instance=ExtResource("8_130rv")]

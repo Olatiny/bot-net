@@ -39,7 +39,10 @@ var ram_income := 1.0
 var encrypt_charges := 0
 
 ## Current player click attack damage
-var player_attack_damage := 1
+var player_attack_damage := 1:
+	set(val):
+		GlobalStates.mouse_tier_change.emit(val)
+		player_attack_damage = val
 
 ## time elapsed of playthrough, resets each defeat (seconds)
 var elapsed_time := 0.0

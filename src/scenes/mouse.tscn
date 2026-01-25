@@ -1,0 +1,305 @@
+[gd_scene load_steps=30 format=3 uid="uid://bpvki6pfh7o81"]
+
+[ext_resource type="Texture2D" uid="uid://cytqhln8a8tsb" path="res://assets/mouse_sheet.png" id="1_fiovx"]
+[ext_resource type="Material" uid="uid://cf23vnmu2hp2h" path="res://src/materials/color_replacer.tres" id="1_lf52b"]
+[ext_resource type="Script" uid="uid://dj542x44hqv3e" path="res://src/scenes/mouse.gd" id="1_qivrn"]
+
+[sub_resource type="Animation" id="Animation_qivrn"]
+resource_name = "idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_lf52b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:clicked")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_u7sjv"]
+resource_name = "hover"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_mmche"]
+resource_name = "click"
+length = 0.30001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:clicked")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fjeoi"]
+resource_name = "shield_idle"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_fue5q"]
+resource_name = "shield_hover"
+length = 0.90001
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_q2rot"]
+resource_name = "shield_click"
+length = 0.90001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [15, 16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:clicked")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u7sjv"]
+_data = {
+&"RESET": SubResource("Animation_lf52b"),
+&"click": SubResource("Animation_mmche"),
+&"hover": SubResource("Animation_u7sjv"),
+&"idle": SubResource("Animation_qivrn"),
+&"shield_click": SubResource("Animation_q2rot"),
+&"shield_hover": SubResource("Animation_fue5q"),
+&"shield_idle": SubResource("Animation_fjeoi")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qivrn"]
+animation = &"click"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lf52b"]
+animation = &"shield_click"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_u7sjv"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qivrn")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_lf52b")
+blend_point_1/pos = 1.0
+min_space = 0.0
+snap = 1.0
+value_label = "shield_state"
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mmche"]
+animation = &"hover"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjeoi"]
+animation = &"shield_hover"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fue5q"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_mmche")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_fjeoi")
+blend_point_1/pos = 1.0
+min_space = 0.0
+value_label = "shield_state"
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q2rot"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l6b4c"]
+animation = &"shield_idle"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_q2rft"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_q2rot")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_l6b4c")
+blend_point_1/pos = 1.0
+min_space = 0.0
+snap = 1.0
+value_label = "shield_state"
+blend_mode = 1
+sync = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gymix"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "!hovering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kckck"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "hovering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_egnia"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "hovering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qxrp8"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "!hovering"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5h4cw"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "clicked"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bk8h3"]
+switch_mode = 1
+advance_mode = 2
+advance_expression = "clicked"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mypym"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fn2ap"]
+states/Click/node = SubResource("AnimationNodeBlendSpace1D_u7sjv")
+states/Click/position = Vector2(493, 205)
+states/Hover/node = SubResource("AnimationNodeBlendSpace1D_fue5q")
+states/Hover/position = Vector2(581, 100)
+states/Idle/node = SubResource("AnimationNodeBlendSpace1D_q2rft")
+states/Idle/position = Vector2(394, 100)
+transitions = ["Click", "Idle", SubResource("AnimationNodeStateMachineTransition_gymix"), "Click", "Hover", SubResource("AnimationNodeStateMachineTransition_kckck"), "Idle", "Hover", SubResource("AnimationNodeStateMachineTransition_egnia"), "Hover", "Idle", SubResource("AnimationNodeStateMachineTransition_qxrp8"), "Hover", "Click", SubResource("AnimationNodeStateMachineTransition_5h4cw"), "Idle", "Click", SubResource("AnimationNodeStateMachineTransition_bk8h3"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_mypym")]
+graph_offset = Vector2(-38, -21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qivrn"]
+size = Vector2(9, 26.5)
+
+[node name="Mouse" type="Node2D"]
+material = ExtResource("1_lf52b")
+script = ExtResource("1_qivrn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+scale = Vector2(2, 2)
+texture = ExtResource("1_fiovx")
+offset = Vector2(8, 7.75)
+hframes = 3
+vframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_u7sjv")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_fn2ap")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Click/blend_position = 0.03289882
+parameters/Hover/blend_position = 0.33395407
+parameters/Idle/blend_position = 0.28243327
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 86
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3.5, 11.75)
+shape = SubResource("RectangleShape2D_qivrn")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

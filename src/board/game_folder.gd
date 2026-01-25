@@ -47,11 +47,13 @@ func _process(delta: float) -> void:
 	if current_state == FOLDER_TYPE.ROOT:
 		return
 	
-	while virus_list.has(null):
-		virus_list.erase(null)
+	# NOTE: Not sure how this happens yet but we get nulls so this clears nulls as a last resort
+	for i in range(virus_list.size() - 1, -1, -1):
+		if !is_instance_valid(virus_list[i]):
+			virus_list.remove_at(i)
 	
 	if Input.is_action_just_pressed("attack") && _mouse_over:
-		print("Folder clicked!")
+		#print("Folder clicked!")
 		_try_open_folder()
 	
 	_process_dot(delta)
@@ -121,11 +123,13 @@ func remove_virus_data():
 ## private detector of mouse
 func _on_mouse_entered() -> void:
 	_mouse_over = true
+	GlobalStates.mouse_hover.emit(true)
 
 
 ## private detector of mouse
 func _on_mouse_exited() -> void:
 	_mouse_over = false
+	GlobalStates.mouse_hover.emit(false)
 
 
 func neutralize_folder():

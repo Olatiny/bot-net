@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cf23vnmu2hp2h"]
+
+[ext_resource type="Shader" uid="uid://66mycyheckg" path="res://src/materials/color_replacer.gdshader" id="1_u2bbm"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_u2bbm")
+shader_parameter/colors_to_replace = 1
+shader_parameter/source_color_1 = Color(1, 1, 1, 1)
+shader_parameter/dest_color_1 = Color(0.79607844, 0.16470589, 0.36862746, 1)
+shader_parameter/tolerance_1 = 0.2500000037253
+shader_parameter/source_color_2 = Color(0, 0, 0, 1)
+shader_parameter/dest_color_2 = Color(0, 0, 0, 1)
+shader_parameter/tolerance_2 = 0.0

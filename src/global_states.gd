@@ -5,12 +5,29 @@ extends Node
 
 ## Enum class for human-readable collision layering in code
 enum COLLISION_LAYERS {
-	PLAYER =    0b00001,
-	VIRUS  =    0b00010,
-	TOWER  =    0b00100,
-	PATH   =    0b01000,
-	FOLDER =    0b10000
+	PLAYER         =   0b000001,
+	VIRUS          =   0b000010,
+	TOWER          =   0b000100,
+	PATH           =   0b001000,
+	FOLDER         =   0b010000,
+	MOUSE_DETECT   =   0b100000
 }
+
+## Global dict of colors for tiers
+const TIER_COLORS: Array[Color] = [
+	Color("bc0463"),
+	Color("a54902"),
+	Color("bba600"),
+	Color("1d7e1a"),
+	Color("04767f"),
+	Color("5f31f9"),
+	Color("aa04a7"),
+]
+
+## global function to get a correct tier color
+func get_tier_color(tier: int):
+	return TIER_COLORS[tier % (TIER_COLORS.size())]
+
 
 #####################
 ### TERMINAL USRS ###
@@ -39,3 +56,9 @@ signal folder_closed(folder: GameFolder)
 
 @warning_ignore("unused_signal")
 signal virus_defeated(virus: Virus)
+
+@warning_ignore("unused_signal")
+signal mouse_hover(state: bool)
+
+@warning_ignore("unused_signal")
+signal mouse_tier_change(new_tier: int)

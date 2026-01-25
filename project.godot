@@ -66,6 +66,7 @@ debug_spawn_virus={
 2d_physics/layer_4="Path"
 2d_physics/layer_5="Folder"
 2d_physics/layer_6="Wall"
+2d_physics/layer_7="Mouse Detection"
 
 [rendering]
 

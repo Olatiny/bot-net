@@ -114,8 +114,15 @@ func set_enabled(enabled_state: bool):
 ## mouse over event
 func _mouse_entered() -> void:
 	_mouse_over = true
+	GlobalStates.mouse_hover.emit(true)
 
 
 ## mouse exit event
 func _mouse_exited() -> void:
 	_mouse_over = false
+	GlobalStates.mouse_hover.emit(false)
+
+
+func _exit_tree() -> void:
+	if _mouse_over:
+		_mouse_exited()
