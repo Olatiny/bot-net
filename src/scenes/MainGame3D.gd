@@ -30,6 +30,7 @@ func _start_game_pressed():
 
 func _return_to_main():
 	animation_player.play_backwards("start_playing")
+	#AudioManager.fade_to_menu()
 	main_game_2d.visible = false
 	main_menu.visible = true
 

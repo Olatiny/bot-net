@@ -192,11 +192,14 @@ var player_ram := 0.0
 ## current player ram income every second
 var ram_income := 1.0
 
+## base ram income
+var base_ram_income := 10.0
+
 ## encrypt charges
 var encrypt_charges := 0
 
 ## Current player click attack damage
-var player_attack_damage := 1:
+var player_attack_damage := 1.0:
 	set(val):
 		player_attack_damage = val
 
@@ -226,8 +229,8 @@ var player_level := 1:
 	set(value):
 		player_level = value
 		#player_level = clamp(player_level, 1, max_level)
-		player_attack_damage = 1 + value
-		ram_income = 10 + value * 3
+		player_attack_damage = 1 + value * 0.5
+		ram_income = base_ram_income + value * 3
 		GlobalStates.mouse_tier_change.emit(value)
 
 ## Affects potency of encrypt
@@ -415,6 +418,7 @@ func end_wave():
 		#GameManager.terminal.push_new_message("GET DUNKED ON", virus_name)
 		return
 	
+	AudioManager.sfx_play_wave_clear_sfx()
 	AudioManager.fade_to_shop()
 	shop.toggle_shop_phase(true)
 	

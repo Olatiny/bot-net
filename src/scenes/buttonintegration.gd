@@ -132,6 +132,8 @@ func finalize_placement():
 	#ghost_tower.position.y -= 310
 	#ghost_tower.position.x -= 400
 	
+	AudioManager.sfx_play_place_sfx()
+	
 	# Enable detection
 	for zone_name in ["DetectionRange", "DamageZone", "ThornArea"]:
 		var zone = ghost_tower.get_node_or_null(zone_name)

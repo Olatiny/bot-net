@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d1etepn1bvru7"
+path="res://.godot/imported/B0TN3T INTRO.wav-c8c1c7b340bbd02365b18f0aea6eea91.sample"
+
+[deps]
+
+source_file="res://assets/audio/music/B0TN3T INTRO.wav"
+dest_files=["res://.godot/imported/B0TN3T INTRO.wav-c8c1c7b340bbd02365b18f0aea6eea91.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

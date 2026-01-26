@@ -23,8 +23,7 @@ func power_on() -> void:
 	if anim_player.is_playing() || shutdown_pressed:
 		return
 	
-	AudioManager.start_music()
-	AudioManager.pause(true)
+	#AudioManager.pause(true)
 	anim_player.play("reveal")
 	
 	$Control/PanelContainer2/MainPanel.visible = true
@@ -32,10 +31,21 @@ func power_on() -> void:
 	$Control/PanelContainer2/Prefs.visible = false
 
 
+func play_crt_start_sound():
+	AudioManager.sfx_play_crt_on_sfx()
+
+
+func play_startup_sound():
+	AudioManager.sfx_play_startup_sfx()
+
+
+func start_music():
+	AudioManager.fade_to_menu()
+
+
 func start_game():
 	if anim_player.is_playing() || shutdown_pressed:
 		return
-	
 	
 	AudioManager.start_music()
 	AudioManager.pause(false)

@@ -35,6 +35,7 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("attack"):
 		clicked = true
+		AudioManager.sfx_play_mouse_click_sfx()
 
 
 func _mouse_tier_change(new_tier: int):

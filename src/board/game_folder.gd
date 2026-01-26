@@ -45,6 +45,9 @@ var folder_open := false
 ## private field checking for mouse over
 var _mouse_over := false
 
+## if da staleness gets thy
+var _sfx_stale := false
+
 
 func _process(delta: float) -> void:
 	if ![GameManager.GAME_STATE.ACTIVE, GameManager.GAME_STATE.SHOP].has(GameManager.current_state):
@@ -70,6 +73,9 @@ func _process(delta: float) -> void:
 	if tolerance >= 100:
 		current_state = FOLDER_TYPE.DEFEATED
 	elif tolerance > 0:
+		if tolerance > 80:
+			_sfx_stale = false
+		
 		current_state = FOLDER_TYPE.INFECTED
 	else:
 		current_state = FOLDER_TYPE.NEUTRAL
@@ -185,7 +191,7 @@ func _process_dot(delta: float):
 
 
 func encrypt_folder():
-	var temp = tolerance - max_shield
+	var temp = tolerance - (max_shield / 2)
 	
 	if temp < 0:
 		shield = -1 * temp
@@ -194,3 +200,11 @@ func encrypt_folder():
 		tolerance = temp
 	
 	$ShieldBar.value = shield
+
+
+func play_danger_sfx():
+	if _sfx_stale:
+		return
+	
+	_sfx_stale = true
+	AudioManager.sfx_play_file_in_danger()

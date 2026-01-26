@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://7bg7s2lq7puq"]
+[gd_scene load_steps=17 format=3 uid="uid://7bg7s2lq7puq"]
 
 [ext_resource type="Script" uid="uid://bi766duc4vfmo" path="res://src/managers/audio_manager.gd" id="1_7642x"]
 [ext_resource type="AudioStream" uid="uid://hq5n3wqg3mbh" path="res://assets/audio/music/B0TN3T Combat v_12 w_Stinger.wav" id="3_ex770"]
@@ -6,21 +6,44 @@
 [ext_resource type="AudioStream" uid="uid://csxxxdyyruokq" path="res://assets/audio/music/Shop Loop w_Stinger.wav" id="5_8y8yc"]
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="6_ex770"]
 [ext_resource type="AudioStream" uid="uid://6mdkdqr2v171" path="res://assets/audio/music/Shop Loop w_o Stinger.wav" id="6_tpyky"]
+[ext_resource type="AudioStream" uid="uid://ld31tfe8vf8i" path="res://assets/audio/sfx/hitHurt(1).wav" id="6_vyi46"]
+[ext_resource type="AudioStream" uid="uid://b3ftkm8bsj4mo" path="res://assets/audio/sfx/Startup SFX.wav" id="7_fjtt3"]
+[ext_resource type="AudioStream" uid="uid://d1etepn1bvru7" path="res://assets/audio/music/B0TN3T INTRO.wav" id="8_vyi46"]
+[ext_resource type="AudioStream" uid="uid://gihkp1ckl0mr" path="res://assets/audio/sfx/Mouse_Click.wav" id="9_1brt0"]
+[ext_resource type="AudioStream" uid="uid://dbe0f400b875m" path="res://assets/audio/sfx/PURCHASE SFX_1.wav" id="11_eub0i"]
+[ext_resource type="AudioStream" uid="uid://b8guhrk36rr4j" path="res://assets/audio/sfx/FILE_IN_DANGER.wav" id="11_kgosn"]
+[ext_resource type="AudioStream" uid="uid://c3rcirsjjs7qe" path="res://assets/audio/sfx/Virus_Death.wav" id="12_kgosn"]
+[ext_resource type="AudioStream" uid="uid://fe6tb2xntfrq" path="res://assets/audio/sfx/Wave_End.wav" id="13_eub0i"]
+[ext_resource type="AudioStream" uid="uid://c7pemderjo1ps" path="res://assets/audio/sfx/CRT ON SWITCH.wav" id="13_jgonj"]
+[ext_resource type="AudioStream" uid="uid://bc2nk5h53l0xe" path="res://assets/audio/sfx/PLACE TOWER.wav" id="15_0jvjy"]
 
 [node name="AudioManager" type="Node2D"]
 process_mode = 3
 script = ExtResource("1_7642x")
 master_volume_linear = 0.7
+main_menu = ExtResource("8_vyi46")
 shop_with_intro = ExtResource("5_8y8yc")
 shop_without_intro = ExtResource("6_tpyky")
 main_with_intro = ExtResource("3_ex770")
 main_without_intro = ExtResource("3_qcxmb")
+hit_sfx = ExtResource("6_vyi46")
+startup_sfx = ExtResource("7_fjtt3")
+mouse_click_sfx = ExtResource("9_1brt0")
+file_in_danger = ExtResource("11_kgosn")
+purchase_sfx = ExtResource("11_eub0i")
+death_sfx = ExtResource("12_kgosn")
+wave_clear_sfx = ExtResource("13_eub0i")
+crt_on_sfx = ExtResource("13_jgonj")
+place_sfx = ExtResource("15_0jvjy")
 
 [node name="ShopPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
 
 [node name="MainPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
+
+[node name="MainMenuPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_vyi46")
 
 [node name="FadeTimer" type="Timer" parent="."]
 
@@ -66,6 +89,7 @@ text = "Stop"
 
 [connection signal="finished" from="ShopPlayer" to="." method="_on_shop_player_finished"]
 [connection signal="finished" from="MainPlayer" to="." method="_on_main_player_finished"]
+[connection signal="finished" from="MainMenuPlayer" to="." method="_on_main_menu_player_finished"]
 [connection signal="pressed" from="test canvas/VBoxContainer/Start" to="." method="start_music"]
 [connection signal="pressed" from="test canvas/VBoxContainer/main" to="." method="fade_to_main"]
 [connection signal="pressed" from="test canvas/VBoxContainer/shop" to="." method="fade_to_shop"]
