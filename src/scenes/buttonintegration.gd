@@ -114,27 +114,41 @@ func start_placement(selected_tower: PackedScene):
 			detection.monitoring = false
 
 
+
+
 func finalize_placement():
-	is_placing = false
-	ghost_tower.modulate.a = 1.0
 	
-	# Ensure it stays exactly where the ghost was
-	ghost_tower.global_position = get_global_mouse_position()
+	var space_state = ghost_tower.get_world_2d().direct_space_state
+	var query = PhysicsPointQueryParameters2D.new()
+	query.position = get_global_mouse_position()
+	if ghost_tower.is_in_group("firewalls"):
+		query.collision_mask = 1 << 7
+	else:
+		query.collision_mask = 1 << 8
+	var result = space_state.intersect_point(query)
+	if result.size() > 0:
 	
-	ghost_tower.set_process(true)
-	ghost_tower.set_physics_process(true)
 	
-	ghost_tower.reparent(GameManager.game_board, true)
-	ghost_tower.position.y -= 310
-	ghost_tower.position.x += 15
-	
-	# Enable detection
-	for zone_name in ["DetectionRange", "DamageZone", "ThornArea"]:
-		var zone = ghost_tower.get_node_or_null(zone_name)
-		if zone:
-			zone.monitoring = true
-			
-	ghost_tower = null
+		is_placing = false
+		ghost_tower.modulate.a = 1.0
+		
+		# Ensure it stays exactly where the ghost was
+		ghost_tower.global_position = get_global_mouse_position()
+		
+		ghost_tower.set_process(true)
+		ghost_tower.set_physics_process(true)
+		
+		ghost_tower.reparent(GameManager.game_board, true)
+		ghost_tower.position.y -= 310
+		ghost_tower.position.x += 15
+		
+		# Enable detection
+		for zone_name in ["DetectionRange", "DamageZone", "ThornArea"]:
+			var zone = ghost_tower.get_node_or_null(zone_name)
+			if zone:
+				zone.monitoring = true
+				
+		ghost_tower = null
 
 
 func toggle_tower_selection(tower):

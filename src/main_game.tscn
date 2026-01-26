@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="5_x08um"]
 [ext_resource type="PackedScene" uid="uid://c6q1a0scjwvcr" path="res://src/scenes/game_over_menu.tscn" id="7_bupss"]
 [ext_resource type="PackedScene" uid="uid://bpvki6pfh7o81" path="res://src/scenes/mouse.tscn" id="8_130rv"]
-[ext_resource type="Shader" uid="uid://66mycyheckg" path="res://src/materials/color_replacer.gdshader" id="9_mjf2d"]
+[ext_resource type="Shader" path="res://src/materials/color_replacer.gdshader" id="9_mjf2d"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_130rv"]
 content_margin_left = 8.0
