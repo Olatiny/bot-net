@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://6mdkdqr2v171" path="res://assets/audio/music/Shop Loop w_o Stinger.wav" id="6_tpyky"]
 
 [node name="AudioManager" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_7642x")
 master_volume_linear = 0.7
 shop_with_intro = ExtResource("5_8y8yc")

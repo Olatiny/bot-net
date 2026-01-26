@@ -23,13 +23,15 @@ extends CanvasLayer
 ## The game over canvas
 @onready var game_over_canvas := $GameOverCanvas as Control
 
+## The pause over canvas
+@onready var pause_canvas := $PauseCanvas as Control
 
 
-func _ready() -> void:
+#func _ready() -> void:
 	## NOTE: probs gonna not just do this in ready, but for now just doin it in ready
-	start_game()
+	#start_game()
 
 
 func start_game() -> void:
-	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container, game_over_canvas, $TempTowerParent)
+	GameManager.initialize_node_refs(virus_manager, terminal, shop, game_board, popup_container, game_over_canvas, $TempTowerParent, pause_canvas)
 	GameManager.start_game()

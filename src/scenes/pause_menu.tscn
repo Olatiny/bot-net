@@ -1,0 +1,118 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkfdgbcr6q7h0"]
+
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_nwvxt"]
+[ext_resource type="Script" uid="uid://cd6l7nnxxnx1o" path="res://src/scenes/pause_menu.gd" id="2_nwvxt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwvxt"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 41.0
+bg_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lhlp2"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="PauseMenu" type="PanelContainer"]
+process_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -596.0
+offset_top = -396.5
+offset_right = 596.0
+offset_bottom = 396.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nwvxt")
+theme_override_styles/panel = SubResource("StyleBoxFlat_nwvxt")
+script = ExtResource("2_nwvxt")
+
+[node name="Title Bar" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme = ExtResource("1_nwvxt")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_lhlp2")
+text = "PAUSED"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Score Text" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_nwvxt")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "SURVIVAL TIME: [shake rate=5.0 level=25 connected=1]1:36[/shake]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Message" type="RichTextLabel" parent="VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("1_nwvxt")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "Don't just walk away!"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(696.405, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 54
+
+[node name="Restart" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_nwvxt")
+theme_type_variation = &"FlatButton"
+text = "
+RESUME GAME
+
+"
+
+[node name="Quit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_nwvxt")
+theme_type_variation = &"FlatButton"
+text = "
+QUIT
+
+"
+
+[connection signal="pressed" from="HBoxContainer/Restart" to="." method="_restart_pressed"]
+[connection signal="pressed" from="HBoxContainer/Quit" to="." method="_quit_pressed"]

@@ -68,6 +68,9 @@ func toggle_shop_phase(toggle: bool):
 
 ## Updates button states and ram label
 func _process(_delta: float):
+	if ![GameManager.GAME_STATE.ACTIVE, GameManager.GAME_STATE.SHOP].has(GameManager.current_state):
+		return
+	
 	ram_label.text = "RAM: " + str(int(GameManager.player_ram))
 	
 	for button: Button in button_id_dict.keys():

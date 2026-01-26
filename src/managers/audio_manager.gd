@@ -72,6 +72,11 @@ func fade_in(player: AudioStreamPlayer, stream: AudioStream):
 	tween.tween_property(player, "volume_linear", 1 * master_volume_linear, .1)
 
 
+func set_volume(new_vol: float):
+	main_player.volume_linear = new_vol
+	shop_player.volume_linear = new_vol
+
+
 ## fade a track out
 func fade_out(player: AudioStreamPlayer):
 	var tween := get_tree().create_tween()

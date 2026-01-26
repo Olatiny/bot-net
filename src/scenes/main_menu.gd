@@ -10,12 +10,79 @@ signal start_game_pressed()
 signal exit_game_pressed()
 
 
+@export var game_scene: MainGame
+
+@onready var anim_player := $AnimationPlayer as AnimationPlayer
+
+var shutdown_pressed := false
+
+@onready var init_master_volume = AudioManager.master_volume_linear
+
+
+func power_on() -> void:
+	if anim_player.is_playing() || shutdown_pressed:
+		return
+	
+	AudioManager.start_music()
+	AudioManager.pause(true)
+	anim_player.play("reveal")
+	
+	$Control/PanelContainer2/MainPanel.visible = true
+	$Control/PanelContainer2/Credit.visible = false
+	$Control/PanelContainer2/Prefs.visible = false
+
 
 func start_game():
+	if anim_player.is_playing() || shutdown_pressed:
+		return
+	
+	
+	AudioManager.start_music()
+	AudioManager.pause(false)
 	start_game_pressed.emit()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	
+	visible = false
+	game_scene.start_game()
+	game_scene.visible = true
 
 
 func end_game():
+	if anim_player.is_playing() || shutdown_pressed:
+		return
+	
+	AudioManager.stop_music()
+	shutdown_pressed = true
+	
 	exit_game_pressed.emit()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	anim_player.play("shutdown")
+
+
+func _on_close_credits_pressed() -> void:
+	$Control/PanelContainer2/Credit.visible = false
+	$Control/PanelContainer2/MainPanel.visible = true
+
+
+func _volume_slider_changed(value: float) -> void:
+	AudioManager.set_volume(init_master_volume * value)
+
+
+func _prefs_exit_presed() -> void:
+	$Control/PanelContainer2/Prefs.visible = false
+	$Control/PanelContainer2/MainPanel.visible = true
+
+
+func _on_toggle_fullscreen_pressed() -> void:
+	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED) 
+	else:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+
+
+func _on_settings_pressed() -> void:
+	$Control/PanelContainer2/Prefs.visible = true
+	$Control/PanelContainer2/MainPanel.visible = false
+
+
+func _on_credits_pressed() -> void:
+	$Control/PanelContainer2/Credit.visible = true
+	$Control/PanelContainer2/MainPanel.visible = false

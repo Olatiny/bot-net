@@ -354,6 +354,7 @@ _data = {
 }
 
 [node name="Mouse" type="Node2D"]
+process_mode = 3
 material = ExtResource("1_lf52b")
 script = ExtResource("1_qivrn")
 

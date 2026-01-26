@@ -77,6 +77,11 @@ func _push_msg_internal(message: String, usr: String):
 	current_message.animate_message(true)
 
 
+func clear():
+	for child in message_container.get_children():
+		child.queue_free()
+
+
 func _init_curr_message():
 	current_message = MESSAGE_SCENE.instantiate()
 	message_container.add_child(current_message)

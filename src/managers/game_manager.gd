@@ -227,7 +227,7 @@ var player_level := 1:
 		player_level = value
 		#player_level = clamp(player_level, 1, max_level)
 		player_attack_damage = 1 + value
-		ram_income = 10 + value * 5
+		ram_income = 10 + value * 3
 		GlobalStates.mouse_tier_change.emit(value)
 
 ## Affects potency of encrypt
@@ -281,6 +281,9 @@ var game_over_menu: GameOverMenu = null
 ## game over parent
 var game_over_canvas: Control = null
 
+## pause menu parent
+var pause_canvas: Control = null
+
 ## temp tower parent
 var temp_tower_parent: Node2D = null
 
@@ -299,6 +302,9 @@ func _process(delta: float) -> void:
 	
 	elapsed_time += delta
 	player_ram += ram_income * delta
+	
+	if Input.is_action_just_pressed("pause"):
+		pause()
 
 
 ## Called by game scene to initialize this singleton's references
@@ -308,7 +314,8 @@ func initialize_node_refs(in_virus_manager: VirusManager,
 		in_game_board: Board, 
 		in_popup_container: Control,
 		in_game_over_canvas: Control,
-		in_temp_tower_parent) -> void:
+		in_temp_tower_parent,
+		in_pause_canvas) -> void:
 	virus_manager = in_virus_manager
 	terminal = in_terminal
 	shop = in_shop
@@ -317,17 +324,26 @@ func initialize_node_refs(in_virus_manager: VirusManager,
 	game_over_canvas = in_game_over_canvas
 	game_over_menu = in_game_over_canvas.get_child(0)
 	temp_tower_parent = in_temp_tower_parent
+	pause_canvas = in_pause_canvas
 
 
 ## Called to start the game loop, resets / starts game
 func start_game() -> void:
-	## TODO: Actually implement this lmao
-	## TODO: idk maybe like a little ready ? loading bar or somth
+	## WARNING: this is a wonderfully terrible function
 	elapsed_time = 0.0
 	player_ram = 0
 	ram_income = 10
 	encrypt_charges = 0
 	current_wave_idx = 0
+	player_level = 0
+	encrypt_level = 0
+	quarrantine_tower_level = 0
+	sentinel_tower_level = 0
+	firewall_level = 0
+	shop.init_shop()
+	
+	terminal.clear()
+	
 	game_over_canvas.visible = false
 	game_board.reset_board()
 	load_game()
@@ -472,7 +488,8 @@ func try_purchase(amount: int) -> bool:
 	
 	player_ram -= amount
 	return true
-	
+
+
 func _save_game() -> void:
 	var data = {
 		"narrative_progress": narrative_progress
@@ -481,6 +498,7 @@ func _save_game() -> void:
 	var file = FileAccess.open("user://save.json", FileAccess.WRITE)
 	file.store_string(JSON.stringify(data))
 	file.close()
+
 
 func load_game() -> void:
 	if not FileAccess.file_exists("user://save.json"):
@@ -493,7 +511,7 @@ func load_game() -> void:
 	if data.has("narrative_progress"):
 		narrative_progress = data.narrative_progress
 
-	
+
 func _should_send_narrative(category: String) -> bool:
 	var index = narrative_progress.get(category, 0)
 	var max_index = MESSAGE_DATA[category].narrative.size()
@@ -503,7 +521,7 @@ func _should_send_narrative(category: String) -> bool:
 
 	return randf() < 0.3
 
-	
+
 ## accepts category of terminal message as a string 
 ## and randomly selects a message to send from withing that category
 func send_terminal_message(category: String) -> void:
@@ -525,3 +543,23 @@ func send_terminal_message(category: String) -> void:
 	if ambient_messages.size() > 0:
 		var message = ambient_messages.pick_random()
 		terminal.push_new_message(message, GlobalStates.USR_VIRUS)
+
+
+func pause():
+	if get_tree().paused:
+		return
+	
+	get_tree().paused = true
+	pause_canvas.visible = true
+	(pause_canvas.get_child(0) as PauseMenu).set_game_over_time(get_time_string())
+	
+	AudioManager.pause(true)
+
+
+func unpause():
+	get_tree().paused = false
+	
+	if is_instance_valid(pause_canvas):
+		pause_canvas.visible = false
+	
+	AudioManager.pause(false)

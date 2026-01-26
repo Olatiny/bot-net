@@ -81,12 +81,15 @@ current_state = 0
 
 [node name="Folder2" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(928, 384)
+unrecoverable = true
 
 [node name="Folder3" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(1312, 448)
+unrecoverable = true
 
 [node name="Folder4" parent="Folders" instance=ExtResource("3_ntdqk")]
 position = Vector2(1696, 384)
+unrecoverable = true
 
 [node name="Folder5" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(832, 1024)

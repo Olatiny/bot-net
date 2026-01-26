@@ -47,6 +47,9 @@ var _mouse_over := false
 
 
 func _process(delta: float) -> void:
+	if ![GameManager.GAME_STATE.ACTIVE, GameManager.GAME_STATE.SHOP].has(GameManager.current_state):
+		return
+	
 	if current_state == FOLDER_TYPE.ROOT || (current_state == FOLDER_TYPE.DEFEATED && unrecoverable):
 		return
 	

@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtuvdvgqglwvj"]
+
+[ext_resource type="Texture2D" uid="uid://bipkddqhmto7h" path="res://3D_asset/keyboard_PBR/keyboard_BaseColor.1001.png" id="1_xv8uf"]
+[ext_resource type="Texture2D" uid="uid://b27h2db4u45lq" path="res://3D_asset/keyboard_PBR/Keyboard_Normal.1001.png" id="2_ticl3"]
+[ext_resource type="Texture2D" uid="uid://rw4rfs10ivke" path="res://3D_asset/PBR/Screen_Roughness.1001.png" id="3_4nj1j"]
+[ext_resource type="ArrayMesh" uid="uid://xcp6x1l6ns7f" path="res://3D_asset/keyboard.obj" id="4_en51n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfl71"]
+albedo_texture = ExtResource("1_xv8uf")
+roughness_texture = ExtResource("3_4nj1j")
+normal_enabled = true
+normal_texture = ExtResource("2_ticl3")
+
+[node name="Keyboard" type="MeshInstance3D"]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_rfl71")
+mesh = ExtResource("4_en51n")

@@ -1,7 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgtxk2nb3ivv6"]
+[gd_scene load_steps=15 format=3 uid="uid://cgtxk2nb3ivv6"]
 
 [ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_mob6k"]
 [ext_resource type="Script" uid="uid://bicv1pdc8lasa" path="res://src/scenes/main_menu.gd" id="1_rkeyg"]
+[ext_resource type="Material" uid="uid://cf23vnmu2hp2h" path="res://src/materials/color_replacer.tres" id="3_iaawh"]
+[ext_resource type="Texture2D" uid="uid://c2jj3mmfue6kq" path="res://assets/logo.png" id="3_rkeyg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iaawh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rm437"]
 content_margin_left = 8.0
@@ -22,6 +26,150 @@ corner_radius_bottom_left = 8
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iaawh"]
 bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kp3xf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chlrs"]
+bg_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrdre"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[sub_resource type="Animation" id="Animation_iaawh"]
+resource_name = "reveal"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.35000002),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 1), Vector2(0.2, 1), Vector2(0.3333333, 1), Vector2(0.8, 1), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_kp3xf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.023529412, 0.09803922, 0.019607844, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_chlrs"]
+resource_name = "shutdown"
+length = 0.350005
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.15, 0.20000002, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1), Vector2(0.3333333, 1), Vector2(0.2, 1), Vector2(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrdre"]
+_data = {
+&"RESET": SubResource("Animation_kp3xf"),
+&"reveal": SubResource("Animation_iaawh"),
+&"shutdown": SubResource("Animation_chlrs")
+}
+
 [node name="MainMenu" type="CanvasLayer"]
 layer = 2
 script = ExtResource("1_rkeyg")
@@ -34,28 +182,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="Control"]
-custom_minimum_size = Vector2(800, 200)
+[node name="PanelContainer2" type="PanelContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -596.0
-offset_top = 257.0
-offset_right = 596.0
-offset_bottom = 457.0
+offset_left = -751.36847
+offset_top = -426.5
+offset_right = 751.36847
+offset_bottom = 426.5
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_iaawh")
+
+[node name="MainPanel" type="PanelContainer" parent="Control/PanelContainer2"]
+visible = false
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 theme = ExtResource("1_mob6k")
 theme_override_styles/panel = SubResource("StyleBoxFlat_rm437")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2/MainPanel"]
+custom_minimum_size = Vector2(1200, 0)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Control/PanelContainer/VBoxContainer"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/PanelContainer2/MainPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_mob6k")
@@ -68,11 +224,11 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/MainPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Start" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Start" type="Button" parent="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -82,7 +238,7 @@ theme = ExtResource("1_mob6k")
 theme_type_variation = &"MainMenuButton"
 text = "START GAME"
 
-[node name="Settings" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Settings" type="Button" parent="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -92,7 +248,17 @@ theme = ExtResource("1_mob6k")
 theme_type_variation = &"MainMenuButton"
 text = "OPTIONS"
 
-[node name="Quit" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Credits" type="Button" parent="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "CREDIT"
+
+[node name="Quit" type="Button" parent="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -101,3 +267,166 @@ focus_behavior_recursive = 1
 theme = ExtResource("1_mob6k")
 theme_type_variation = &"MainMenuButton"
 text = "POWER OFF"
+
+[node name="Prefs" type="PanelContainer" parent="Control/PanelContainer2"]
+visible = false
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_mob6k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_rm437")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2/Prefs"]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/PanelContainer2/Prefs/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mob6k")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_iaawh")
+text = "PREFERENCES"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/Prefs/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Toggle Fullscreen" type="Button" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "TOGGLE FULLSCREEN"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kp3xf")
+
+[node name="Label" type="Label" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"TooltipLabel"
+text = "ADJUST VOLUME"
+
+[node name="HSlider" type="HSlider" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer"]
+modulate = Color(0.11372549, 0.49411765, 0.101960786, 1)
+custom_minimum_size = Vector2(316.45, 37.27)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/slider = SubResource("StyleBoxFlat_chlrs")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_yrdre")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_yrdre")
+max_value = 1.0
+step = 0.05
+value = 1.0
+
+[node name="Credits" type="Button" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "BACK"
+
+[node name="Credit" type="PanelContainer" parent="Control/PanelContainer2"]
+visible = false
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("1_mob6k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_rm437")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2/Credit"]
+custom_minimum_size = Vector2(1200, 0)
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/PanelContainer2/Credit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mob6k")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_iaawh")
+text = "CREDITS"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Control/PanelContainer2/Credit/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mob6k")
+theme_override_constants/paragraph_separation = 16
+theme_override_font_sizes/normal_font_size = 32
+text = "Matt Presson
+Thomas Gelman
+Tiffany Hsin
+Cansu Öner
+Alex Sugar"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/Credit/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CloseCredits" type="Button" parent="Control/PanelContainer2/Credit/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "BACK"
+
+[node name="TextureRect" type="TextureRect" parent="Control/PanelContainer2"]
+material = ExtResource("3_iaawh")
+layout_mode = 2
+size_flags_vertical = 0
+texture = ExtResource("3_rkeyg")
+expand_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 720)
+mouse_filter = 2
+color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yrdre")
+}
+
+[connection signal="pressed" from="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer/Start" to="." method="start_game"]
+[connection signal="pressed" from="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer/Quit" to="." method="end_game"]
+[connection signal="pressed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/Toggle Fullscreen" to="." method="_on_toggle_fullscreen_pressed"]
+[connection signal="value_changed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer/HSlider" to="." method="_volume_slider_changed"]
+[connection signal="pressed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/Credits" to="." method="_prefs_exit_presed"]
+[connection signal="pressed" from="Control/PanelContainer2/Credit/VBoxContainer/HBoxContainer/CloseCredits" to="." method="_on_close_credits_pressed"]

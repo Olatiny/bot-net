@@ -71,3 +71,6 @@ signal mouse_tier_change(new_tier: int)
 
 @warning_ignore("unused_signal")
 signal currency_changed(val: float)
+
+@warning_ignore("unused_signal")
+signal return_to_main()

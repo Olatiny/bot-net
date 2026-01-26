@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cj01a4v4rn7mv"]
+[gd_scene load_steps=19 format=3 uid="uid://cj01a4v4rn7mv"]
 
 [ext_resource type="PackedScene" uid="uid://qmnrwsay8150" path="res://src/scenes/board.tscn" id="1_fq370"]
 [ext_resource type="Script" uid="uid://da8bux3oa0djs" path="res://src/main_game.gd" id="1_qhh1e"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c6q1a0scjwvcr" path="res://src/scenes/game_over_menu.tscn" id="7_bupss"]
 [ext_resource type="PackedScene" uid="uid://bpvki6pfh7o81" path="res://src/scenes/mouse.tscn" id="8_130rv"]
 [ext_resource type="Shader" uid="uid://66mycyheckg" path="res://src/materials/color_replacer.gdshader" id="9_mjf2d"]
+[ext_resource type="PackedScene" uid="uid://bkfdgbcr6q7h0" path="res://src/scenes/pause_menu.tscn" id="9_n2doj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_130rv"]
 content_margin_left = 8.0
@@ -170,6 +171,7 @@ shader_parameter/dest_color_2 = Color(0, 0, 0, 1)
 shader_parameter/tolerance_2 = 0.0
 
 [node name="MainGame" type="CanvasLayer" groups=["enemies"]]
+process_mode = 3
 script = ExtResource("1_qhh1e")
 
 [node name="VirusManager" parent="." instance=ExtResource("3_qhh1e")]
@@ -307,6 +309,18 @@ color = Color(0.023529412, 0.09803922, 0.019607844, 0.6431373)
 layout_mode = 1
 offset_top = -411.5
 offset_bottom = 411.5
+
+[node name="PauseCanvas" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.023529412, 0.09803922, 0.019607844, 0.6431373)
+
+[node name="PauseMenu" parent="PauseCanvas" instance=ExtResource("9_n2doj")]
+layout_mode = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)

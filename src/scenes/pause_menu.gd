@@ -1,4 +1,4 @@
-class_name GameOverMenu
+class_name PauseMenu
 extends PanelContainer
 
 
@@ -16,7 +16,7 @@ func set_game_over_time(time_string: String):
 
 
 func _restart_pressed() -> void:
-	GameManager.restart_game()
+	GameManager.unpause()
 
 
 func _quit_pressed() -> void:
