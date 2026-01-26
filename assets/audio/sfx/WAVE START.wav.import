@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://76jhix0cm0jr"
+path="res://.godot/imported/WAVE START.wav-01a0ad6f39f2fb6a2489c14ce461f1a5.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/WAVE START.wav"
+dest_files=["res://.godot/imported/WAVE START.wav-01a0ad6f39f2fb6a2489c14ce461f1a5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
