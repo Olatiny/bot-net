@@ -1,0 +1,153 @@
+[gd_scene load_steps=22 format=3 uid="uid://dvgyrbcbh567s"]
+
+[ext_resource type="Shader" uid="uid://c6p3lh6xico6c" path="res://src/materials/pixelate.gdshader" id="1_04u4j"]
+[ext_resource type="PackedScene" uid="uid://cj01a4v4rn7mv" path="res://src/main_game.tscn" id="1_n6cjk"]
+[ext_resource type="Shader" uid="uid://ddlynu18jv1ut" path="res://src/materials/crt_test.gdshader" id="2_cn0d0"]
+[ext_resource type="Texture2D" uid="uid://ds17t6sl0eyqf" path="res://3D_asset/PBR/Screen_BaseColor.1001.png" id="4_43p3s"]
+[ext_resource type="Texture2D" uid="uid://boa3gfptae16p" path="res://3D_asset/PBR/Screen_Normal.1001.png" id="5_sbjjg"]
+[ext_resource type="Texture2D" uid="uid://rw4rfs10ivke" path="res://3D_asset/PBR/Screen_Roughness.1001.png" id="6_4l6pq"]
+[ext_resource type="ArrayMesh" uid="uid://h1v6iyon1c35" path="res://3D_asset/screen.obj" id="7_7etww"]
+[ext_resource type="Texture2D" uid="uid://bipkddqhmto7h" path="res://3D_asset/keyboard_PBR/keyboard_BaseColor.1001.png" id="8_7etww"]
+[ext_resource type="Texture2D" uid="uid://b27h2db4u45lq" path="res://3D_asset/keyboard_PBR/Keyboard_Normal.1001.png" id="9_nt2yy"]
+[ext_resource type="ArrayMesh" uid="uid://xcp6x1l6ns7f" path="res://3D_asset/keyboard.obj" id="10_kagal"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cn0d0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cn0d0"]
+shader = ExtResource("1_04u4j")
+shader_parameter/pixelation = 0.01
+shader_parameter/opacity = 1.0
+
+[sub_resource type="Gradient" id="Gradient_3su6u"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.007843138, 0.039215688, 0.007843138, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6c7sm"]
+gradient = SubResource("Gradient_3su6u")
+width = 1209
+height = 819
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_04u4j"]
+shader = ExtResource("2_cn0d0")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.27200001292
+shader_parameter/scanlines_width = 0.110000005225
+shader_parameter/grille_opacity = 0.1670000079325
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 2.075
+shader_parameter/roll_size = 9.0910004318225
+shader_parameter/roll_variation = 0.13700000324762002
+shader_parameter/distort_intensity = 0.106000005035
+shader_parameter/noise_opacity = 0.18000000855
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 4.7499999933364734e-08
+shader_parameter/brightness = 1.46
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.3410000161975
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.74
+shader_parameter/vignette_opacity = 0.2930000139175
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n6cjk"]
+
+[sub_resource type="Sky" id="Sky_cn0d0"]
+sky_material = SubResource("ProceduralSkyMaterial_n6cjk")
+
+[sub_resource type="Environment" id="Environment_04u4j"]
+background_mode = 2
+background_energy_multiplier = 1.34
+sky = SubResource("Sky_cn0d0")
+ambient_light_sky_contribution = 0.72
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_04u4j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt2yy"]
+albedo_texture = ExtResource("4_43p3s")
+roughness_texture = ExtResource("6_4l6pq")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("5_sbjjg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rfl71"]
+albedo_texture = ExtResource("8_7etww")
+roughness_texture = ExtResource("6_4l6pq")
+normal_enabled = true
+normal_texture = ExtResource("9_nt2yy")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(7.498343, 0, 0, 0, 5.06498, 0, 0, 0, 1, 0, 0, -3.1884558)
+visible = false
+mesh = SubResource("BoxMesh_cn0d0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(11.305715, 0, 0, 0, -2.2139731e-07, -1, 0, 5.0649796, -4.3711385e-08, 0, -3, -3.1884558)
+mesh = SubResource("BoxMesh_cn0d0")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.89655375)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+follow_viewport_enabled = true
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_cn0d0")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_6c7sm")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer2"]
+offset_left = 254.99998
+offset_top = 132.99998
+offset_right = 2175.0
+offset_bottom = 1213.0
+scale = Vector2(0.725, 0.725)
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer2/SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="MainGame" parent="CanvasLayer2/SubViewportContainer/SubViewport" instance=ExtResource("1_n6cjk")]
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer2"]
+material = SubResource("ShaderMaterial_04u4j")
+offset_left = 230.0
+offset_top = 81.0
+offset_right = 1668.0
+offset_bottom = 951.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_6c7sm")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.41545537, 0.90961355, 0, -0.90961355, 0.41545537, 0, 5.544836, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_04u4j")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.6913486)
+mesh = SubResource("PlaneMesh_04u4j")
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, -2.536, -2.58)
+material_override = SubResource("StandardMaterial3D_nt2yy")
+mesh = ExtResource("7_7etww")
+
+[node name="Keyboard" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.145, 0, 0, 0, 0.145, 0, 0, 0, 0.145, -0.15582395, -2.3548083, -2.4037638)
+material_override = SubResource("StandardMaterial3D_rfl71")
+mesh = ExtResource("10_kagal")
