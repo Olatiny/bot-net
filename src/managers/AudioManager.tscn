@@ -38,12 +38,15 @@ place_sfx = ExtResource("15_0jvjy")
 
 [node name="ShopPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
+playback_type = 1
 
 [node name="MainPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"
+playback_type = 1
 
 [node name="MainMenuPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_vyi46")
+playback_type = 1
 
 [node name="FadeTimer" type="Timer" parent="."]
 

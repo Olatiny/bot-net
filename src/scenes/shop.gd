@@ -16,9 +16,9 @@ const ID_QUARRANTINE_UP = "quarrantine_up"
 ## Defines base prices for all items in game
 const BASE_TYPE_PRICES: Dictionary[String, int] = {
 	ID_ENCRYPT: 200,
-	ID_FIREWALL: 200,
-	ID_SENTINEL: 200,
-	ID_QUARRANTINE: 300,
+	ID_FIREWALL: 100,
+	ID_SENTINEL: 150,
+	ID_QUARRANTINE: 250,
 	ID_PLAYER_UP: 500,
 	ID_FIREWALL_UP: 600,
 	ID_TOWER_UP: 500,
@@ -116,7 +116,7 @@ func _button_pressed(button: Button = null):
 ## Runs corresponding purchase/upgrade function
 func _purchase_selected(purchase_type: String):
 	GlobalStates.currency_changed.emit(-current_prices[purchase_type])
-	current_prices[purchase_type] += int(pow(PRICE_INCREMENTS[purchase_type] * (GameManager.current_wave_idx), 1))
+	current_prices[purchase_type] += int(pow(PRICE_INCREMENTS[purchase_type] * max(GameManager.current_wave_idx / 2, 1), 1))
 	
 	AudioManager.sfx_play_purchase_sfx()
 	

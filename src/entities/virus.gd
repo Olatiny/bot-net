@@ -69,13 +69,13 @@ func process_attack(attack_damage: int):
 	health = max(health, 0)
 	
 	if health > 0:
-		GameManager.add_ram(GameManager.ram_income * 1)
+		GameManager.add_ram(GameManager.ram_income * 0.4 * GameManager.player_level)
 		animation_player.stop()
 		animation_player.play("ouchie")
 		AudioManager.sfx_play_virus_hit()
 	else:
 		defeated = true
-		GameManager.add_ram(ram_award * (GameManager.player_level + int(float(GameManager.current_wave_idx - 1) / 2.0)))
+		GameManager.add_ram(ram_award * (GameManager.player_level))
 		GlobalStates.virus_defeated.emit(self)
 		# NOTE: this animation calls queue_free when it finishes
 		animation_player.stop()

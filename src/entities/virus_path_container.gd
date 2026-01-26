@@ -15,7 +15,15 @@ func add_virus(in_virus: Virus):
 
 
 func move_virus(delta: float):
-	if get_parent() is Path2D:
+	if !get_parent() is GamePath:
+		return
+	
+	var parent := get_parent() as GamePath
+	var move_amout: float = delta * contained_virus.speed
+	
+	if parent._backdoor_active && progress_ratio + move_amout > parent.backdoor_start && progress_ratio < parent.backdoor_start:
+		progress_ratio = parent.backdoor_end
+	else:
 		progress_ratio += delta * contained_virus.speed
 
 

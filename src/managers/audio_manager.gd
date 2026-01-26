@@ -64,11 +64,6 @@ var main_intro_played := false
 
 
 
-### Load up streams and start main
-#func _ready() -> void:
-	#start_music()
-
-
 ## fade to shop
 func fade_to_shop() -> void:
 	fade_between_tracks(shop_player, shop_with_intro, active_player)
@@ -110,6 +105,7 @@ func fade_in(player: AudioStreamPlayer, stream: AudioStream):
 func set_volume(new_vol: float):
 	main_player.volume_linear = new_vol
 	shop_player.volume_linear = new_vol
+	main_menu_player.volume_linear = new_vol
 
 
 ## fade a track out
@@ -166,6 +162,19 @@ func _on_main_player_finished() -> void:
 	main_player.play()
 
 
+func _on_main_menu_player_finished() -> void:
+	if main_menu_player != active_player:
+		return
+	
+	main_menu_player.stream = main_menu
+	main_menu_player.play()
+
+
+##################################
+###     SFX MANAGEMENT         ###
+##################################
+
+
 func sfx_play_virus_hit():
 	_sfx_one_shot(hit_sfx, 1, randf_range(.90, 1.1))
 
@@ -212,11 +221,3 @@ func _sfx_one_shot(in_stream: AudioStream, volume_mod := 1.0, pitch_mod := 1.0):
 	sfx_player.pitch_scale = pitch_mod
 	sfx_player.play()
 	sfx_player.finished.connect(sfx_player.queue_free)
-
-
-func _on_main_menu_player_finished() -> void:
-	if main_menu_player != active_player:
-		return
-	
-	main_menu_player.stream = main_menu
-	main_menu_player.play()

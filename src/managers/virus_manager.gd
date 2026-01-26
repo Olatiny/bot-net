@@ -183,14 +183,17 @@ func _create_backdoor() -> void:
 
 func _start_bruteforce() -> void:
 	_bruteforce_active = true
+	bruteforce_timer.wait_time = 10
 	bruteforce_timer.start()
 	_bruteforce_idx = randi_range(0, 5)
+	GameManager.game_board.toggle_brute_for_path(true, _bruteforce_idx)
 	GameManager.send_terminal_message("brute force")
 	#TODO add visuals (remove message for end once this is done)
 
 
 func _end_bruteforce() -> void:
 	_bruteforce_active = false
+	GameManager.game_board.toggle_brute_for_path(false, _bruteforce_idx)
 	GameManager.terminal.push_new_message("bruteforce over")
 
 

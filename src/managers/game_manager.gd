@@ -229,7 +229,7 @@ var player_level := 1:
 	set(value):
 		player_level = value
 		#player_level = clamp(player_level, 1, max_level)
-		player_attack_damage = 1 + value * 0.5
+		player_attack_damage = 1 + value * 0.75
 		ram_income = base_ram_income + value * 3
 		GlobalStates.mouse_tier_change.emit(value)
 
@@ -304,7 +304,7 @@ func _process(delta: float) -> void:
 		return
 	
 	elapsed_time += delta
-	player_ram += ram_income * delta
+	player_ram += ram_income * (delta / 1.5)
 	
 	if Input.is_action_just_pressed("pause"):
 		pause()

@@ -9,6 +9,9 @@ extends Node2D
 ## box to display folder contents inside
 @onready var folder_viewer := %FolderViewer as FolderViewer
 
+## display a brute lane
+@onready var brute_displays := $BruteDisplays as Node2D
+
 
 ## List of OK paths
 var valid_paths: Array[Path2D]
@@ -38,6 +41,8 @@ func _ready() -> void:
 	GlobalStates.folder_opened.connect(_on_folder_opened)
 	GlobalStates.folder_closed.connect(_on_folder_closed)
 	GlobalStates.virus_defeated.connect(_on_virus_defeated)
+	
+	toggle_brute_for_path(false, -1)
 	
 	for path in paths:
 		valid_paths.push_back(path)
@@ -177,3 +182,8 @@ func _on_virus_defeated(virus: Virus):
 	
 	if is_instance_valid(opened_folder):
 		opened_folder.remove_virus(virus)
+
+
+func toggle_brute_for_path(enable: bool, idx: int):
+	for child: TileMapLayer in brute_displays.get_children():
+		child.visible = child.get_index() == idx && enable

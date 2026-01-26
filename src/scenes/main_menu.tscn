@@ -362,7 +362,6 @@ theme_type_variation = &"MainMenuButton"
 text = "POWER OFF"
 
 [node name="Prefs" type="PanelContainer" parent="Control/PanelContainer2"]
-visible = false
 custom_minimum_size = Vector2(800, 200)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -391,6 +390,7 @@ vertical_alignment = 1
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer2/Prefs/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/separation = 32
 
 [node name="Toggle Fullscreen" type="Button" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -406,7 +406,11 @@ text = "TOGGLE FULLSCREEN"
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kp3xf")
 
-[node name="Label" type="Label" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -414,7 +418,7 @@ theme = ExtResource("1_mob6k")
 theme_type_variation = &"TooltipLabel"
 text = "ADJUST VOLUME"
 
-[node name="HSlider" type="HSlider" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="HSlider" type="HSlider" parent="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer"]
 modulate = Color(0.11372549, 0.49411765, 0.101960786, 1)
 custom_minimum_size = Vector2(316.45, 37.27)
 layout_mode = 2
@@ -520,6 +524,6 @@ libraries = {
 [connection signal="pressed" from="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/PanelContainer2/MainPanel/VBoxContainer/HBoxContainer/Quit" to="." method="end_game"]
 [connection signal="pressed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/Toggle Fullscreen" to="." method="_on_toggle_fullscreen_pressed"]
-[connection signal="value_changed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer/HSlider" to="." method="_volume_slider_changed"]
+[connection signal="value_changed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/PanelContainer/VBoxContainer/HSlider" to="." method="_volume_slider_changed"]
 [connection signal="pressed" from="Control/PanelContainer2/Prefs/VBoxContainer/HBoxContainer/Credits" to="." method="_prefs_exit_presed"]
 [connection signal="pressed" from="Control/PanelContainer2/Credit/VBoxContainer/HBoxContainer/CloseCredits" to="." method="_on_close_credits_pressed"]
