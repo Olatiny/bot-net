@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://binont3u44nj7"
-path="res://.godot/imported/SLOW-DOWN POWERUP.wav-ed7cb96871cc348ea307ab5573083cc7.sample"
+path="res://.godot/imported/SLOW-DOWN POWERUP.wav-5e0aac6bce9809dc6897a0068bbbd88b.sample"
 
 [deps]
 
-source_file="res://assets/audio/music/SLOW-DOWN POWERUP.wav"
-dest_files=["res://.godot/imported/SLOW-DOWN POWERUP.wav-ed7cb96871cc348ea307ab5573083cc7.sample"]
+source_file="res://assets/audio/sfx/SLOW-DOWN POWERUP.wav"
+dest_files=["res://.godot/imported/SLOW-DOWN POWERUP.wav-5e0aac6bce9809dc6897a0068bbbd88b.sample"]
 
 [params]
 
