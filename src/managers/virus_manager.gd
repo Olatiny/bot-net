@@ -128,6 +128,7 @@ func _spawn_virus() -> void:
 	virus.max_health = _rng.randi_range(1, max_health)
 	virus.health = virus.max_health
 	virus.speed = _rng.randf_range(0.05, max_speed)
+	virus.tier = max_health - base_max_health - 1
 
 	# stagger next spawn dynamically
 	spawn_timer.start()

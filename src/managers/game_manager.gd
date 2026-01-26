@@ -335,11 +335,11 @@ func start_game() -> void:
 	ram_income = 10
 	encrypt_charges = 0
 	current_wave_idx = 0
-	player_level = 0
-	encrypt_level = 0
-	quarrantine_tower_level = 0
-	sentinel_tower_level = 0
-	firewall_level = 0
+	player_level = 1
+	encrypt_level = 1
+	quarrantine_tower_level = 1
+	sentinel_tower_level = 1
+	firewall_level = 1
 	shop.init_shop()
 	
 	terminal.clear()

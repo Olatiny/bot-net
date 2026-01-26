@@ -18,7 +18,12 @@ extends Node2D
 @export var health = 5
 
 ## The current "tier" of this virus NOTE: This might be uneccesary to track this way
-@export var tier = 1
+@export var tier = 1:
+	set(value):
+		tier = value
+		
+		if is_instance_valid($Sprite2D):
+			$Sprite2D.material.set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(tier))
 
 ## The base amount of RAM awarded for killing
 @export var ram_award := 25
