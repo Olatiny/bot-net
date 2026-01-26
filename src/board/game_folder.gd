@@ -32,6 +32,9 @@ enum FOLDER_TYPE {
 ## The path that should be disabled if this folder is defeated
 @export var path_to_disable: Path2D = null
 
+## Whether this folder can be recovered
+@export var unrecoverable := false
+
 
 ## List of virus data for contained viruses, needed to populate internal view
 var virus_list: Array[Virus]
@@ -44,7 +47,7 @@ var _mouse_over := false
 
 
 func _process(delta: float) -> void:
-	if current_state == FOLDER_TYPE.ROOT:
+	if current_state == FOLDER_TYPE.ROOT || (current_state == FOLDER_TYPE.DEFEATED && unrecoverable):
 		return
 	
 	$AnimationTree.set("parameters/Orange/blend_position", 0 if virus_list.size() <= 0 else 1)

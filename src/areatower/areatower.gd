@@ -43,8 +43,8 @@ func apply_upgrade():
 	upgrade_level += 1
 	timer.wait_time -= 0.2
 	timer.wait_time = max(timer.wait_time, 0.5)
-	max_ammo += 5
-	ammo += 5
+	max_ammo += 3
+	ammo += 3
 
 	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))
 	damage += 10 # Increase damage

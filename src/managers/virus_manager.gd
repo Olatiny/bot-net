@@ -14,7 +14,7 @@ extends Node
 
 ## per-wave scaling
 @export var health_per_wave := 1
-@export var speed_per_wave := 0.02
+@export var speed_per_wave := 0.04
 @export var spawn_interval_decay := 0.05
 @export var min_spawn_interval := 0.25
 
@@ -25,7 +25,7 @@ extends Node
 @export var bruteforce_chance := 0.002
 
 ## per-wave chance scaling
-@export var event_chance_per_wave := 0.001
+@export var event_chance_per_wave := 0.005
 
 ## username used in terminal messages
 @export var terminal_username := "usr/M.A.L"

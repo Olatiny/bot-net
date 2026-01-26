@@ -354,3 +354,5 @@ autoplay = "idle"
 tree_root = SubResource("AnimationNodeStateMachine_d7ul8")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[connection signal="meta_clicked" from="MessageLabel" to="." method="_on_message_label_meta_clicked"]

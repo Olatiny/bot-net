@@ -49,6 +49,12 @@ const SHOP_NAME := "task_man"
 ######################
 
 @warning_ignore("unused_signal")
+signal wave_ended(wave_idx: int, time_remaining: int)
+
+@warning_ignore("unused_signal")
+signal wave_started(wave_idx: int)
+
+@warning_ignore("unused_signal")
 signal folder_opened(folder: GameFolder)
 
 @warning_ignore("unused_signal")

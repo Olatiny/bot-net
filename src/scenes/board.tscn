@@ -91,26 +91,32 @@ position = Vector2(1696, 384)
 [node name="Folder5" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(832, 1024)
 path_to_disable = NodePath("../../Paths/Path")
+unrecoverable = true
 
 [node name="Folder6" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1024, 1024)
 path_to_disable = NodePath("../../Paths/Path2")
+unrecoverable = true
 
 [node name="Folder7" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1216, 1024)
 path_to_disable = NodePath("../../Paths/Path3")
+unrecoverable = true
 
 [node name="Folder8" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1408, 1024)
 path_to_disable = NodePath("../../Paths/Path4")
+unrecoverable = true
 
 [node name="Folder9" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1600, 1024)
 path_to_disable = NodePath("../../Paths/Path5")
+unrecoverable = true
 
 [node name="Folder10" parent="Folders" node_paths=PackedStringArray("path_to_disable") instance=ExtResource("3_ntdqk")]
 position = Vector2(1792, 1024)
 path_to_disable = NodePath("../../Paths/Path6")
+unrecoverable = true
 
 [node name="Paths" type="Node2D" parent="."]
 y_sort_enabled = true

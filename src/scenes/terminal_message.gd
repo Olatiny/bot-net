@@ -37,3 +37,7 @@ func set_user(in_user: String):
 ## Plays a brief typing animation for the terminal message
 func animate_message(messaged := false):
 	message_received = messaged
+
+
+func _on_message_label_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(str(meta))

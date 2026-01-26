@@ -196,6 +196,7 @@ _data = {
 [node name="Firewall" type="StaticBody2D" groups=["firewall"]]
 material = SubResource("ShaderMaterial_wcfj2")
 script = ExtResource("1_yvk1g")
+max_health = 5
 upgraded_sprite = ExtResource("2_y7g4w")
 
 [node name="ThornArea" type="Area2D" parent="."]

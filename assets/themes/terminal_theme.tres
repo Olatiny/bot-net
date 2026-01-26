@@ -1,9 +1,57 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://vov6rqh4poin"]
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://vov6rqh4poin"]
 
 [ext_resource type="StyleBox" uid="uid://ckf6ljsmcgjdl" path="res://assets/styles/button_disable.tres" id="1_wwj1g"]
 [ext_resource type="StyleBox" uid="uid://24ure2rlo78h" path="res://assets/styles/button_hover.tres" id="2_4wk3b"]
 [ext_resource type="StyleBox" uid="uid://cranrhyxcd7aw" path="res://assets/styles/button_normal.tres" id="3_dj2qe"]
 [ext_resource type="StyleBox" uid="uid://bcju33k3iv07b" path="res://assets/styles/button_press.tres" id="4_66045"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b65sb"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.101960786, 0, 0.105882354, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.62352943, 0.20392157, 0.19215687, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q1sjs"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne8py"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.02373179, 0.09661203, 0.019312097, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7gqpb"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.02373179, 0.09661203, 0.019312097, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.055473045, 0.29457027, 0.047782056, 1)
 
 [sub_resource type="ImageTexture" id="ImageTexture_wwj1g"]
 
@@ -148,6 +196,14 @@ Button/styles/focus = ExtResource("2_4wk3b")
 Button/styles/hover = ExtResource("2_4wk3b")
 Button/styles/normal = ExtResource("3_dj2qe")
 Button/styles/pressed = ExtResource("4_66045")
+MainMenuButton/base_type = &"Button"
+MainMenuButton/colors/font_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+MainMenuButton/colors/font_hover_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+MainMenuButton/font_sizes/font_size = 32
+MainMenuButton/styles/disabled = SubResource("StyleBoxFlat_b65sb")
+MainMenuButton/styles/hover = SubResource("StyleBoxFlat_q1sjs")
+MainMenuButton/styles/normal = SubResource("StyleBoxFlat_ne8py")
+MainMenuButton/styles/pressed = SubResource("StyleBoxFlat_7gqpb")
 RichTextLabel/colors/default_color = Color(0.12003998, 0.6037266, 0.27219543, 1)
 RichTextLabel/font_sizes/normal_font_size = 24
 TooltipLabel/colors/font_color = Color(0.11372549, 0.49411765, 0.101960786, 1)

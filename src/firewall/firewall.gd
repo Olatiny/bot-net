@@ -20,7 +20,7 @@ func _ready():
 
 func upgrade_wall():
 	upgrade_level +=1
-	max_health += 20
+	max_health += 5
 	current_health = max_health
 	
 	$HealthBar.value = current_health
@@ -67,9 +67,6 @@ func take_damage(amount: int):
 	
 	$HealthBar.value = current_health
 	$HealthBar.max_value = max_health
-	
-	#var scalar = lerp(min_scale, max_scale, float(current_health) / float(max_health))
-	#scale = Vector2(scalar, scalar)
 	
 	if current_health <= 0:
 		$KillThySelf.play("you_should")

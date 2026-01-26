@@ -210,6 +210,8 @@ _data = {
 [node name="Areatower" type="Node2D" groups=["towers"]]
 material = ExtResource("1_vpv6n")
 script = ExtResource("1_eahom")
+max_ammo = 3
+ammo = 3
 
 [node name="detection" type="Area2D" parent="."]
 collision_mask = 2

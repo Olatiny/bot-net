@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgtxk2nb3ivv6"]
+
+[ext_resource type="Theme" uid="uid://vov6rqh4poin" path="res://assets/themes/terminal_theme.tres" id="1_mob6k"]
+[ext_resource type="Script" uid="uid://bicv1pdc8lasa" path="res://src/scenes/main_menu.gd" id="1_rkeyg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rm437"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.02373179, 0.09661203, 0.019312097, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iaawh"]
+bg_color = Color(0.11372549, 0.49411765, 0.101960786, 1)
+
+[node name="MainMenu" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_rkeyg")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(800, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -596.0
+offset_top = 257.0
+offset_right = 596.0
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mob6k")
+theme_override_styles/panel = SubResource("StyleBoxFlat_rm437")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_mob6k")
+theme_override_colors/default_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_iaawh")
+text = "BOOT OPTIONS"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Start" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "START GAME"
+
+[node name="Settings" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "OPTIONS"
+
+[node name="Quit" type="Button" parent="Control/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 0
+focus_behavior_recursive = 1
+theme = ExtResource("1_mob6k")
+theme_type_variation = &"MainMenuButton"
+text = "POWER OFF"

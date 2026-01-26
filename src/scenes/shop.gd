@@ -43,7 +43,7 @@ var current_prices: Dictionary[String, int]
 
 
 ## Whenever an upgrade is purchased, add this * current level to next upgrade price
-@export var upgrade_cost_increment := 250
+@export var upgrade_cost_increment := 125
 
 
 ## Label for current player RAM
@@ -72,7 +72,10 @@ func _process(_delta: float):
 	
 	for button: Button in button_id_dict.keys():
 		button.text = button_id_dict[button].to_upper() + "\n" + str(_get_price_for_button(button)) + " RAM"
-		button.disabled = _get_price_for_button(button) > GameManager.player_ram || GameManager.game_board.is_folder_open
+		
+		var can_afford = !GameManager.check_can_afford(_get_price_for_button(button))
+		var folder_open = GameManager.game_board.is_folder_open
+		button.disabled = can_afford || folder_open
 
 
 ## Alias for getting the price corresponding with a particular button. returns -1 if button unmapped
@@ -97,7 +100,7 @@ func _button_pressed(button: Button = null):
 ## Runs corresponding purchase/upgrade function
 func _purchase_selected(purchase_type: String):
 	GlobalStates.currency_changed.emit(-current_prices[purchase_type])
-	current_prices[purchase_type] += upgrade_cost_increment
+	current_prices[purchase_type] += int(upgrade_cost_increment * (GameManager.current_wave_idx + 1) * 0.8)
 	
 	# NOTE: necessary for upgrades particularly to have their own funcs because prims are pass by val
 	match (purchase_type):

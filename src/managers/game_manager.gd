@@ -217,26 +217,42 @@ var is_paused := false
 ### UPGRADE LEVELS ###
 ######################
 
+
+## Max level anything can be leveled to
+#var max_level := 7
+
 ## Affects player income and damage
 var player_level := 1:
 	set(value):
 		player_level = value
+		#player_level = clamp(player_level, 1, max_level)
 		player_attack_damage = 1 + value
 		ram_income = 10 + value * 5
 		GlobalStates.mouse_tier_change.emit(value)
 
-
 ## Affects potency of encrypt
-var encrypt_level := 1
+var encrypt_level := 1:
+	set(value):
+		encrypt_level = value
+		#encrypt_level = clamp(encrypt_level, 1, max_level)
 
 ## Affects tower damage
-var sentinel_tower_level := 1
+var sentinel_tower_level := 1:
+	set(value):
+		sentinel_tower_level = value
+		#sentinel_tower_level = clamp(sentinel_tower_level, 1, max_level)
 
 ## Affects tower damage 
-var quarrantine_tower_level := 1
+var quarrantine_tower_level := 1:
+	set(value):
+		quarrantine_tower_level = value
+		#quarrantine_tower_level = clamp(quarrantine_tower_level, 1, max_level)
 
 ## Affects tower ammo
-var firewall_level := 1
+var firewall_level := 1:
+	set(value):
+		firewall_level = value
+		#firewall_level = clamp(firewall_level, 1, max_level)
 
 
 
@@ -346,7 +362,8 @@ func start_next_wave() -> void:
 	
 	if wave_timer.is_stopped():
 		wave_timer.start()
-		
+	
+	GlobalStates.wave_started.emit(current_wave_idx)
 	send_terminal_message("round start")
 
 
@@ -393,7 +410,8 @@ func end_wave():
 	
 	if wave_cooldown.is_stopped():
 		wave_cooldown.start()
-		
+	
+	GlobalStates.wave_ended.emit(current_wave_idx, ceili(wave_cooldown.time_left))
 	send_terminal_message("round end")
 
 

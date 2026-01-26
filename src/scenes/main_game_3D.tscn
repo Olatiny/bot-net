@@ -1,0 +1,188 @@
+[gd_scene load_steps=25 format=3 uid="uid://dvgyrbcbh567s"]
+
+[ext_resource type="Script" uid="uid://xgiol575ofms" path="res://src/scenes/MainGame3D.gd" id="1_7mrxy"]
+[ext_resource type="Script" uid="uid://crculil6se286" path="res://3d_crt_test.gd" id="2_qp6nn"]
+[ext_resource type="PackedScene" uid="uid://cgtxk2nb3ivv6" path="res://src/scenes/main_menu.tscn" id="3_6pwsu"]
+[ext_resource type="PackedScene" uid="uid://cj01a4v4rn7mv" path="res://src/main_game.tscn" id="4_4cr65"]
+[ext_resource type="Shader" uid="uid://ddlynu18jv1ut" path="res://src/materials/crt_test.gdshader" id="5_qdw3w"]
+[ext_resource type="Texture2D" uid="uid://ds17t6sl0eyqf" path="res://3D_asset/PBR/Screen_BaseColor.1001.png" id="6_lxxka"]
+[ext_resource type="Texture2D" uid="uid://cbfqdmbyj7uch" path="res://3D_asset/PBR/Screen_Metallic.1001.png" id="7_1dp0o"]
+[ext_resource type="Texture2D" uid="uid://boa3gfptae16p" path="res://3D_asset/PBR/Screen_Normal.1001.png" id="8_awkc4"]
+[ext_resource type="Texture2D" uid="uid://rw4rfs10ivke" path="res://3D_asset/PBR/Screen_Roughness.1001.png" id="9_1mq6y"]
+[ext_resource type="ArrayMesh" uid="uid://h1v6iyon1c35" path="res://3D_asset/screen.obj" id="10_ouc5n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c7sm"]
+albedo_color = Color(0.023529412, 0.09803922, 0.019607844, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cn0d0"]
+material = SubResource("StandardMaterial3D_6c7sm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwadd"]
+albedo_texture = ExtResource("6_lxxka")
+metallic = 1.0
+metallic_texture = ExtResource("7_1dp0o")
+roughness_texture = ExtResource("9_1mq6y")
+normal_enabled = true
+normal_texture = ExtResource("8_awkc4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_7etww"]
+size = Vector2(4, 3)
+subdivide_width = 5
+subdivide_depth = 5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7etww"]
+viewport_path = NodePath("CrtContainer/GameSubviewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nt2yy"]
+viewport_path = NodePath("CrtContainer/GameSubviewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt2yy"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_7etww")
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+emission_texture = SubResource("ViewportTexture_nt2yy")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7etww"]
+size = Vector3(4.1054077, 3.1242676, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rfl71"]
+viewport_path = NodePath("CrtContainer/GameSubviewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7etww"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_qdw3w")
+shader_parameter/SCREEN_TEXTURE = SubResource("ViewportTexture_rfl71")
+shader_parameter/overlay = false
+shader_parameter/scanlines_opacity = 0.01600000076
+shader_parameter/scanlines_width = 0.0250000011875
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 2.075
+shader_parameter/roll_size = 8.3330003958175
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.242000011495
+shader_parameter/noise_speed = 1.0
+shader_parameter/static_noise_intensity = 0.19600000931
+shader_parameter/aberration = 0.00500004773750006
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.258000012255
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 1.725
+shader_parameter/vignette_opacity = 0.21200001007
+
+[sub_resource type="QuadMesh" id="QuadMesh_nt2yy"]
+resource_local_to_scene = true
+material = SubResource("ShaderMaterial_7etww")
+size = Vector2(4, 3)
+
+[sub_resource type="Animation" id="Animation_7etww"]
+resource_name = "power_up"
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_nt2yy"]
+resource_name = "power_down"
+step = 0.1
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_quit"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kagal"]
+_data = {
+&"power_down": SubResource("Animation_nt2yy"),
+&"power_up": SubResource("Animation_7etww")
+}
+
+[node name="MainGame3D" type="Node3D"]
+script = ExtResource("1_7mrxy")
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lighting"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7706299, 8.804083, 8.523164)
+light_energy = 5.235
+light_indirect_energy = 5.612
+light_size = 1.0
+distance_fade_enabled = true
+distance_fade_begin = 497.79
+distance_fade_shadow = 507.79
+distance_fade_length = 2009.81
+omni_range = 126.304
+omni_attenuation = 0.647
+
+[node name="Decorations" type="Node3D" parent="."]
+
+[node name="Desk" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(218.89938, 0, 0, 0, 126.9598, 0, 0, 0, 13.324689, -0.9452915, 39.77169, -34.254345)
+mesh = SubResource("BoxMesh_cn0d0")
+skeleton = NodePath("../..")
+
+[node name="Desk2" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(-232.8415, 0, 0, 0, -2.950051e-06, -10.805349, 0, 67.489296, -4.723168e-07, -0.9452915, -17.708029, 2.8740501)
+mesh = SubResource("BoxMesh_cn0d0")
+skeleton = NodePath("../..")
+
+[node name="CRT" type="MeshInstance3D" parent="Decorations"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.835, 0)
+material_override = SubResource("StandardMaterial3D_qwadd")
+mesh = ExtResource("10_ouc5n")
+skeleton = NodePath("../..")
+
+[node name="CrtContainer" type="Node3D" parent="."]
+script = ExtResource("2_qp6nn")
+
+[node name="GameSubviewport" type="SubViewport" parent="CrtContainer"]
+handle_input_locally = false
+physics_object_picking = true
+gui_embed_subwindows = true
+size = Vector2i(1920, 1440)
+render_target_update_mode = 4
+
+[node name="MainMenu" parent="CrtContainer/GameSubviewport" instance=ExtResource("3_6pwsu")]
+
+[node name="MainGame" parent="CrtContainer/GameSubviewport" instance=ExtResource("4_4cr65")]
+visible = false
+
+[node name="Quad" type="MeshInstance3D" parent="CrtContainer"]
+transform = Transform3D(6.3506594, 0, 0, 0, 6.3506594, 0, 0, 0, 1, 0, 9.391, -4.061375)
+mesh = SubResource("QuadMesh_7etww")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_nt2yy")
+
+[node name="Area3D" type="Area3D" parent="CrtContainer/Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrtContainer/Quad/Area3D"]
+transform = Transform3D(0.99997485, 0, 0, 0, 0.99997485, 0, 0, 0, 1, -0.024499446, -0.007930398, 0)
+shape = SubResource("BoxShape3D_7etww")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CrtContainer"]
+transform = Transform3D(6.3506594, 0, 0, 0, 6.3506594, 0, 0, 0, 1, 0, 9.391, -1.5510354)
+mesh = SubResource("QuadMesh_nt2yy")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.9905195, 18.773594)
+size = 34.974
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kagal")
+}
