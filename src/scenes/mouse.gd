@@ -38,7 +38,7 @@ func _process(_delta: float) -> void:
 
 
 func _mouse_tier_change(new_tier: int):
-	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(new_tier))
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(new_tier - 1))
 
 
 func _on_area_2d_area_entered(_area: Area2D) -> void:

@@ -47,6 +47,9 @@ func _process(delta: float) -> void:
 	if current_state == FOLDER_TYPE.ROOT:
 		return
 	
+	$AnimationTree.set("parameters/Orange/blend_position", 0 if virus_list.size() <= 0 else 1)
+	$AnimationTree.set("parameters/Red/blend_position", 0 if virus_list.size() <= 0 else 1)
+	
 	# NOTE: Not sure how this happens yet but we get nulls so this clears nulls as a last resort
 	for i in range(virus_list.size() - 1, -1, -1):
 		if !is_instance_valid(virus_list[i]):

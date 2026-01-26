@@ -55,9 +55,9 @@ func add_virus_to_sim(virus: Virus):
 		return
 	
 	var container := VIRUS_FOLDER_CONTAINER_SCENE.instantiate() as VirusFolderContainer
-	folder_innards.place_virus(container)
-	container.add_virus(virus)
-	virus.set_enabled(true)
+	folder_innards.place_virus.call_deferred(container)
+	container.add_virus.call_deferred(virus)
+	virus.set_enabled.call_deferred(true)
 
 
 func unload_folder_contents():

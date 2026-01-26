@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cynuw703np806"]
+[gd_scene load_steps=65 format=3 uid="uid://cynuw703np806"]
 
 [ext_resource type="Texture2D" uid="uid://b236uirhjy7hn" path="res://assets/folder_spritesheet.png" id="1_ektu6"]
 [ext_resource type="Script" uid="uid://cj5l5od4qi8hd" path="res://src/board/game_folder.gd" id="2_bdcow"]
@@ -449,13 +449,171 @@ tracks/5/keys = {
 "values": [Color(0.8936326, 0.47804803, 0.31895104, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ldy8f"]
+resource_name = "virus_outside_me_orang"
+length = 0.9
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("simple_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(54, -41), Vector2(56, -43), Vector2(57, -38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WarningIcon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WarningIcon:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"default"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ProgressBar:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("simple_sprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.8936326, 0.47804803, 0.31895104, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vbxmt"]
+resource_name = "sweating_bro_no_virus"
+length = 0.9
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("simple_sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ProgressBar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.29999998, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(54, -41), Vector2(56, -43), Vector2(57, -38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WarningIcon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WarningIcon:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"sweaty"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ProgressBar:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("simple_sprite:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.79607844, 0.16470589, 0.36862746, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vnptg"]
 _data = {
 &"RESET": SubResource("Animation_bdcow"),
 &"defeated": SubResource("Animation_6s4mj"),
 &"neutral": SubResource("Animation_ektu6"),
 &"sweating_bro": SubResource("Animation_677k3"),
-&"virus_inside_me": SubResource("Animation_w1osx")
+&"sweating_bro_no_virus": SubResource("Animation_vbxmt"),
+&"virus_inside_me": SubResource("Animation_w1osx"),
+&"virus_outside_me_orang": SubResource("Animation_ldy8f")
 }
 
 [sub_resource type="Animation" id="Animation_gqtao"]
@@ -568,6 +726,36 @@ _data = {
 &"warning": SubResource("Animation_dbonf")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6s4mj"]
+animation = &"virus_inside_me"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w1osx"]
+animation = &"virus_outside_me_orang"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_677k3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_6s4mj")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_w1osx")
+blend_point_1/pos = 0.0
+min_space = 0.0
+value_label = "bool"
+sync = true
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vbxmt"]
+animation = &"sweating_bro_no_virus"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0y1fu"]
+animation = &"sweating_bro"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_2bayo"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_vbxmt")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_0y1fu")
+blend_point_1/pos = 1.0
+min_space = 0.0
+value_label = "bool"
+sync = true
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dbonf"]
 animation = &"defeated"
 
@@ -576,12 +764,6 @@ animation = &"neutral"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ajdan"]
 animation = &"defeated"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6iwbj"]
-animation = &"sweating_bro"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ldy8f"]
-animation = &"virus_inside_me"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6s4mj"]
 advance_mode = 2
@@ -594,9 +776,33 @@ advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
 advance_mode = 2
 advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vbxmt"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pqi6h"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.ROOT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbonf"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ke2pw"]
 advance_mode = 2
 advance_expression = "current_state == FOLDER_TYPE.INFECTED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ajdan"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance >= 80"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6iwbj"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldy8f"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance >= 80"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vbxmt"]
+advance_mode = 2
+advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance < 80"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0y1fu"]
 advance_mode = 2
@@ -604,38 +810,18 @@ advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2bayo"]
 advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance >= 80"
+advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nemwc"]
 advance_mode = 2
 advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance < 80"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_66vkn"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e37aj"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance >= 80"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2acy8"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.INFECTED && tolerance < 80"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pqi6h"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.ROOT"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbonf"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.DEFEATED"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ke2pw"]
-advance_mode = 2
-advance_expression = "current_state == FOLDER_TYPE.NEUTRAL"
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6s4mj"]
 states/End/position = Vector2(1099, 100)
+states/Orange/node = SubResource("AnimationNodeBlendSpace1D_677k3")
+states/Orange/position = Vector2(420, 244)
+states/Red/node = SubResource("AnimationNodeBlendSpace1D_2bayo")
+states/Red/position = Vector2(759, 244)
 states/Start/position = Vector2(207, 41)
 states/defeated/node = SubResource("AnimationNodeAnimation_dbonf")
 states/defeated/position = Vector2(759, 84)
@@ -643,12 +829,8 @@ states/neutral/node = SubResource("AnimationNodeAnimation_ke2pw")
 states/neutral/position = Vector2(420, 84)
 states/root/node = SubResource("AnimationNodeAnimation_ajdan")
 states/root/position = Vector2(420, -9)
-states/sweating_bro/node = SubResource("AnimationNodeAnimation_6iwbj")
-states/sweating_bro/position = Vector2(759, 270)
-states/virus_inside_me/node = SubResource("AnimationNodeAnimation_ldy8f")
-states/virus_inside_me/position = Vector2(420, 270)
-transitions = ["Start", "neutral", SubResource("AnimationNodeStateMachineTransition_6s4mj"), "neutral", "defeated", SubResource("AnimationNodeStateMachineTransition_w1osx"), "defeated", "neutral", SubResource("AnimationNodeStateMachineTransition_677k3"), "neutral", "virus_inside_me", SubResource("AnimationNodeStateMachineTransition_vbxmt"), "virus_inside_me", "neutral", SubResource("AnimationNodeStateMachineTransition_0y1fu"), "virus_inside_me", "sweating_bro", SubResource("AnimationNodeStateMachineTransition_2bayo"), "sweating_bro", "virus_inside_me", SubResource("AnimationNodeStateMachineTransition_nemwc"), "sweating_bro", "defeated", SubResource("AnimationNodeStateMachineTransition_66vkn"), "defeated", "sweating_bro", SubResource("AnimationNodeStateMachineTransition_e37aj"), "defeated", "virus_inside_me", SubResource("AnimationNodeStateMachineTransition_2acy8"), "Start", "root", SubResource("AnimationNodeStateMachineTransition_pqi6h"), "virus_inside_me", "defeated", SubResource("AnimationNodeStateMachineTransition_dbonf"), "sweating_bro", "neutral", SubResource("AnimationNodeStateMachineTransition_ke2pw")]
-graph_offset = Vector2(-79, 78)
+transitions = ["Start", "neutral", SubResource("AnimationNodeStateMachineTransition_6s4mj"), "neutral", "defeated", SubResource("AnimationNodeStateMachineTransition_w1osx"), "defeated", "neutral", SubResource("AnimationNodeStateMachineTransition_677k3"), "Start", "root", SubResource("AnimationNodeStateMachineTransition_pqi6h"), "Orange", "neutral", SubResource("AnimationNodeStateMachineTransition_dbonf"), "neutral", "Orange", SubResource("AnimationNodeStateMachineTransition_ke2pw"), "defeated", "Red", SubResource("AnimationNodeStateMachineTransition_ajdan"), "Red", "defeated", SubResource("AnimationNodeStateMachineTransition_6iwbj"), "Orange", "Red", SubResource("AnimationNodeStateMachineTransition_ldy8f"), "Red", "Orange", SubResource("AnimationNodeStateMachineTransition_vbxmt"), "Red", "neutral", SubResource("AnimationNodeStateMachineTransition_0y1fu"), "Orange", "defeated", SubResource("AnimationNodeStateMachineTransition_2bayo"), "defeated", "Orange", SubResource("AnimationNodeStateMachineTransition_nemwc")]
+graph_offset = Vector2(-103, -12)
 
 [sub_resource type="Animation" id="Animation_6iwbj"]
 length = 0.001
@@ -771,6 +953,8 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_6s4mj")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+parameters/Orange/blend_position = 0.7449293
+parameters/Red/blend_position = 0.32452366
 
 [node name="ShieldBarIdle" type="AnimationPlayer" parent="."]
 libraries = {

@@ -26,7 +26,7 @@ func upgrade_wall():
 	$HealthBar.value = current_health
 	$HealthBar.max_value = max_health
 	
-	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))
 	
 	#if upgraded_sprite:
 		#$Sprite2D.texture = upgraded_sprite
@@ -73,3 +73,7 @@ func take_damage(amount: int):
 	
 	if current_health <= 0:
 		$KillThySelf.play("you_should")
+
+
+func _on_attack_player_finished(_anim_name: StringName) -> void:
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))

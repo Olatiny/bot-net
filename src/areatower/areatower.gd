@@ -24,6 +24,7 @@ func _ready():
 	$AmmoBar.value = ammo
 	$AmmoBar.max_value = max_ammo
 	
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))
 	#attack_visual.visible = false
 	#attack_visual.modulate.a = 0.0
 
@@ -45,7 +46,7 @@ func apply_upgrade():
 	max_ammo += 5
 	ammo += 5
 
-	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))
 	damage += 10 # Increase damage
 
 	$AmmoBar.value = ammo

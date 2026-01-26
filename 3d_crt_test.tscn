@@ -15,10 +15,10 @@ subdivide_width = 5
 subdivide_depth = 5
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7etww"]
-viewport_path = NodePath("GameSubviewport")
+viewport_path = NodePath("Node3D/GameSubviewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nt2yy"]
-viewport_path = NodePath("GameSubviewport")
+viewport_path = NodePath("Node3D/GameSubviewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt2yy"]
 resource_local_to_scene = true
@@ -31,7 +31,7 @@ emission_texture = SubResource("ViewportTexture_nt2yy")
 size = Vector3(4.1054077, 3.1242676, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rfl71"]
-viewport_path = NodePath("GameSubviewport")
+viewport_path = NodePath("Node3D/GameSubviewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7etww"]
 resource_local_to_scene = true
@@ -87,31 +87,35 @@ _data = {
 point_count = 9
 
 [node name="3dCrtTest" type="Node3D"]
+
+[node name="Node3D" type="Node3D" parent="."]
 script = ExtResource("1_7etww")
 
-[node name="GameSubviewport" type="SubViewport" parent="."]
+[node name="GameSubviewport" type="SubViewport" parent="Node3D"]
 handle_input_locally = false
 physics_object_picking = true
 gui_embed_subwindows = true
 size = Vector2i(1920, 1440)
 render_target_update_mode = 4
 
-[node name="MainGame" parent="GameSubviewport" instance=ExtResource("1_n6cjk")]
+[node name="MainGame" parent="Node3D/GameSubviewport" instance=ExtResource("1_n6cjk")]
 
-[node name="Quad" type="MeshInstance3D" parent="."]
+[node name="Quad" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(6.3506594, 0, 0, 0, 6.3506594, 0, 0, 0, 1, 0, 9.391, -4.061375)
 mesh = SubResource("QuadMesh_7etww")
+skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_nt2yy")
 
-[node name="Area3D" type="Area3D" parent="Quad"]
+[node name="Area3D" type="Area3D" parent="Node3D/Quad"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Quad/Area3D"]
 transform = Transform3D(0.99997485, 0, 0, 0, 0.99997485, 0, 0, 0, 1, -0.024499446, -0.007930398, 0)
 shape = SubResource("BoxShape3D_7etww")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Node3D"]
 transform = Transform3D(6.3506594, 0, 0, 0, 6.3506594, 0, 0, 0, 1, 0, 9.391, -1.5510354)
 mesh = SubResource("QuadMesh_nt2yy")
+skeleton = NodePath("../..")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(218.89938, 0, 0, 0, 126.9598, 0, 0, 0, 13.324689, -0.9452915, 39.77169, -34.254345)
@@ -148,7 +152,7 @@ size = 34.974
 curve = SubResource("Curve3D_sbjjg")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.028887836, 0.0130444635, -0.9994465, 0, 0.999916, 0.01304923, 0.9995237, 0.00037700587, -0.028885605, -1.0735118, 0.08004377, 23.473883)
+transform = Transform3D(-0.028887833, 0.0130444635, -0.99944663, 0, 0.999916, 0.013049232, 0.9995236, 0.00037700587, -0.028885609, -1.0735118, 0.08004377, 23.473883)
 progress = 42.90631
 rotation_mode = 4
 cubic_interp = false

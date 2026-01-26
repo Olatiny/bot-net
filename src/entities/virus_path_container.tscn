@@ -3,5 +3,6 @@
 [ext_resource type="Script" uid="uid://dgpd1tgwvwd6l" path="res://src/entities/virus_path_container.gd" id="1_ljus3"]
 
 [node name="VirusPathContainer" type="PathFollow2D"]
+y_sort_enabled = true
 rotates = false
 script = ExtResource("1_ljus3")

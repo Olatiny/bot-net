@@ -116,36 +116,42 @@ path_to_disable = NodePath("../../Paths/Path6")
 y_sort_enabled = true
 
 [node name="Path" type="Path2D" parent="Paths"]
+y_sort_enabled = true
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_ntdqk")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path2" type="Path2D" parent="Paths"]
+y_sort_enabled = true
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_0wql5")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path3" type="Path2D" parent="Paths"]
+y_sort_enabled = true
 position = Vector2(1316, 755)
 curve = SubResource("Curve2D_iy2xe")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path4" type="Path2D" parent="Paths"]
+y_sort_enabled = true
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_fh8u8")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path5" type="Path2D" parent="Paths"]
+y_sort_enabled = true
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_td7d0")
 script = ExtResource("4_ntdqk")
 metadata/_custom_type_script = "uid://dbfpvpow154oi"
 
 [node name="Path6" type="Path2D" parent="Paths"]
+y_sort_enabled = true
 position = Vector2(1312, 617)
 curve = SubResource("Curve2D_jy8l4")
 script = ExtResource("4_ntdqk")

@@ -198,7 +198,6 @@ var encrypt_charges := 0
 ## Current player click attack damage
 var player_attack_damage := 1:
 	set(val):
-		GlobalStates.mouse_tier_change.emit(val)
 		player_attack_damage = val
 
 ## time elapsed of playthrough, resets each defeat (seconds)
@@ -222,8 +221,10 @@ var is_paused := false
 var player_level := 1:
 	set(value):
 		player_level = value
-		player_attack_damage = 1 + value * 2
+		player_attack_damage = 1 + value
 		ram_income = 10 + value * 5
+		GlobalStates.mouse_tier_change.emit(value)
+
 
 ## Affects potency of encrypt
 var encrypt_level := 1

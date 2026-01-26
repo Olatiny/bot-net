@@ -6,6 +6,7 @@
 size = Vector2(77, 72)
 
 [node name="FolderVirusContainer" type="CharacterBody2D"]
+y_sort_enabled = true
 collision_layer = 0
 collision_mask = 34
 input_pickable = true

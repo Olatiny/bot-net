@@ -64,7 +64,7 @@ func apply_upgrade():
 	
 	damage += 5  # Increase projectile damage
 	
-	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level))
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))
 	
 	$AmmoBar.value = ammo
 	$AmmoBar.max_value = max_ammo
@@ -145,3 +145,7 @@ func shoot():
 		ammo -= 1
 	else:
 		$KillThySelf.play("you_should")
+
+
+func _on_attack_player_finished(_anim_name: StringName) -> void:
+	(material as ShaderMaterial).set_shader_parameter("dest_color_1", GlobalStates.get_tier_color(upgrade_level - 1))
