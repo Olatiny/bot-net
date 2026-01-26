@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3epah1gpcc37"
+path="res://.godot/imported/DOUBLE RAM POWERUP SFX_1.wav-652dc104a03e2a6dccbfd577d10f6dc5.sample"
+
+[deps]
+
+source_file="res://assets/audio/sfx/DOUBLE RAM POWERUP SFX_1.wav"
+dest_files=["res://.godot/imported/DOUBLE RAM POWERUP SFX_1.wav-652dc104a03e2a6dccbfd577d10f6dc5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
