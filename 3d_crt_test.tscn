@@ -1,8 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://dvgyrbcbh567s"]
+[gd_scene load_steps=18 format=3 uid="uid://dvgyrbcbh567s"]
 
 [ext_resource type="Shader" uid="uid://c6p3lh6xico6c" path="res://src/materials/pixelate.gdshader" id="1_04u4j"]
 [ext_resource type="PackedScene" uid="uid://cj01a4v4rn7mv" path="res://src/main_game.tscn" id="1_n6cjk"]
 [ext_resource type="Shader" uid="uid://ddlynu18jv1ut" path="res://src/materials/crt_test.gdshader" id="2_cn0d0"]
+[ext_resource type="Texture2D" uid="uid://ds17t6sl0eyqf" path="res://3D_asset/PBR/Screen_BaseColor.1001.png" id="4_43p3s"]
+[ext_resource type="Texture2D" uid="uid://boa3gfptae16p" path="res://3D_asset/PBR/Screen_Normal.1001.png" id="5_sbjjg"]
+[ext_resource type="Texture2D" uid="uid://rw4rfs10ivke" path="res://3D_asset/PBR/Screen_Roughness.1001.png" id="6_4l6pq"]
+[ext_resource type="ArrayMesh" uid="uid://h1v6iyon1c35" path="res://3D_asset/screen.obj" id="7_7etww"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_cn0d0"]
 
@@ -57,10 +61,18 @@ ambient_light_sky_contribution = 0.72
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_04u4j"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nt2yy"]
+albedo_texture = ExtResource("4_43p3s")
+roughness_texture = ExtResource("6_4l6pq")
+roughness_texture_channel = 4
+normal_enabled = true
+normal_texture = ExtResource("5_sbjjg")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(7.498343, 0, 0, 0, 5.06498, 0, 0, 0, 1, 0, 0, -3.1884558)
+visible = false
 mesh = SubResource("BoxMesh_cn0d0")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
@@ -120,3 +132,8 @@ environment = SubResource("Environment_04u4j")
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.6913486)
 mesh = SubResource("PlaneMesh_04u4j")
+
+[node name="Screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.16, 0, 0, 0, 0.16, 0, 0, 0, 0.16, 0, -2.536, -2.58)
+material_override = SubResource("StandardMaterial3D_nt2yy")
+mesh = ExtResource("7_7etww")
