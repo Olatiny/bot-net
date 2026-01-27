@@ -44,6 +44,12 @@ extends Node2D
 
 @export var place_sfx: AudioStream
 
+@export var wave_start_sfx: AudioStream
+
+@export var game_over_sfx: AudioStream
+
+@export var crt_off_sfx: AudioStream
+
 
 ## timer for fade length
 @onready var fade_timer := $FadeTimer as Timer
@@ -142,6 +148,7 @@ func start_music() -> void:
 func stop_music():
 	fade_out(shop_player)
 	fade_out(main_player)
+	fade_out(main_menu_player)
 
 
 ## loop to non intro version
@@ -209,6 +216,18 @@ func sfx_play_crt_on_sfx():
 
 func sfx_play_place_sfx():
 	_sfx_one_shot(place_sfx, 3.5)
+
+
+func sfx_play_wave_start_sfx():
+	_sfx_one_shot(wave_start_sfx, 3)
+
+
+func sfx_play_game_over_sfx():
+	_sfx_one_shot(game_over_sfx)
+
+
+func sfx_play_crt_off_sfx():
+	_sfx_one_shot(crt_off_sfx, 3)
 
 
 

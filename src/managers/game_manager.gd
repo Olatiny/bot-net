@@ -382,6 +382,7 @@ func start_next_wave() -> void:
 	if wave_timer.is_stopped():
 		wave_timer.start()
 	
+	AudioManager.sfx_play_wave_start_sfx()
 	GlobalStates.wave_started.emit(current_wave_idx)
 	send_terminal_message("round start")
 
@@ -442,6 +443,7 @@ func game_over():
 	
 	current_state = GAME_STATE.GAME_OVER
 	
+	AudioManager.sfx_play_game_over_sfx()
 	send_terminal_message("game over")
 	game_over_canvas.visible = true
 	wave_cooldown.stop()

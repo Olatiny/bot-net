@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://7bg7s2lq7puq"]
+[gd_scene load_steps=20 format=3 uid="uid://7bg7s2lq7puq"]
 
 [ext_resource type="Script" uid="uid://bi766duc4vfmo" path="res://src/managers/audio_manager.gd" id="1_7642x"]
 [ext_resource type="AudioStream" uid="uid://hq5n3wqg3mbh" path="res://assets/audio/music/B0TN3T Combat v_12 w_Stinger.wav" id="3_ex770"]
@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://fe6tb2xntfrq" path="res://assets/audio/sfx/Wave_End.wav" id="13_eub0i"]
 [ext_resource type="AudioStream" uid="uid://c7pemderjo1ps" path="res://assets/audio/sfx/CRT ON SWITCH.wav" id="13_jgonj"]
 [ext_resource type="AudioStream" uid="uid://bc2nk5h53l0xe" path="res://assets/audio/sfx/PLACE TOWER.wav" id="15_0jvjy"]
+[ext_resource type="AudioStream" uid="uid://76jhix0cm0jr" path="res://assets/audio/sfx/WAVE START.wav" id="16_bdoxe"]
+[ext_resource type="AudioStream" uid="uid://bwq8ma71gsd5w" path="res://assets/audio/music/GAME OVER.wav" id="17_5knny"]
+[ext_resource type="AudioStream" uid="uid://dpno7v0o1vojr" path="res://assets/audio/sfx/CRT OFF SWITCH.wav" id="18_bvibm"]
 
 [node name="AudioManager" type="Node2D"]
 process_mode = 3
@@ -35,6 +38,9 @@ death_sfx = ExtResource("12_kgosn")
 wave_clear_sfx = ExtResource("13_eub0i")
 crt_on_sfx = ExtResource("13_jgonj")
 place_sfx = ExtResource("15_0jvjy")
+wave_start_sfx = ExtResource("16_bdoxe")
+game_over_sfx = ExtResource("17_5knny")
+crt_off_sfx = ExtResource("18_bvibm")
 
 [node name="ShopPlayer" type="AudioStreamPlayer" parent="."]
 bus = &"Music"

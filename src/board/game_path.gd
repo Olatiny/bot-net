@@ -17,7 +17,7 @@ const DOOR_SCENE := preload("res://src/scenes/door.tscn")
 func _ready() -> void:
 	backdoor_timer.one_shot = true
 	backdoor_timer.autostart = false
-	backdoor_timer.wait_time = 15.0
+	backdoor_timer.wait_time = 10
 
 	add_child(backdoor_timer)
 	backdoor_timer.timeout.connect(_destroy_backdoor)

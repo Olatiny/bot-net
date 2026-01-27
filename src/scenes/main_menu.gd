@@ -39,6 +39,10 @@ func play_startup_sound():
 	AudioManager.sfx_play_startup_sfx()
 
 
+func play_crt_off_sound():
+	AudioManager.sfx_play_crt_off_sfx()
+
+
 func start_music():
 	AudioManager.fade_to_menu()
 

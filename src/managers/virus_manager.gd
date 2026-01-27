@@ -65,6 +65,7 @@ func _ready() -> void:
 	_setup_timer(popup_timer)
 	_setup_timer(scramble_timer)
 	_setup_timer(backdoor_timer)
+	backdoor_timer.wait_time = 10
 	_setup_timer(bruteforce_timer)
 
 	add_child(spawn_timer)
